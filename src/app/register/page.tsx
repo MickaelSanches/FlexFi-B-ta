@@ -1,9 +1,8 @@
-// src/app/register/page.tsx
-
 "use client";
 import React from "react";
 import { useRegisterViewModel } from "../../viewmodels/useRegisterViewModel";
 import Link from "next/link";
+import { useRouter } from "next/navigation"; // Next.js v13+ for programmatic navigation
 
 const Register = () => {
   const {
@@ -21,12 +20,15 @@ const Register = () => {
     handleSubmitEmail,
     handleSubmitCode,
     handleSubmitPassword,
+    loading,
+    error,
   } = useRegisterViewModel();
+
+  const router = useRouter();
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-black p-8">
       <div className="flex flex-col md:flex-row w-full max-w-5xl bg-gray-900 border border-gray-800 rounded-lg shadow-lg overflow-hidden mt-8 md:mt-0 md:absolute md:top-60">
-        {/* Image Section */}
         <div
           className="w-full md:w-1/2 h-64 md:h-auto bg-cover"
           style={{
@@ -35,11 +37,12 @@ const Register = () => {
           }}
         ></div>
 
-        {/* Form Section */}
         <div className="w-full md:w-1/2 p-6 md:p-12">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-200 mb-6 md:mb-12">
             Register
           </h2>
+
+          {error && <div className="text-red-500 mb-4">{error}</div>}
 
           {currentStep === 1 && (
             <form onSubmit={handleSubmitEmail}>
@@ -78,7 +81,7 @@ const Register = () => {
                   type="submit"
                   className="w-full bg-blue-500 text-white font-bold py-2 md:py-3 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                 >
-                  Send Confirmation Code
+                  {loading ? "Sending..." : "Send Confirmation Code"}
                 </button>
               </div>
             </form>
@@ -95,7 +98,7 @@ const Register = () => {
                 </label>
                 <input
                   type="text"
-                  id="confirmationCode"
+                  id="code"
                   value={confirmationCode}
                   onChange={(e) => setConfirmationCode(e.target.value)}
                   className="w-full px-3 md:px-4 py-2 md:py-3 bg-gray-800 text-gray-200 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -107,7 +110,7 @@ const Register = () => {
                   type="submit"
                   className="w-full bg-blue-500 text-white font-bold py-2 md:py-3 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                 >
-                  Verify Code
+                  {loading ? "Verifying..." : "Verify Code"}
                 </button>
               </div>
             </form>
@@ -152,13 +155,26 @@ const Register = () => {
                   type="submit"
                   className="w-full bg-blue-500 text-white font-bold py-2 md:py-3 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                 >
-                  Set Password
+                  {loading ? "Setting..." : "Set Password"}
                 </button>
               </div>
             </form>
           )}
 
-          {/* Divider */}
+          {currentStep === 4 && (
+            <div className="text-center text-gray-200">
+              <h3 className="text-2xl font-bold mb-4">Registration Complete!</h3>
+              <p className="mb-4">Your account has been successfully created.</p>
+              <button
+                onClick={() => router.push("/login")}
+                className="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              >
+                Go to Login
+              </button>
+            </div>
+          )}
+
+          {/* Divider and Google Sign-In */}
           {currentStep === 1 && (
             <>
               <div className="relative mt-6 mb-6">
@@ -166,14 +182,12 @@ const Register = () => {
                   <div className="w-full border-t border-gray-700"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-gray-900 text-gray-200">ou</span>
+                  <span className="px-2 bg-gray-900 text-gray-200">or</span>
                 </div>
               </div>
-
-              {/* Google Sign-In Button */}
               <div className="mt-6">
                 <button
-                  onClick={() => console.log("yo")}
+                  onClick={() => console.log("Google Sign-In")}
                   className="w-full flex items-center justify-center bg-gray-800 text-white font-semibold py-2 md:py-3 rounded-lg hover:bg-gray-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 border border-gray-700"
                 >
                   <img
@@ -181,7 +195,7 @@ const Register = () => {
                     alt="Google"
                     className="w-5 h-5 mr-2"
                   />
-                  Continuer avec Google
+                  Continue with Google
                 </button>
               </div>
             </>

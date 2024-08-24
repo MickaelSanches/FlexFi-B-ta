@@ -1,90 +1,109 @@
 import { useState } from "react";
 
 export const useRegisterViewModel = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [acceptPrivacy, setAcceptPrivacy] = useState(false);
-  const [confirmationCode, setConfirmationCode] = useState("");
-  const [sentCode, setSentCode] = useState("");
-  const [currentStep, setCurrentStep] = useState(1);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [acceptPrivacy, setAcceptPrivacy] = useState<boolean>(false);
+  const [confirmationCode, setConfirmationCode] = useState<string>("");
+  const [currentStep, setCurrentStep] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
-  // Simulate an API call to send a confirmation code via email
-  const sendConfirmationEmail = async (email: string, code: string) => {
+  // Define the base URL for the API
+  const URL_API = "http://localhost:3000";
+
+  // Define the type for API call response (optional, depends on your API response structure)
+  interface ApiResponse {
+    error?: string;
+    message?: string;
+  }
+
+  // Helper function to handle API calls
+  const handleApiCall = async (url: string, method: string, body: any): Promise<ApiResponse> => {
     try {
-      const response = await fetch("/api/send-confirmation-email", {
-        method: "POST",
+      setLoading(true);
+      const response = await fetch(url, {
+        method,
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, code }),
+        body: JSON.stringify(body),
       });
+      setLoading(false);
 
-      if (response.ok) {
-        console.log("Email envoyé avec succès");
-      } else {
-        console.error("Échec de l'envoi de l'email");
+      if (!response.ok) {
+        const errorData: ApiResponse = await response.json();
+        throw new Error(errorData.error || "Une erreur est survenue");
       }
-    } catch (error) {
-      console.error("Erreur lors de l'envoi de l'email :", error);
+
+      return await response.json();
+    } catch (error: any) {
+      setLoading(false);
+      setError(error.message);
+      console.error("API call error:", error);
+      throw error;
     }
   };
 
-  const registerUser = async (email: string, password: string) => {
+  // Send confirmation email (backend handles code generation)
+  const sendConfirmationEmail = async (email: string): Promise<void> => {
     try {
-      const response = await fetch("/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (response.ok) {
-        console.log("Utilisateur enregistré avec succès");
-        alert("Inscription réussie !");
-      } else {
-        console.error("Échec de l'inscription");
-        alert("Échec de l'inscription");
-      }
+      await handleApiCall(`${URL_API}/send-verification-email`, "POST", { email });
+      console.log("Email envoyé avec succès");
     } catch (error) {
-      console.error("Erreur lors de l'inscription :", error);
-      alert("Erreur lors de l'inscription");
+      console.error("Erreur lors de l'envoi de l'email :", error);
+      throw error; // Lancer l'erreur pour qu'elle soit capturée dans handleSubmitEmail
     }
   };
 
   const handleSubmitEmail = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
     if (!acceptPrivacy) {
       alert("Vous devez accepter la politique de confidentialité pour vous inscrire.");
       return;
     }
-    const code = Math.floor(100000 + Math.random() * 900000).toString();
-    setSentCode(code);
-    console.log("Code de confirmation généré :", code);
-
-    // Envoyer l'email avec le code de confirmation
-    await sendConfirmationEmail(email, code);
-    setCurrentStep(2);
-  };
-
-  const handleSubmitCode = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (confirmationCode === sentCode) {
-      setCurrentStep(3);
-    } else {
-      alert("Code incorrect. Veuillez réessayer.");
+    try {
+      await sendConfirmationEmail(email);
+      setCurrentStep(2); // Passe à l'étape suivante seulement si l'envoi de l'email réussit
+    } catch (error) {
+      setError("Erreur lors de l'envoi de l'email. Veuillez réessayer."); // Affiche l'erreur sans passer à l'étape suivante
     }
   };
+
+  const handleSubmitCode = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+
+    console.log("Code de confirmation soumis :", confirmationCode);  // Log du code de confirmation
+
+    try {
+      // Ajout d'un log pour vérifier l'objet envoyé à l'API
+      console.log("Données envoyées :", { email, confirmationCode });
+
+      await handleApiCall(`${URL_API}/verify-email`, "POST", { email, code: confirmationCode });
+      setCurrentStep(3);
+    } catch (error) {
+      setError("Le code de confirmation est incorrect ou a expiré.");
+    }
+  };
+
+
 
   const handleSubmitPassword = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
     if (password !== confirmPassword) {
-      alert("Les mots de passe ne correspondent pas.");
+      setError("Les mots de passe ne correspondent pas.");
       return;
     }
-
-    await registerUser(email, password);
+    try {
+      await handleApiCall(`${URL_API}/register`, "POST", { email, password });
+      setCurrentStep(4); // Redirect to login or show success message
+    } catch (error) {
+      setError("Erreur lors de la création du compte. Veuillez réessayer.");
+    }
   };
 
   return {
@@ -99,6 +118,8 @@ export const useRegisterViewModel = () => {
     confirmationCode,
     setConfirmationCode,
     currentStep,
+    loading,
+    error,
     handleSubmitEmail,
     handleSubmitCode,
     handleSubmitPassword,
