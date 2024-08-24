@@ -12,7 +12,7 @@ const teamMembers: TeamMember[] = [
     name: "MikEight",
     role: "Founder",
     description: `MikEight is the visionary founder of FlexFi, leading the team with expertise in commerce, entrepreneurship, and blockchain technology and a passion for innovation.`,
-    url: "/logo/moon.webp"
+    url: "/logo/mikeight.jpg"
   },
   {
     name: "OMeG7",

@@ -49,7 +49,7 @@ const Footer = () => {
 
       {/* Bottom Section */}
       <div className="w-full mt-8 border-t border-gray-700 pt-4">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
+        <div className="max-w-7xl mx-auto flex justify-between items-center pl-8 pr-8">
           <p className="text-sm text-gray-400">© 2024 FlexFi. All rights reserved</p>
           <div className="space-x-4">
             <a href="#" className="text-sm text-gray-400 hover:underline">Contact</a>
