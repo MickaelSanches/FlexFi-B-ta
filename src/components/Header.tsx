@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,30 +13,30 @@ const Header = () => {
     <header className="bg-black border-2 border-gray-800 rounded-full p-4 mx-5 mt-5 mb-10 md:mx-20">
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo Section */}
-        <div className="flex items-center">
+        <Link href="/" className="flex items-center">
           <img
             src="/logo/flexfi-logo.png"
             alt="FlexFi Logo"
             className="h-12 w-auto"
           />
-        </div>
+        </Link>
 
         {/* Navigation pour les écrans larges */}
         <nav className="hidden md:flex space-x-4">
-          <a href="#" className="text-white hover:text-gray-400">
+          <Link className="text-white hover:text-gray-400" href="/roadmap">
             Roadmap
-          </a>
-          <a href="#" className="text-white hover:text-gray-400">
+          </Link>
+          <Link className="text-white hover:text-gray-400" href="/team">
             Team
-          </a>
-          <a href="#" className="text-white hover:text-gray-400">
-            WithePaper
-          </a>
+          </Link>
+          <Link className="text-white hover:text-gray-400" href="/whitepaper">
+            WhitePaper
+          </Link>
         </nav>
         <div className="flex items-center space-x-2">
-          <button className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-300">
+          <Link className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-300" href="/register">
             Log In
-          </button>
+          </Link>
         </div>
 
         {/* Burger menu pour les petits écrans */}
@@ -63,15 +64,15 @@ const Header = () => {
       {/* Menu déroulant pour les petits écrans */}
       {isOpen && (
         <nav className="md:hidden bg-black border-t border-gray-700 flex flex-col items-center">
-          <a href="#" className="block text-white px-4 py-2 hover:bg-gray-800">
+          <Link className="block text-white px-4 py-2 hover:bg-gray-800" href="/roadmap">
             Roadmap
-          </a>
-          <a href="#" className="block text-white px-4 py-2 hover:bg-gray-800">
+          </Link>
+          <Link className="block text-white px-4 py-2 hover:bg-gray-800" href="/team">
             Team
-          </a>
-          <a href="#" className="block text-white px-4 py-2 hover:bg-gray-800">
-            WithePaper
-          </a>
+          </Link>
+          <Link className="block text-white px-4 py-2 hover:bg-gray-800" href="/whitepaper">
+            WhitePaper
+          </Link>
         </nav>
       )}
     </header>
