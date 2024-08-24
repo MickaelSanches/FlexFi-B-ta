@@ -8,13 +8,11 @@ export default function Home() {
   return (
     <>
       <main className="flex flex-col items-center justify-between p-8 bg-black min-h-screen ml-20 mr-20">
-        {/* Welcome Section */}
+
         <Presentation />
 
-        {/* Features Section */}
         <InfoGrid />
 
-        {/* Call to Action Section */}
         <section className="text-center py-16 bg-black w-full">
           <h2 className="text-3xl font-bold text-white mb-8">Join FlexFi Today</h2>
           <p className="text-xl text-gray-300 mb-8">
