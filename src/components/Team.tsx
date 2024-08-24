@@ -18,7 +18,7 @@ const teamMembers: TeamMember[] = [
     name: "OMeG7",
     role: "Co-Founder",
     description: `OMeg7 is the co-founder and key strategist, ensuring FlexFi's success with his experience in communications, entrepreneurship and business development.`,
-    url: "/logo/moon.webp"
+    url: "/logo/omeg7.jpeg"
 
   },
   {

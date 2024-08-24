@@ -6,7 +6,7 @@ const Presentation = () => {
         Your gateway to decentralized finance. Manage your payments flexibly with the power of cryptocurrencies.
       </p>
       <button className="bg-gray-800 text-white px-6 py-3 rounded-full hover:bg-gray-700">
-        Start Now
+        Sign Up
       </button>
     </section>
   )
