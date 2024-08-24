@@ -20,9 +20,11 @@ const Roadmap = () => {
 
       roadmapData.forEach((_, index) => {
         const element = document.getElementById(`roadmap-item-${index}`);
-        const elementPosition = element?.getBoundingClientRect().top + scrollY - windowHeight / 1.3;
+        const elementPosition = element
+          ? element.getBoundingClientRect().top + scrollY - windowHeight / 1.3
+          : null;
 
-        if (scrollY > elementPosition) {
+        if (elementPosition !== null && scrollY > elementPosition) {
           setVisibleIndex((prevIndex) => Math.max(prevIndex, index));
         }
       });
