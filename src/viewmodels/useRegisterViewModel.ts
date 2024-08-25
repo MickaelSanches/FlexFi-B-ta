@@ -1,14 +1,24 @@
-import { useState } from "react";
+import { useRegisterStore } from '../store/useRegisterStore'; // Import du store Zustand
 
 export const useRegisterViewModel = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const [acceptPrivacy, setAcceptPrivacy] = useState<boolean>(false);
-  const [confirmationCode, setConfirmationCode] = useState<string>("");
-  const [currentStep, setCurrentStep] = useState<number>(1);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    confirmPassword,
+    setConfirmPassword,
+    acceptPrivacy,
+    setAcceptPrivacy,
+    confirmationCode,
+    setConfirmationCode,
+    currentStep,
+    setCurrentStep,
+    loading,
+    setLoading,
+    error,
+    setError,
+  } = useRegisterStore();
 
   const URL_API = "http://localhost:3000";
 
@@ -73,7 +83,6 @@ export const useRegisterViewModel = () => {
       setCurrentStep(2); // Passe à l'étape suivante seulement si l'envoi de l'email réussit
     } catch (error) {
       console.error("Erreur capturée dans handleSubmitEmail:", error);
-      // Si une erreur est levée, l'étape ne changera pas et l'utilisateur verra le message d'erreur.
     }
   };
 
@@ -93,16 +102,13 @@ export const useRegisterViewModel = () => {
     e.preventDefault();
     setError("");
 
-    // Regex pour la validation du mot de passe
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,128}$/;
 
-    // Vérification si les mots de passe ne correspondent pas
     if (password !== confirmPassword) {
       setError("The passwords do not match.");
       return;
     }
 
-    // Vérification si le mot de passe ne respecte pas les critères
     if (!passwordRegex.test(password)) {
       setError("Password must be between 8 and 128 characters long, and include at least one digit and one uppercase letter.");
       return;
@@ -112,7 +118,6 @@ export const useRegisterViewModel = () => {
       await handleApiCall(`${URL_API}/register`, "POST", { email, password });
       setCurrentStep(4); // Redirect to login or show success message
     } catch (error: any) {
-      // Vérifiez si l'erreur contient une réponse du backend
       if (error.response && error.response.data && error.response.data.message) {
         setError(error.response.data.message); // Utilise le message du backend
       } else {
@@ -120,7 +125,6 @@ export const useRegisterViewModel = () => {
       }
     }
   };
-
 
   return {
     email,

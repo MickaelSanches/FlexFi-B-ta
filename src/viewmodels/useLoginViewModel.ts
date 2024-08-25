@@ -1,20 +1,12 @@
-
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
+import { useLoginStore } from '../store/useLoginStore';
 
 export const useLoginViewModel = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
-  const [isClient, setIsClient] = useState<boolean>(false);
+  const { email, setEmail, password, setPassword, loading, setLoading, error, setError } = useLoginStore();
 
   const router = useRouter()
 
-  useEffect(() => {
-    // Vérifiez que nous sommes bien côté client
-    setIsClient(true);
-  }, []);
 
   const URL_API = "http://localhost:3000";
 
