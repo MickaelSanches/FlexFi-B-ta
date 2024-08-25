@@ -92,10 +92,22 @@ export const useRegisterViewModel = () => {
   const handleSubmitPassword = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+
+    // Regex pour la validation du mot de passe
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,128}$/;
+
+    // Vérification si les mots de passe ne correspondent pas
     if (password !== confirmPassword) {
       setError("The passwords do not match.");
       return;
     }
+
+    // Vérification si le mot de passe ne respecte pas les critères
+    if (!passwordRegex.test(password)) {
+      setError("Password must be between 8 and 128 characters long, and include at least one digit and one uppercase letter.");
+      return;
+    }
+
     try {
       await handleApiCall(`${URL_API}/register`, "POST", { email, password });
       setCurrentStep(4); // Redirect to login or show success message
@@ -108,6 +120,7 @@ export const useRegisterViewModel = () => {
       }
     }
   };
+
 
   return {
     email,

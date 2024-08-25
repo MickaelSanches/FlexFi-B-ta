@@ -118,7 +118,6 @@ const Register = () => {
 
           {currentStep === 3 && (
             <form onSubmit={handleSubmitPassword}>
-              <i>Password must be between 8 and 128 characters long, and include at least one digit and one uppercase letter.</i>
               <div className="mb-4 mt-4 md:mb-6">
                 <label
                   className="block text-gray-200 text-sm md:text-lg font-bold mb-2 md:mb-3"
