@@ -10,16 +10,13 @@ export const useRegisterViewModel = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
-  // Define the base URL for the API
   const URL_API = "http://localhost:3000";
 
-  // Define the type for API call response (optional, depends on your API response structure)
   interface ApiResponse {
     error?: string;
     message?: string;
   }
 
-  // Helper function to handle API calls
   const handleApiCall = async (url: string, method: string, body: any): Promise<ApiResponse> => {
     try {
       setLoading(true);
@@ -40,35 +37,43 @@ export const useRegisterViewModel = () => {
       return await response.json();
     } catch (error: any) {
       setLoading(false);
-      setError(error.message);
+
+      if (error.message.includes("This email is already registered.")) {
+        setError("This email is already registered.");
+      } else {
+        setError(error.message || "Une erreur est survenue");
+      }
+
       console.error("API call error:", error);
       throw error;
     }
   };
 
-  // Send confirmation email (backend handles code generation)
   const sendConfirmationEmail = async (email: string): Promise<void> => {
     try {
       await handleApiCall(`${URL_API}/send-verification-email`, "POST", { email });
       console.log("Email envoyé avec succès");
     } catch (error) {
       console.error("Erreur lors de l'envoi de l'email :", error);
-      throw error; // Lancer l'erreur pour qu'elle soit capturée dans handleSubmitEmail
+      throw error;
     }
   };
 
   const handleSubmitEmail = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+
     if (!acceptPrivacy) {
       alert("Vous devez accepter la politique de confidentialité pour vous inscrire.");
       return;
     }
+
     try {
       await sendConfirmationEmail(email);
       setCurrentStep(2); // Passe à l'étape suivante seulement si l'envoi de l'email réussit
     } catch (error) {
-      setError("Erreur lors de l'envoi de l'email. Veuillez réessayer."); // Affiche l'erreur sans passer à l'étape suivante
+      console.error("Erreur capturée dans handleSubmitEmail:", error);
+      // Si une erreur est levée, l'étape ne changera pas et l'utilisateur verra le message d'erreur.
     }
   };
 
@@ -76,33 +81,31 @@ export const useRegisterViewModel = () => {
     e.preventDefault();
     setError("");
 
-    console.log("Code de confirmation soumis :", confirmationCode);  // Log du code de confirmation
-
     try {
-      // Ajout d'un log pour vérifier l'objet envoyé à l'API
-      console.log("Données envoyées :", { email, confirmationCode });
-
       await handleApiCall(`${URL_API}/verify-email`, "POST", { email, code: confirmationCode });
       setCurrentStep(3);
     } catch (error) {
-      setError("Le code de confirmation est incorrect ou a expiré.");
+      setError("The confirmation code is incorrect or has expired.");
     }
   };
-
-
 
   const handleSubmitPassword = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     if (password !== confirmPassword) {
-      setError("Les mots de passe ne correspondent pas.");
+      setError("The passwords do not match.");
       return;
     }
     try {
       await handleApiCall(`${URL_API}/register`, "POST", { email, password });
       setCurrentStep(4); // Redirect to login or show success message
-    } catch (error) {
-      setError("Erreur lors de la création du compte. Veuillez réessayer.");
+    } catch (error: any) {
+      // Vérifiez si l'erreur contient une réponse du backend
+      if (error.response && error.response.data && error.response.data.message) {
+        setError(error.response.data.message); // Utilise le message du backend
+      } else {
+        setError("Erreur lors de la création du compte. Veuillez réessayer.");
+      }
     }
   };
 
