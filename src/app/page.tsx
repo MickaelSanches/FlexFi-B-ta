@@ -2,6 +2,7 @@ import Presentation from "../components/Presentation";
 import InfoGrid from "../components/InfoGrid";
 import Roadmap from "../components/Roadmap";
 import Team from "@/components/Team";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -16,14 +17,18 @@ export default function Home() {
           <p className="text-xl text-gray-300 mb-8">
             Sign up now and take control of your finances with FlexFi.
           </p>
-          <button className="bg-gray-800 text-white px-6 py-3 rounded-full hover:bg-gray-700">
+          <Link href="/register" className="bg-gray-800 text-white px-6 py-3 rounded-full hover:bg-gray-700">
             Sign Up Now
-          </button>
+          </Link>
         </section>
 
-        <Roadmap />
+        <div id="roadmap-section">
+          <Roadmap />
+        </div>
 
-        <Team />
+        <div id="team-section">
+          <Team />
+        </div>
       </main>
     </>
   );

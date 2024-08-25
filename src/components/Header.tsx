@@ -9,6 +9,14 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleScrollToSection = (e, sectionId) => {
+    e.preventDefault();
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <header className="bg-black border-2 border-gray-800 rounded-full p-4 mx-5 mt-5 mb-10 md:mx-20">
       <div className="container mx-auto flex items-center justify-between">
@@ -23,12 +31,18 @@ const Header = () => {
 
         {/* Navigation pour les écrans larges */}
         <nav className="hidden md:flex space-x-4">
-          <Link className="text-white hover:text-gray-400" href="/roadmap">
+          <a
+            className="text-white hover:text-gray-400 cursor-pointer"
+            onClick={(e) => handleScrollToSection(e, 'roadmap-section')}
+          >
             Roadmap
-          </Link>
-          <Link className="text-white hover:text-gray-400" href="/team">
+          </a>
+          <a
+            className="text-white hover:text-gray-400 cursor-pointer"
+            onClick={(e) => handleScrollToSection(e, 'team-section')}
+          >
             Team
-          </Link>
+          </a>
           <Link className="text-white hover:text-gray-400" href="/whitepaper">
             WhitePaper
           </Link>
@@ -64,12 +78,18 @@ const Header = () => {
       {/* Menu déroulant pour les petits écrans */}
       {isOpen && (
         <nav className="md:hidden bg-black border-t border-gray-700 flex flex-col items-center">
-          <Link className="block text-white px-4 py-2 hover:bg-gray-800" href="/roadmap">
+          <a
+            className="block text-white px-4 py-2 hover:bg-gray-800 cursor-pointer"
+            onClick={(e) => handleScrollToSection(e, 'roadmap-section')}
+          >
             Roadmap
-          </Link>
-          <Link className="block text-white px-4 py-2 hover:bg-gray-800" href="/team">
+          </a>
+          <a
+            className="block text-white px-4 py-2 hover:bg-gray-800 cursor-pointer"
+            onClick={(e) => handleScrollToSection(e, 'team-section')}
+          >
             Team
-          </Link>
+          </a>
           <Link className="block text-white px-4 py-2 hover:bg-gray-800" href="/whitepaper">
             WhitePaper
           </Link>

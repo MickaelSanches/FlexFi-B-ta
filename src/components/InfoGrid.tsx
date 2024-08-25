@@ -5,7 +5,7 @@ export const InfoGrid = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mx-8">
 
         {/* First Row: Staking and Logo */}
-        <div className="md:col-span-3  bg-black shadow-lg rounded-3xl p-8 transform transition-transform duration-300">
+        <div className="md:col-span-3  bg-black shadow-lg rounded-3xl p-8 hover:-translate-y-2 transition-transform duration-300">
           <div className="flex items-center mb-4">
             <div className="bg-blue-600 p-2 rounded-full">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6 text-white">
@@ -19,12 +19,12 @@ export const InfoGrid = () => {
           </p>
         </div>
 
-        <div className="md:col-span-1 bg-black shadow-lg rounded-3xl flex items-center justify-center p-8 transform transition-transform duration-300">
+        <div className="md:col-span-1 bg-gradient-to-r from-black via-gray-800 to-black shadow-lg rounded-3xl flex items-center justify-center p-8 hover:-translate-y-2 transition-transform duration-300">
           <img src="/logo/flexfi-logo.png" alt="FLEX Logo" className="max-w-full h-auto" />
         </div>
 
         {/* Second Row: Bonds and Additional Information */}
-        <div className="md:col-span-2 bg-black shadow-lg rounded-3xl p-8 transform transition-transform duration-300">
+        <div className="md:col-span-2 bg-black shadow-lg rounded-3xl p-8 hover:-translate-y-2 transition-transform duration-300">
           <div className="flex items-center mb-4">
             <div className="bg-green-600 p-2 rounded-full">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6 text-white">
@@ -38,7 +38,7 @@ export const InfoGrid = () => {
           </p>
         </div>
 
-        <div className="md:col-span-2 bg-black shadow-lg rounded-3xl p-8 transform transition-transform duration-300">
+        <div className="md:col-span-2 bg-black shadow-lg rounded-3xl p-8 hover:-translate-y-2 transition-transform duration-300">
           <div className="flex items-center mb-4">
             <div className="bg-purple-600 p-2 rounded-full">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6 text-white">
@@ -53,7 +53,7 @@ export const InfoGrid = () => {
         </div>
 
         {/* Third Row: Ecosystem Protocols */}
-        <div className="md:col-span-4 bg-black shadow-lg rounded-3xl p-8 transform transition-transform duration-300">
+        <div className="md:col-span-4 shadow-lg bg-black rounded-3xl p-8 hover:-translate-y-2 transition-transform duration-300">
           <div className="flex items-center mb-4">
             <div className="bg-red-600 p-2 rounded-full">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6 text-white">
