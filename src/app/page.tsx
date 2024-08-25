@@ -2,12 +2,12 @@ import Presentation from "../components/Presentation";
 import InfoGrid from "../components/InfoGrid";
 import Roadmap from "../components/Roadmap";
 import Team from "@/components/Team";
+import Teste from "@/components/Teste";
 
 export default function Home() {
   return (
     <>
       <main className="flex flex-col items-center justify-between p-4 sm:pl-20 sm:pr-20 bg-black min-h-screen">
-
         <Presentation />
 
         <InfoGrid />
