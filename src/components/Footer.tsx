@@ -32,7 +32,7 @@ const Footer = () => {
 
         {/* Logo Section */}
         <div className="flex flex-col items-center space-y-4">
-          <Image src="/logo/flexIcon.webp" alt="FlexFi Logo" width={64} height={64} />
+          <Image src="/logo/flexicon.webp" alt="FlexFi Logo" width={64} height={64} />
         </div>
 
         {/* Follow Us Section */}
