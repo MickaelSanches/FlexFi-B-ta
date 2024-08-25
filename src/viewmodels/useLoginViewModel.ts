@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import { useLoginStore } from '../store/useLoginStore';
 
@@ -15,7 +14,7 @@ export const useLoginViewModel = () => {
     message?: string;
   }
 
-  const handleApiCall = async (url: string, method: string, body: any): Promise<ApiResponse> => {
+  const handleApiCall = async (url: string, method: string, body: unknown): Promise<ApiResponse> => {
     try {
       setLoading(true);
       const response = await fetch(url, {

@@ -19,7 +19,7 @@ const Login = () => {
         <div
           className="w-full md:w-1/2 h-64 md:h-auto bg-cover"
           style={{
-            backgroundImage: "url('/logo/solana.jpg')",
+            backgroundImage: "url('/logo/solana-login.jpg')",
             backgroundPosition: "center",
           }}
         ></div>

@@ -27,7 +27,7 @@ export const useRegisterViewModel = () => {
     message?: string;
   }
 
-  const handleApiCall = async (url: string, method: string, body: any): Promise<ApiResponse> => {
+  const handleApiCall = async (url: string, method: string, body: unknown): Promise<ApiResponse> => {
     try {
       setLoading(true);
       const response = await fetch(url, {
@@ -45,13 +45,13 @@ export const useRegisterViewModel = () => {
       }
 
       return await response.json();
-    } catch (error: any) {
+    } catch (error: unknown) {
       setLoading(false);
 
-      if (error.message.includes("This email is already registered.")) {
+      if (error instanceof Error && error.message.includes("This email is already registered.")) {
         setError("This email is already registered.");
       } else {
-        setError(error.message || "Une erreur est survenue");
+        setError((error instanceof Error ? error.message : "Une erreur est survenue"));
       }
 
       console.error("API call error:", error);
@@ -65,7 +65,7 @@ export const useRegisterViewModel = () => {
       console.log("Email envoyé avec succès");
     } catch (error) {
       console.error("Erreur lors de l'envoi de l'email :", error);
-      throw error;
+      // Pas besoin de relancer l'erreur ici car elle est déjà gérée dans handleApiCall
     }
   };
 
@@ -82,7 +82,9 @@ export const useRegisterViewModel = () => {
       await sendConfirmationEmail(email);
       setCurrentStep(2); // Passe à l'étape suivante seulement si l'envoi de l'email réussit
     } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       console.error("Erreur capturée dans handleSubmitEmail:", error);
+      setError("Une erreur est survenue.");
     }
   };
 
@@ -94,6 +96,7 @@ export const useRegisterViewModel = () => {
       await handleApiCall(`${URL_API}/verify-email`, "POST", { email, code: confirmationCode });
       setCurrentStep(3);
     } catch (error) {
+      console.error("Erreur capturée dans handleSubmitCode:", error);
       setError("The confirmation code is incorrect or has expired.");
     }
   };
@@ -117,9 +120,9 @@ export const useRegisterViewModel = () => {
     try {
       await handleApiCall(`${URL_API}/register`, "POST", { email, password });
       setCurrentStep(4); // Redirect to login or show success message
-    } catch (error: any) {
-      if (error.response && error.response.data && error.response.data.message) {
-        setError(error.response.data.message); // Utilise le message du backend
+    } catch (error: unknown) {
+      if (error instanceof Error && error.message) {
+        setError(error.message); // Utilise le message du backend
       } else {
         setError("Erreur lors de la création du compte. Veuillez réessayer.");
       }
