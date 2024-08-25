@@ -2,7 +2,6 @@ import Presentation from "../components/Presentation";
 import InfoGrid from "../components/InfoGrid";
 import Roadmap from "../components/Roadmap";
 import Team from "@/components/Team";
-import Teste from "@/components/Teste";
 
 export default function Home() {
   return (
