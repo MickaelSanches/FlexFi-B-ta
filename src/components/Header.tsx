@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useLoginStore } from '@/store/useLoginStore';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,6 +17,8 @@ const Header = () => {
       section.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const { isLogged } = useLoginStore()
 
   return (
     <header className="bg-black border-2 border-gray-800 rounded-full p-4 mx-5 mt-5 mb-10 md:mx-20">
@@ -47,11 +50,17 @@ const Header = () => {
             WhitePaper
           </Link>
         </nav>
-        <div className="flex items-center space-x-2">
-          <Link className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-300" href="/login">
-            Log In
-          </Link>
-        </div>
+        {isLogged ?
+          <div className="flex items-center space-x-2">
+            <Link className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-300" href="/login">
+              Wallet
+            </Link>
+          </div> : <div className="flex items-center space-x-2">
+            <Link className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-300" href="/login">
+              Login
+            </Link>
+          </div>}
+
 
         {/* Burger menu pour les petits écrans */}
         <div className="md:hidden">

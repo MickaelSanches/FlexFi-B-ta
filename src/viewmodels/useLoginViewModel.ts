@@ -2,7 +2,7 @@ import { useRouter } from 'next/navigation';
 import { useLoginStore } from '../store/useLoginStore';
 
 export const useLoginViewModel = () => {
-  const { email, setEmail, password, setPassword, loading, setLoading, error, setError } = useLoginStore();
+  const { email, setEmail, password, setPassword, loading, setLoading, error, setError, setIsLogged } = useLoginStore();
 
   const router = useRouter()
 
@@ -10,9 +10,11 @@ export const useLoginViewModel = () => {
   const URL_API = "http://localhost:3000";
 
   interface ApiResponse {
+    token?: string;
     error?: string;
     message?: string;
   }
+
 
   const handleApiCall = async (url: string, method: string, body: unknown): Promise<ApiResponse> => {
     try {
@@ -43,13 +45,29 @@ export const useLoginViewModel = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
 
     try {
-      await handleApiCall(`${URL_API}/login`, "post", { email, password });
-      router.push("/")
+      // Effectuer l'appel API pour se connecter
+      const response = await handleApiCall(`${URL_API}/login`, "post", { email, password });
+
+      // Récupérer le token depuis la réponse
+      const token = response.token;
+
+      if (token) {
+        // Stocker le token dans sessionStorage
+        sessionStorage.setItem('token', token);
+        setIsLogged(true)
+
+        // Rediriger l'utilisateur après la connexion réussie
+        router.push("/");
+      } else {
+        throw new Error("Token not found in response");
+      }
+
     } catch (error: any) {
-      if (error.response && error.response.data && error.response.data.message) {
-        setError(error.response.data.message);
+      if (error.message) {
+        setError(error.message);
       } else {
         setError("Erreur lors de la connexion. Veuillez réessayer.");
       }
@@ -57,6 +75,7 @@ export const useLoginViewModel = () => {
       setLoading(false);
     }
   };
+
 
   return {
     email,

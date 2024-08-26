@@ -27,6 +27,7 @@ const Register = () => {
 
   const router = useRouter();
 
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-black p-8">
       <div className="flex flex-col md:flex-row w-full max-w-5xl bg-gray-900 border border-gray-800 rounded-lg shadow-lg overflow-hidden mt-8 md:mt-0 md:absolute md:top-60">
