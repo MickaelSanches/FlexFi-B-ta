@@ -52,7 +52,7 @@ const Header = () => {
         </nav>
         {isLogged ?
           <div className="flex items-center space-x-2">
-            <Link className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-300" href="/login">
+            <Link className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-300" href="/dashboard">
               Wallet
             </Link>
           </div> : <div className="flex items-center space-x-2">
