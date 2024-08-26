@@ -27,6 +27,7 @@ export const useRegisterViewModel = () => {
   interface ApiResponse {
     error?: string;
     message?: string;
+    seed_phrase?: string;
   }
 
   const handleApiCall = async (url: string, method: string, body: unknown): Promise<ApiResponse> => {
@@ -121,7 +122,7 @@ export const useRegisterViewModel = () => {
 
     try {
       const userCreat = await handleApiCall(`${URL_API}/register`, "POST", { email, password });
-      setSeedPhrase(userCreat.seed_phrase)
+      setSeedPhrase(userCreat.seed_phrase as string);
       setCurrentStep(4); // Redirect to login or show success message
     } catch (error: unknown) {
       if (error instanceof Error && error.message) {

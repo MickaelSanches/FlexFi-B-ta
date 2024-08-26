@@ -170,7 +170,7 @@ const Register = () => {
                 Important: Here is your seed phrase. Please write it down and keep it in a secure place. This phrase is crucial for recovering your account if you lose access to it.
               </p>
               <div className="bg-gray-800 text-white p-4 rounded-lg mb-4">
-                <p className="font-mono text-lg">"{seedPhrase}"</p>
+                <p className="font-mono text-lg">&quot;{seedPhrase}&quot;</p>
               </div>
               <p className="mb-4 text-sm text-gray-400">
                 Your seed phrase is a unique set of words that acts as the key to your account. Anyone with access to this phrase can access your account, so treat it with care and do not share it with anyone.
