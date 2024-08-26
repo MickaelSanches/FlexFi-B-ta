@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 
 interface RegisterState {
+  seedPhrase: string
+  setSeedPhrase: (seedPhrase: string) => void,
   email: string;
   setEmail: (email: string) => void;
   password: string;
@@ -21,6 +23,8 @@ interface RegisterState {
 }
 
 export const useRegisterStore = create<RegisterState>((set) => ({
+  seedPhrase: "",
+  setSeedPhrase: (seedPhrase) => set({ seedPhrase }),
   email: "",
   setEmail: (email) => set({ email }),
   password: "",

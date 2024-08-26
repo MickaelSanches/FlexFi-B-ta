@@ -22,6 +22,7 @@ const Register = () => {
     handleSubmitPassword,
     loading,
     error,
+    seedPhrase,
   } = useRegisterViewModel();
 
   const router = useRouter();
@@ -165,6 +166,15 @@ const Register = () => {
             <div className="text-center text-gray-200">
               <h3 className="text-2xl font-bold mb-4">Registration Complete!</h3>
               <p className="mb-4">Your account has been successfully created.</p>
+              <p className="mb-4 font-bold text-yellow-400">
+                Important: Here is your seed phrase. Please write it down and keep it in a secure place. This phrase is crucial for recovering your account if you lose access to it.
+              </p>
+              <div className="bg-gray-800 text-white p-4 rounded-lg mb-4">
+                <p className="font-mono text-lg">"{seedPhrase}"</p>
+              </div>
+              <p className="mb-4 text-sm text-gray-400">
+                Your seed phrase is a unique set of words that acts as the key to your account. Anyone with access to this phrase can access your account, so treat it with care and do not share it with anyone.
+              </p>
               <button
                 onClick={() => router.push("/login")}
                 className="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
@@ -172,6 +182,7 @@ const Register = () => {
                 Go to Login
               </button>
             </div>
+
           )}
 
           {/* Divider and Google Sign-In */}

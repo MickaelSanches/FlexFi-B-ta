@@ -2,6 +2,8 @@ import { useRegisterStore } from '../store/useRegisterStore'; // Import du store
 
 export const useRegisterViewModel = () => {
   const {
+    seedPhrase,
+    setSeedPhrase,
     email,
     setEmail,
     password,
@@ -118,7 +120,8 @@ export const useRegisterViewModel = () => {
     }
 
     try {
-      await handleApiCall(`${URL_API}/register`, "POST", { email, password });
+      const userCreat = await handleApiCall(`${URL_API}/register`, "POST", { email, password });
+      setSeedPhrase(userCreat.seed_phrase)
       setCurrentStep(4); // Redirect to login or show success message
     } catch (error: unknown) {
       if (error instanceof Error && error.message) {
@@ -130,6 +133,8 @@ export const useRegisterViewModel = () => {
   };
 
   return {
+    seedPhrase,
+    setSeedPhrase,
     email,
     setEmail,
     password,
