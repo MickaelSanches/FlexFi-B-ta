@@ -1,5 +1,5 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useLoginStore } from '@/store/useLoginStore';
 
@@ -18,7 +18,7 @@ const Header = () => {
     }
   };
 
-  const { isLogged } = useLoginStore()
+  const { isLogged } = useLoginStore();
 
   return (
     <header className="bg-black border-2 border-gray-800 rounded-full p-4 mx-5 mt-5 mb-10 md:mx-20">
@@ -60,7 +60,6 @@ const Header = () => {
               Login
             </Link>
           </div>}
-
 
         {/* Burger menu pour les petits écrans */}
         <div className="md:hidden">

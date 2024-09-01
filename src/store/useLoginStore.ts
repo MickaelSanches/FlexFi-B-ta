@@ -14,12 +14,19 @@ interface LoginState {
 }
 
 export const useLoginStore = create<LoginState>((set) => ({
-  isLogged: false,
+  isLogged: typeof window !== 'undefined' ? !!localStorage.getItem('isLogged') : false,
   email: "",
   password: "",
   loading: false,
   error: "",
-  setIsLogged: (isLogged) => set({ isLogged }),
+  setIsLogged: (isLogged) => {
+    set({ isLogged });
+    if (isLogged) {
+      localStorage.setItem('isLogged', 'true');
+    } else {
+      localStorage.removeItem('isLogged');
+    }
+  },
   setEmail: (email) => set({ email }),
   setPassword: (password) => set({ password }),
   setLoading: (loading) => set({ loading }),
