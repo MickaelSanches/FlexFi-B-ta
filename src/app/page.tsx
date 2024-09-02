@@ -1,17 +1,19 @@
 "use client"
-import Presentation from "../components/Presentation";
-import InfoGrid from "../components/InfoGrid";
-import Roadmap from "../components/Roadmap";
-import Team from "@/components/Team";
-import Link from "next/link";
-import { useLoginStore } from "@/store/useLoginStore";
+// import Presentation from "../components/Presentation";
+// import InfoGrid from "../components/InfoGrid";
+// import Roadmap from "../components/Roadmap";
+// import Team from "@/components/Team";
+// import Link from "next/link";
+// import { useLoginStore } from "@/store/useLoginStore";
+import ComingSoon from "@/components/ComingSoon";
 
 export default function Home() {
-  const { isLogged } = useLoginStore()
+  // const { isLogged } = useLoginStore()
 
   return (
     <>
-      <main className="flex flex-col items-center justify-between p-4 sm:pl-20 sm:pr-20 bg-black min-h-screen">
+      <ComingSoon />
+      {/* <main className="flex flex-col items-center justify-between p-4 sm:pl-20 sm:pr-20 bg-black min-h-screen">
         <Presentation />
 
         <InfoGrid />
@@ -34,7 +36,7 @@ export default function Home() {
         <div id="team-section">
           <Team />
         </div>
-      </main>
+      </main> */}
     </>
   );
 }
