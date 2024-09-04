@@ -59,7 +59,7 @@ const Register = () => {
                 write them down and keep them in a secure place.
               </p>
               <div className="bg-gray-800 text-white p-4 rounded-lg mb-4">
-                <p className="font-mono text-lg">"{seedPhrase}"</p>
+                <p className="font-mono text-lg">{seedPhrase}</p>
               </div>
               <p className="mb-4 font-bold text-yellow-400">
                 Wallet Public Address:
@@ -201,64 +201,6 @@ const Register = () => {
                 </button>
               </div>
             </form>
-          )}
-
-          {currentStep === 4 && (
-            <div className="text-center text-gray-200">
-              <h3 className="text-2xl font-bold mb-4">
-                Registration Complete!
-              </h3>
-              <p className="mb-4">
-                Your account has been successfully created.
-              </p>
-              <p className="mb-4 font-bold text-yellow-400">
-                Important: Here is your seed phrase. Please write it down and
-                keep it in a secure place. This phrase is crucial for recovering
-                your account if you lose access to it.
-              </p>
-              <div className="bg-gray-800 text-white p-4 rounded-lg mb-4">
-                <p className="font-mono text-lg">&quot;{seedPhrase}&quot;</p>
-              </div>
-              <p className="mb-4 text-sm text-gray-400">
-                Your seed phrase is a unique set of words that acts as the key
-                to your account. Anyone with access to this phrase can access
-                your account, so treat it with care and do not share it with
-                anyone.
-              </p>
-              <button
-                onClick={() => router.push("/login")}
-                className="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-              >
-                Go to Login
-              </button>
-            </div>
-          )}
-
-          {/* Divider and Google Sign-In */}
-          {currentStep === 1 && (
-            <>
-              <div className="relative mt-6 mb-6">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-700"></div>
-                </div>
-                <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-gray-900 text-gray-200">or</span>
-                </div>
-              </div>
-              <div className="mt-6">
-                <button
-                  onClick={() => console.log("Google Sign-In")}
-                  className="w-full flex items-center justify-center bg-gray-800 text-white font-semibold py-2 md:py-3 rounded-lg hover:bg-gray-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 border border-gray-700"
-                >
-                  <img
-                    src="/logo/logo-google.png"
-                    alt="Google"
-                    className="w-5 h-5 mr-2"
-                  />
-                  Continue with Google
-                </button>
-              </div>
-            </>
           )}
         </div>
       </div>
