@@ -1,8 +1,10 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 interface RegisterState {
-  seedPhrase: string
-  setSeedPhrase: (seedPhrase: string) => void,
+  seedPhrase: string;
+  setSeedPhrase: (seedPhrase: string) => void;
+  publicKey: string; // Ajoute la clé publique ici
+  setPublicKey: (publicKey: string) => void; // Setter pour la clé publique
   email: string;
   setEmail: (email: string) => void;
   password: string;
@@ -25,6 +27,8 @@ interface RegisterState {
 export const useRegisterStore = create<RegisterState>((set) => ({
   seedPhrase: "",
   setSeedPhrase: (seedPhrase) => set({ seedPhrase }),
+  publicKey: "", // Initialise la clé publique à une chaîne vide
+  setPublicKey: (publicKey) => set({ publicKey }), // Setter pour la clé publique
   email: "",
   setEmail: (email) => set({ email }),
   password: "",
@@ -41,14 +45,17 @@ export const useRegisterStore = create<RegisterState>((set) => ({
   setLoading: (loading) => set({ loading }),
   error: "",
   setError: (error) => set({ error }),
-  reset: () => set({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    acceptPrivacy: false,
-    confirmationCode: "",
-    currentStep: 1,
-    loading: false,
-    error: "",
-  }),
+  reset: () =>
+    set({
+      email: "",
+      password: "",
+      confirmPassword: "",
+      acceptPrivacy: false,
+      confirmationCode: "",
+      currentStep: 1,
+      loading: false,
+      error: "",
+      publicKey: "", // Réinitialise la clé publique lors du reset
+      seedPhrase: "", // Réinitialise la seed phrase lors du reset
+    }),
 }));
