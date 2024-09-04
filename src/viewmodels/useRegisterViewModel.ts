@@ -1,9 +1,11 @@
-import { useRegisterStore } from '../store/useRegisterStore'; // Import du store Zustand
+import { useRegisterStore } from "../store/useRegisterStore"; // Import du store Zustand
 
 export const useRegisterViewModel = () => {
   const {
     seedPhrase,
     setSeedPhrase,
+    setPublicKey, // Setter pour la clé publique
+    publicKey,
     email,
     setEmail,
     password,
@@ -28,11 +30,17 @@ export const useRegisterViewModel = () => {
     error?: string;
     message?: string;
     seed_phrase?: string;
+    public_key?: string; // Clé publique du wallet Solana
   }
 
-  const handleApiCall = async (url: string, method: string, body: unknown): Promise<ApiResponse> => {
+  const handleApiCall = async (
+    url: string,
+    method: string,
+    body: unknown
+  ): Promise<ApiResponse> => {
     try {
       setLoading(true);
+      console.log("Données envoyées à l'API :", body); // Vérifie les données envoyées
       const response = await fetch(url, {
         method,
         headers: {
@@ -40,31 +48,28 @@ export const useRegisterViewModel = () => {
         },
         body: JSON.stringify(body),
       });
+      console.log("Réponse API : ", response); // Vérifie la réponse
       setLoading(false);
-
       if (!response.ok) {
         const errorData: ApiResponse = await response.json();
         throw new Error(errorData.error || "Une erreur est survenue");
       }
-
       return await response.json();
     } catch (error: unknown) {
       setLoading(false);
-
-      if (error instanceof Error && error.message.includes("This email is already registered.")) {
-        setError("This email is already registered.");
-      } else {
-        setError((error instanceof Error ? error.message : "Une erreur est survenue"));
-      }
-
-      console.error("API call error:", error);
+      setError(
+        error instanceof Error ? error.message : "Une erreur est survenue"
+      );
+      console.error("Erreur lors de l'appel API :", error);
       throw error;
     }
   };
 
   const sendConfirmationEmail = async (email: string): Promise<void> => {
     try {
-      await handleApiCall(`${URL_API}/send-verification-email`, "POST", { email });
+      await handleApiCall(`${URL_API}/send-verification-email`, "POST", {
+        email,
+      });
       console.log("Email envoyé avec succès");
     } catch (error) {
       console.error("Erreur lors de l'envoi de l'email :", error);
@@ -77,7 +82,9 @@ export const useRegisterViewModel = () => {
     setError("");
 
     if (!acceptPrivacy) {
-      alert("Vous devez accepter la politique de confidentialité pour vous inscrire.");
+      alert(
+        "Vous devez accepter la politique de confidentialité pour vous inscrire."
+      );
       return;
     }
 
@@ -96,7 +103,10 @@ export const useRegisterViewModel = () => {
     setError("");
 
     try {
-      await handleApiCall(`${URL_API}/verify-email`, "POST", { email, code: confirmationCode });
+      await handleApiCall(`${URL_API}/verify-email`, "POST", {
+        email,
+        code: confirmationCode,
+      });
       setCurrentStep(3);
     } catch (error) {
       console.error("Erreur capturée dans handleSubmitCode:", error);
@@ -116,14 +126,22 @@ export const useRegisterViewModel = () => {
     }
 
     if (!passwordRegex.test(password)) {
-      setError("Password must be between 8 and 128 characters long, and include at least one digit and one uppercase letter.");
+      setError(
+        "Password must be between 8 and 128 characters long, and include at least one digit and one uppercase letter."
+      );
       return;
     }
 
     try {
-      const userCreat = await handleApiCall(`${URL_API}/register`, "POST", { email, password });
+      const userCreat = await handleApiCall(`${URL_API}/register`, "POST", {
+        email,
+        password,
+      });
+
+      // Récupère la seed phrase et la public key du wallet Solana
       setSeedPhrase(userCreat.seed_phrase as string);
-      setCurrentStep(4); // Redirect to login or show success message
+      setPublicKey(userCreat.public_key as string); // set the public key
+      setCurrentStep(4); // Redirection vers l'étape finale
     } catch (error: unknown) {
       if (error instanceof Error && error.message) {
         setError(error.message); // Utilise le message du backend
@@ -139,6 +157,7 @@ export const useRegisterViewModel = () => {
     email,
     setEmail,
     password,
+    publicKey,
     setPassword,
     confirmPassword,
     setConfirmPassword,
