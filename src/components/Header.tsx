@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { useLoginStore } from '@/store/useLoginStore';
+import React, { useState } from "react";
+import Link from "next/link";
+import { useLoginStore } from "@/store/useLoginStore";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,61 +10,79 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
-    e.preventDefault();
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const { isLogged } = useLoginStore();
 
   return (
-    <header className="bg-black border-2 border-gray-800 rounded-full p-4 mx-5 mt-5 mb-10 md:mx-20">
+    <header className="bg-black border-b border-gray-300 p-4">
       <div className="container mx-auto flex items-center justify-between">
-        {/* Logo Section */}
-        <Link href="/" className="flex items-center">
-          <img
-            src="/logo/flexfi-logo.png"
-            alt="FlexFi Logo"
-            className="h-12 w-auto"
-          />
-        </Link>
-
-        {/* Navigation pour les écrans larges */}
-        <nav className="hidden md:flex space-x-4">
-          <a
-            className="text-white hover:text-gray-400 cursor-pointer"
-            onClick={(e) => handleScrollToSection(e, 'roadmap-section')}
+        {/* Centered Navigation */}
+        <nav className="md:flex space-x-4 flex items-center">
+          <Link href="/" className="flex items-center">
+            <img
+              src="/logo/flexfi-logo.png"
+              alt="FlexFi Logo"
+              className="h-10 w-auto"
+            />
+          </Link>
+          <Link
+            href="/"
+            className="hidden md:flex cursor-pointer hover:text-[#00FEFB]"
           >
-            Roadmap
-          </a>
-          <a
-            className="text-white hover:text-gray-400 cursor-pointer"
-            onClick={(e) => handleScrollToSection(e, 'team-section')}
+            Solutions
+          </Link>
+          <Link
+            href="/"
+            className="hidden md:flex cursor-pointer hover:text-[#00FEFB]"
           >
-            Team
-          </a>
-          <Link className="text-white hover:text-gray-400" href="/whitepaper">
-            WhitePaper
+            Ressources
           </Link>
         </nav>
-        {isLogged ?
-          <div className="flex items-center space-x-2">
-            <Link className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-300" href="/dashboard">
-              Wallet
-            </Link>
-          </div> : <div className="flex items-center space-x-2">
-            <Link className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-300" href="/login">
-              Login
-            </Link>
-          </div>}
 
-        {/* Burger menu pour les petits écrans */}
+        {/* User Actions */}
+        <div className="flex items-center space-x-4">
+          {!isLogged ? (
+            <div className="flex items-center space-x-4">
+              <Link
+                className="cursor-pointer hover:scale-110 ease-out duration-300"
+                href="/login"
+              >
+                Log in
+              </Link>
+
+              <Link
+                className="border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 py-1 cursor-pointer"
+                href="/signup"
+              >
+                Sign up
+              </Link>
+            </div>
+          ) : (
+            <Link
+              className="border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 py-1 cursor-pointer"
+              href="/signup"
+            >
+              Dashboard
+            </Link>
+          )}
+
+          {/* Trait vertical entre Help et Sign up */}
+          <div className="hidden md:flex border-l border-gray-300 h-6"></div>
+
+          <Link
+            className="hidden md:flex cursor-pointer hover:scale-110 ease-out duration-300"
+            href="/help"
+          >
+            Help
+          </Link>
+        </div>
+
+        {/* Burger menu for small screens */}
         <div className="md:hidden">
-          <button onClick={toggleMenu} className="text-white focus:outline-none">
-            {/* Icone du menu burger */}
+          <button
+            onClick={toggleMenu}
+            className="text-gray-700 focus:outline-none"
+          >
+            {/* Burger menu icon */}
             <svg
               className="w-6 h-6"
               fill="none"
@@ -83,23 +101,32 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Menu déroulant pour les petits écrans */}
+      {/* Dropdown menu for small screens */}
       {isOpen && (
-        <nav className="md:hidden bg-black border-t border-gray-700 flex flex-col items-center">
-          <a
-            className="block text-white px-4 py-2 hover:bg-gray-800 cursor-pointer"
-            onClick={(e) => handleScrollToSection(e, 'roadmap-section')}
-          >
-            Roadmap
+        <nav className="md:hidden bg-white border-t border-gray-300 flex flex-col items-center">
+          <a className="block text-gray-700 px-4 py-2 hover:bg-gray-100 cursor-pointer">
+            Solutions
           </a>
-          <a
-            className="block text-white px-4 py-2 hover:bg-gray-800 cursor-pointer"
-            onClick={(e) => handleScrollToSection(e, 'team-section')}
-          >
-            Team
+          <a className="block text-gray-700 px-4 py-2 hover:bg-gray-100 cursor-pointer">
+            Ressources
           </a>
-          <Link className="block text-white px-4 py-2 hover:bg-gray-800" href="/whitepaper">
-            WhitePaper
+          <Link
+            className="block text-gray-700 px-4 py-2 hover:bg-gray-100"
+            href="/signup"
+          >
+            Sign up
+          </Link>
+          <Link
+            className="block text-gray-700 px-4 py-2 hover:bg-gray-100"
+            href="/login"
+          >
+            Log in
+          </Link>
+          <Link
+            className="block text-gray-700 px-4 py-2 hover:bg-gray-100"
+            href="/help"
+          >
+            Help
           </Link>
         </nav>
       )}

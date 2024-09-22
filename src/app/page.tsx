@@ -1,11 +1,14 @@
 "use client";
+
+import ComingSoon from "@/components/ComingSoon";
+
 // import Presentation from "../components/Presentation";
 // import InfoGrid from "../components/InfoGrid";
 // import Roadmap from "../components/Roadmap";
 // import Team from "@/components/Team";
 // import Link from "next/link";
 // import { useLoginStore } from "@/store/useLoginStore";
-import ComingSoon from "@/components/ComingSoon";
+// import ComingSoon from "@/components/ComingSoon";
 
 export default function Home() {
   // const { isLogged } = useLoginStore();

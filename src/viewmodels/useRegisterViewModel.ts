@@ -24,7 +24,7 @@ export const useRegisterViewModel = () => {
     setError,
   } = useRegisterStore();
 
-  const URL_API = "http://localhost:3000";
+  const URL_API = "http://localhost:3000/auth";
 
   interface ApiResponse {
     error?: string;

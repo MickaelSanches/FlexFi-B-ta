@@ -1,13 +1,22 @@
-import { useRouter } from 'next/navigation';
-import { useLoginStore } from '../store/useLoginStore';
+import { useRouter } from "next/navigation";
+import { useLoginStore } from "../store/useLoginStore";
 
 export const useLoginViewModel = () => {
-  const { email, setEmail, password, setPassword, loading, setLoading, error, setError, setIsLogged } = useLoginStore();
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    loading,
+    setLoading,
+    error,
+    setError,
+    setIsLogged,
+  } = useLoginStore();
 
-  const router = useRouter()
+  const router = useRouter();
 
-
-  const URL_API = "http://localhost:3000";
+  const URL_API = "http://localhost:3000/auth";
 
   interface ApiResponse {
     token?: string;
@@ -15,8 +24,11 @@ export const useLoginViewModel = () => {
     message?: string;
   }
 
-
-  const handleApiCall = async (url: string, method: string, body: unknown): Promise<ApiResponse> => {
+  const handleApiCall = async (
+    url: string,
+    method: string,
+    body: unknown
+  ): Promise<ApiResponse> => {
     try {
       setLoading(true);
       const response = await fetch(url, {
@@ -49,22 +61,24 @@ export const useLoginViewModel = () => {
 
     try {
       // Effectuer l'appel API pour se connecter
-      const response = await handleApiCall(`${URL_API}/login`, "post", { email, password });
+      const response = await handleApiCall(`${URL_API}/login`, "post", {
+        email,
+        password,
+      });
 
       // Récupérer le token depuis la réponse
       const token = response.token;
 
       if (token) {
         // Stocker le token dans sessionStorage
-        sessionStorage.setItem('token', token);
-        setIsLogged(true)
+        sessionStorage.setItem("token", token);
+        setIsLogged(true);
 
         // Rediriger l'utilisateur après la connexion réussie
         router.push("/");
       } else {
         throw new Error("Token not found in response");
       }
-
     } catch (error: any) {
       if (error.message) {
         setError(error.message);
@@ -75,7 +89,6 @@ export const useLoginViewModel = () => {
       setLoading(false);
     }
   };
-
 
   return {
     email,
