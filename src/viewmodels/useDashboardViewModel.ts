@@ -1,14 +1,14 @@
-import { useRegisterStore } from "@/store/useRegisterStore";
+import { useLoginStore } from "@/store/useLoginStore";
 import { useWalletStore } from "@/store/useWalletStore";
 
 export const useDashboardViewModel = () => {
   const { ammount, setAmmount, error, setError } = useWalletStore();
-  const { publicKey } = useRegisterStore();
+  const { publicKey } = useLoginStore();
 
-  const URL_API = "http://localhost:3000/auth";
+  const URL_API = "http://localhost:3000";
 
   interface ApiResponse {
-    balance?: number;
+    balance?: number | null;
     error?: string;
     message?: string;
   }
@@ -42,12 +42,18 @@ export const useDashboardViewModel = () => {
 
   const getWalletAmmount = async () => {
     try {
+      console.log(publicKey);
       const response = await handleApiCall(
-        `${URL_API}/get-wallet-balance/${publicKey}`,
+        `${URL_API}/solana/get-wallet-balance/${publicKey}`,
         "GET"
       );
-      if (response && response.balance) {
+
+      console.log("reponse.balance = ", response.balance);
+
+      if (response.balance !== null && response.balance !== undefined) {
         setAmmount(response.balance);
+      } else {
+        console.log("Balance non trouvée dans la réponse");
       }
     } catch (error) {
       console.error(
@@ -58,7 +64,6 @@ export const useDashboardViewModel = () => {
   };
 
   return {
-    ammount,
     error,
     getWalletAmmount,
   };

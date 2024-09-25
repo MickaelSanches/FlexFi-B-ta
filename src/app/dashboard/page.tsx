@@ -1,10 +1,12 @@
 "use client";
 
+import { useWalletStore } from "@/store/useWalletStore";
 import { useDashboardViewModel } from "@/viewmodels/useDashboardViewModel";
 import { useEffect } from "react";
 
 const Dashboard = () => {
-  const { ammount, getWalletAmmount } = useDashboardViewModel();
+  const { getWalletAmmount } = useDashboardViewModel();
+  const { ammount } = useWalletStore();
 
   useEffect(() => {
     getWalletAmmount();
