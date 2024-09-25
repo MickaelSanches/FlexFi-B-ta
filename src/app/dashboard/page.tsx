@@ -1,10 +1,21 @@
+"use client";
+
+import { useDashboardViewModel } from "@/viewmodels/useDashboardViewModel";
+import { useEffect } from "react";
+
 const Dashboard = () => {
+  const { ammount, getWalletAmmount } = useDashboardViewModel();
+
+  useEffect(() => {
+    getWalletAmmount();
+  }, []);
+
   return (
     <section className="w-full max-w-7xl mx-auto text-center py-10 bg-gray-900  rounded-3xl mt-16 mb-16 px-8">
       {/* Title and Amount */}
       <div className="mb-8">
         <h1 className="text-4xl font-bold text-white">Current balance</h1>
-        <p className="text-3xl font-bold text-green-400 mt-4">$1.00</p>
+        <p className="text-3xl font-bold text-green-400 mt-4">{ammount} $</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
