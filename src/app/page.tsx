@@ -5,6 +5,7 @@ import Presentation from "../components/Presentation";
 import { PaymentOptions } from "@/components/PaymentOptions";
 import { PoweredByBanner } from "@/components/PoweredByBanner";
 import { WhyFlexFi } from "@/components/WhyFlexFi";
+import { FAQFlexFi } from "@/components/FAQFlexFi";
 // import InfoGrid from "../components/InfoGrid";
 // import Roadmap from "../components/Roadmap";
 // import Team from "@/components/Team";
@@ -63,6 +64,7 @@ export default function Home() {
         <PaymentOptions />
         <PoweredByBanner />
         <WhyFlexFi />
+        <FAQFlexFi />
       </main>
 
       {/* <main className="flex flex-col items-center justify-between p-4 sm:pl-20 sm:pr-20 bg-black min-h-screen">
