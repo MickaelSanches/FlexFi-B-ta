@@ -51,7 +51,7 @@ const Header = () => {
 
               <Link
                 className="border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 py-1 cursor-pointer"
-                href="/signup"
+                href="/register"
               >
                 Sign up
               </Link>
@@ -59,7 +59,7 @@ const Header = () => {
           ) : (
             <Link
               className="border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 py-1 cursor-pointer"
-              href="/signup"
+              href="/dashboard"
             >
               Dashboard
             </Link>
