@@ -1,8 +1,7 @@
 "use client";
 
-import ComingSoon from "@/components/ComingSoon";
-
-// import Presentation from "../components/Presentation";
+import { BusinessSolution } from "@/components/BusinessSolution";
+import Presentation from "../components/Presentation";
 // import InfoGrid from "../components/InfoGrid";
 // import Roadmap from "../components/Roadmap";
 // import Team from "@/components/Team";
@@ -15,7 +14,51 @@ export default function Home() {
 
   return (
     <>
-      <ComingSoon />
+      {/* <ComingSoon /> */}
+      <main>
+        <div className="flex justify-around items-center h-100 mt-32 mb-32 ">
+          <Presentation />
+          <img
+            src="/logo/flexicon.webp"
+            alt="FlexFi icone"
+            className="h-100 w-auto neon-effect animate-neon-pulse"
+          />
+        </div>
+
+        <style jsx>{`
+          /* Néon effect */
+          .neon-effect {
+            filter: drop-shadow(0 0 8px #00fefb) drop-shadow(0 0 16px #00fefb);
+            animation: slideInRight 1s ease-out forwards,
+              neon 1.5s infinite alternate;
+          }
+
+          /* Pulsation and neon animation */
+          @keyframes neon {
+            from {
+              filter: drop-shadow(0 0 8px #00fefb) drop-shadow(0 0 16px #00fefb);
+            }
+            to {
+              filter: drop-shadow(0 0 14px #00fefb)
+                drop-shadow(0 0 28px #00fefb);
+            }
+          }
+
+          /* Slide in from the right */
+          @keyframes slideInRight {
+            0% {
+              opacity: 0;
+              transform: translateX(100%);
+            }
+            100% {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+        `}</style>
+        <BusinessSolution />
+      </main>
+
       {/* <main className="flex flex-col items-center justify-between p-4 sm:pl-20 sm:pr-20 bg-black min-h-screen">
         <Presentation />
 
