@@ -1,6 +1,6 @@
 export const BusinessSolution = () => {
   return (
-    <div className="bg-slate-800 p-12 rounded-lg shadow-2xl flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0 lg:space-x-16">
+    <div className="bg-gray-950 p-12 rounded-lg shadow-2xl flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0 lg:space-x-16">
       {/* Left section - Phone and Desktop view */}
       <div className="relative flex flex-col lg:flex-row items-center space-y-8 lg:space-y-0">
         <div className="relative">
