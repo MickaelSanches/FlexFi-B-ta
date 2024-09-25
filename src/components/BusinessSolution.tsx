@@ -102,7 +102,7 @@ export const BusinessSolution = () => {
           </li>
         </ul>
         <button className="mt-8 px-6 py-3 bg-gradient-to-r from-[#00FEFB] to-[#60259E] hover:from-[#85C8FF] hover:to-[#0C8CF3] text-white font-bold rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
-          Get Started with Alma
+          Get Started with FlexFi
         </button>
       </div>
     </div>
