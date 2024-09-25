@@ -1,6 +1,6 @@
 export const PoweredByBanner = () => {
   return (
-    <div className="bg-gray-950 py-6">
+    <div className="bg-gray-900 py-6">
       <div className="container mx-auto text-center">
         {/* Title */}
         <h2 className="text-2xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-4">
@@ -30,7 +30,7 @@ export const PoweredByBanner = () => {
       </div>
 
       {/* Animation CSS */}
-      <style jsx>{`
+      <style>{`
         @keyframes scroll {
           0% {
             transform: translateX(0);

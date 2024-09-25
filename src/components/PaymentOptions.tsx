@@ -1,6 +1,6 @@
 export const PaymentOptions = () => {
   return (
-    <section className="bg-gray-900 py-12">
+    <section className="bg-gray-950 py-12">
       <div className="container mx-auto text-center px-6">
         {/* Title Section */}
         <h2 className="text-4xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-4">

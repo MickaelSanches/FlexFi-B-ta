@@ -13,7 +13,7 @@ const Header = () => {
   const { isLogged } = useLoginStore();
 
   return (
-    <header className="bg-black border-b border-gray-300 p-4">
+    <header className="bg-slate-950 border-b border-gray-300 p-4">
       <div className="container mx-auto flex items-center justify-between">
         {/* Centered Navigation */}
         <nav className="md:flex space-x-4 flex items-center">

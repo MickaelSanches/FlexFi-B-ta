@@ -1,13 +1,18 @@
 import { useState } from "react";
 
-export const FAQFlexFi = () => {
-  const [open, setOpen] = useState(null);
+interface FAQItem {
+  question: string;
+  answer: string;
+}
 
-  const toggle = (index) => {
+export const FAQFlexFi = () => {
+  const [open, setOpen] = useState<number | null>(null);
+
+  const toggle = (index: number) => {
     setOpen(open === index ? null : index);
   };
 
-  const faqs = [
+  const faqs: FAQItem[] = [
     {
       question: "How does the multiple payment option work on FlexFi?",
       answer:
@@ -41,9 +46,9 @@ export const FAQFlexFi = () => {
   ];
 
   return (
-    <div className="bg-gray-950 py-12">
+    <div className="bg-gray-900 py-12">
       <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-6">
+        <h2 className="text-4xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-4">
           FAQ
         </h2>
         <div className="space-y-4">
@@ -62,7 +67,7 @@ export const FAQFlexFi = () => {
                 </span>
               </div>
               {open === index && (
-                <p className="mt-4 text-gray-400">{faq.answer}</p>
+                <p className="mt-4 text-gray-300">{faq.answer}</p>
               )}
             </div>
           ))}

@@ -20,7 +20,7 @@ export default function Home() {
     <>
       {/* <ComingSoon /> */}
       <main>
-        <div className="flex justify-around items-center h-100 mt-32 mb-32 ">
+        <div className="bg-gray-950 flex justify-around items-center h-100 pt-32 pb-32 ">
           <Presentation />
           <img
             src="/logo/flexicon.webp"
@@ -29,7 +29,7 @@ export default function Home() {
           />
         </div>
 
-        <style jsx>{`
+        <style>{`
           /* Néon effect */
           .neon-effect {
             filter: drop-shadow(0 0 8px #00fefb) drop-shadow(0 0 16px #00fefb);
