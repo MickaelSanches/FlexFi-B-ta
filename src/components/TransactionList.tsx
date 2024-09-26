@@ -12,6 +12,7 @@ interface Transaction {
     message: {
       accountKeys: string[];
     };
+    signatures: string[];
   };
 }
 

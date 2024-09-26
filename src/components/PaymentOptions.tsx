@@ -1,4 +1,5 @@
 import { useState } from "react";
+import FlexFiPaymentSimulator from "./FlexFiPaymentSimulator";
 
 export const PaymentOptions = () => {
   // State pour suivre l'option active
@@ -7,8 +8,8 @@ export const PaymentOptions = () => {
   >("3x6x");
 
   return (
-    <section className="bg-gray-950 min-h-screen flex items-center justify-center">
-      <div className="container mx-auto text-center px-6">
+    <section className="bg-gray-950 min-h-screen flex items-center justify-between">
+      <div className=" mx-auto text-start px-6">
         {/* Title Section */}
         <h2 className="text-4xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-4">
           Flexible Crypto Payment Options
@@ -19,7 +20,7 @@ export const PaymentOptions = () => {
         </p>
 
         {/* Payment Buttons */}
-        <div className="flex justify-center space-x-4 mb-12">
+        <div className="flex justify-start space-x-4 mb-12">
           <button
             className={`px-6 py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 ${
               activeOption === "3x6x"
@@ -55,7 +56,7 @@ export const PaymentOptions = () => {
         </div>
 
         {/* Payment Info Section */}
-        <div className="gap-8 flex justify-center">
+        <div className="gap-8 flex justify-start">
           {activeOption === "3x6x" && (
             <div className="bg-gray-800 p-8 rounded-lg shadow-md flex items-center space-x-6">
               <img
@@ -119,6 +120,7 @@ export const PaymentOptions = () => {
           </button>
         </div>
       </div>
+      <FlexFiPaymentSimulator />
     </section>
   );
 };
