@@ -1,3 +1,4 @@
+import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
 import { useLoginStore } from "../store/useLoginStore";
 
@@ -12,10 +13,10 @@ export const useLoginViewModel = () => {
     error,
     setError,
     setIsLogged,
+    setPublicKey,
   } = useLoginStore();
 
   const router = useRouter();
-
   const URL_API = "http://localhost:3000/auth";
 
   interface ApiResponse {
@@ -72,7 +73,15 @@ export const useLoginViewModel = () => {
       if (token) {
         // Stocker le token dans sessionStorage
         sessionStorage.setItem("token", token);
+
+        // Décoder le token pour extraire les informations
+        const decodedToken: any = jwtDecode(token);
+
+        const publicKey = decodedToken.user.public_key;
+
+        // Stocker les informations dans le store
         setIsLogged(true);
+        setPublicKey(publicKey);
 
         // Rediriger l'utilisateur après la connexion réussie
         router.push("/");

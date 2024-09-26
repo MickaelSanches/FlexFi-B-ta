@@ -1,50 +1,38 @@
+"use client";
+
+import { useEffect } from "react";
+import { useWalletStore } from "@/store/useWalletStore";
+import { useDashboardViewModel } from "@/viewmodels/useDashboardViewModel";
+import { useTransactionStore } from "@/store/useTransactionStore";
+import { TransactionList } from "@/components/TransactionList";
+
 const Dashboard = () => {
+  const { getWalletAmmount, getTransactionHistory } = useDashboardViewModel();
+  const { ammount } = useWalletStore();
+  const { transactions } = useTransactionStore();
+
+  useEffect(() => {
+    getWalletAmmount();
+    getTransactionHistory();
+  }, []);
+
   return (
-    <section className="w-full max-w-7xl mx-auto text-center py-10 bg-gray-900  rounded-3xl mt-16 mb-16 px-8">
+    <section className="w-full max-w-7xl mx-auto text-center py-12 bg-gradient-to-br from-black via-gray-900 to-gray-950 rounded-3xl mt-16 mb-16 px-8 shadow-2xl">
       {/* Title and Amount */}
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-white">Current balance</h1>
-        <p className="text-3xl font-bold text-green-400 mt-4">$1.00</p>
+        <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-6">
+          Current Balance
+        </h1>
+        <p className="text-3xl md:text-4xl font-extrabold text-green-400">
+          {ammount !== null && ammount !== undefined
+            ? `${ammount.toFixed(4)} SOL`
+            : "N/A"}
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        {/* Account Management */}
-        <div className="md:col-span-1 cursor-pointer bg-gradient-to-r from-gray-800 via-gray-900 to-black border border-gray-700 shadow-xl rounded-3xl p-8 hover:-translate-y-2 transition-transform duration-300">
-          <h3 className="text-2xl font-bold text-white mb-4">
-            Account Management
-          </h3>
-          <p className="text-gray-400 leading-relaxed">
-            Manage your personal information and account settings.
-          </p>
-        </div>
-
-        {/* Transaction History */}
-        <div className="md:col-span-3 cursor-pointer bg-gradient-to-r from-gray-800 via-gray-900 to-black border border-gray-700 shadow-xl rounded-3xl p-8 hover:-translate-y-2 transition-transform duration-300">
-          <h3 className="text-2xl font-bold text-white mb-4">
-            Transaction History
-          </h3>
-          <p className="text-gray-400 leading-relaxed">
-            View your recent transactions and financial activities.
-          </p>
-        </div>
-
-        {/* Notifications */}
-        <div className="md:col-span-2 cursor-pointer bg-gradient-to-r from-gray-800 via-gray-900 to-black border border-gray-700 shadow-xl rounded-3xl p-8 hover:-translate-y-2 transition-transform duration-300">
-          <h3 className="text-2xl font-bold text-white mb-4">Notifications</h3>
-          <p className="text-gray-400 leading-relaxed">
-            Check the latest notifications and updates related to your account.
-          </p>
-        </div>
-
-        {/* Ongoing Schedule */}
-        <div className="md:col-span-2 cursor-pointer bg-gradient-to-r from-gray-800 via-gray-900 to-black border border-gray-700 shadow-xl rounded-3xl p-8 hover:-translate-y-2 transition-transform duration-300">
-          <h3 className="text-2xl font-bold text-white mb-4">
-            Ongoing Schedule
-          </h3>
-          <p className="text-gray-400 leading-relaxed">
-            Track your upcoming deadlines and plan your next financial actions.
-          </p>
-        </div>
+      {/* Transaction History */}
+      <div className="w-full">
+        <TransactionList transactions={transactions} />
       </div>
     </section>
   );
