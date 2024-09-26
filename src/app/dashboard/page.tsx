@@ -1,23 +1,37 @@
 "use client";
 
+import { useEffect } from "react";
 import { useWalletStore } from "@/store/useWalletStore";
 import { useDashboardViewModel } from "@/viewmodels/useDashboardViewModel";
-import { useEffect } from "react";
+import { useTransactionStore } from "@/store/useTransactionStore";
+import { TransactionList } from "@/components/TransactionList";
 
 const Dashboard = () => {
-  const { getWalletAmmount } = useDashboardViewModel();
+  const { getWalletAmmount, getTransactionHistory } = useDashboardViewModel();
   const { ammount } = useWalletStore();
+  const { transactions } = useTransactionStore(); // Utilisation des transactions depuis le store
 
   useEffect(() => {
+    // Appels d'API dans un useEffect pour éviter les mises à jour pendant le rendu
     getWalletAmmount();
+    getTransactionHistory();
   }, []);
 
+  // Ajoute un log pour surveiller les transactions
+  useEffect(() => {
+    console.log("Transactions dans le store:", transactions);
+  }, [transactions]);
+
   return (
-    <section className="w-full max-w-7xl mx-auto text-center py-10 bg-gray-900  rounded-3xl mt-16 mb-16 px-8">
+    <section className="w-full max-w-7xl mx-auto text-center py-10 bg-gray-900 rounded-3xl mt-16 mb-16 px-8">
       {/* Title and Amount */}
       <div className="mb-8">
         <h1 className="text-4xl font-bold text-white">Current balance</h1>
-        <p className="text-3xl font-bold text-green-400 mt-4">{ammount} $</p>
+        <p className="text-3xl font-bold text-green-400 mt-4">
+          {ammount !== null && ammount !== undefined
+            ? `${ammount.toFixed(4)} $`
+            : "N/A"}
+        </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -32,13 +46,8 @@ const Dashboard = () => {
         </div>
 
         {/* Transaction History */}
-        <div className="md:col-span-3 cursor-pointer bg-gradient-to-r from-gray-800 via-gray-900 to-black border border-gray-700 shadow-xl rounded-3xl p-8 hover:-translate-y-2 transition-transform duration-300">
-          <h3 className="text-2xl font-bold text-white mb-4">
-            Transaction History
-          </h3>
-          <p className="text-gray-400 leading-relaxed">
-            View your recent transactions and financial activities.
-          </p>
+        <div className="md:col-span-3">
+          <TransactionList transactions={transactions} />
         </div>
 
         {/* Notifications */}

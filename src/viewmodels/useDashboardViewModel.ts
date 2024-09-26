@@ -1,9 +1,11 @@
 import { useLoginStore } from "@/store/useLoginStore";
 import { useWalletStore } from "@/store/useWalletStore";
+import { useTransactionStore } from "@/store/useTransactionStore";
 
 export const useDashboardViewModel = () => {
-  const { setAmmount, error, setError } = useWalletStore();
+  const { setAmmount, setError } = useWalletStore();
   const { publicKey } = useLoginStore();
+  const { setTransactions } = useTransactionStore();
 
   const URL_API = "http://localhost:3000";
 
@@ -11,6 +13,7 @@ export const useDashboardViewModel = () => {
     balance?: number | null;
     error?: string;
     message?: string;
+    transactions?: any[]; // Type des transactions
   }
 
   const handleApiCall = async (
@@ -42,14 +45,11 @@ export const useDashboardViewModel = () => {
 
   const getWalletAmmount = async () => {
     try {
-      console.log(publicKey);
       const response = await handleApiCall(
         `${URL_API}/solana/get-wallet-balance/${publicKey}`,
         "GET"
       );
-
-      console.log("reponse.balance = ", response.balance);
-
+      console.log("Wallet balance response:", response); // Vérifie la réponse ici
       if (response.balance !== null && response.balance !== undefined) {
         setAmmount(response.balance);
       } else {
@@ -63,8 +63,33 @@ export const useDashboardViewModel = () => {
     }
   };
 
+  const getTransactionHistory = async () => {
+    try {
+      const response = await handleApiCall(
+        `${URL_API}/solana/transaction-history/${publicKey}`,
+        "GET"
+      );
+
+      console.log("Transaction history response:", response); // Vérifie la réponse des transactions
+      if (response.transactions) {
+        setTransactions(response.transactions);
+        console.log(
+          "Transactions mises à jour dans le store:",
+          response.transactions
+        );
+      } else {
+        console.log("Aucune transaction trouvée");
+      }
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération de l'historique des transactions :",
+        error
+      );
+    }
+  };
+
   return {
-    error,
     getWalletAmmount,
+    getTransactionHistory,
   };
 };
