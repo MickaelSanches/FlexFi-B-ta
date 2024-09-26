@@ -2,7 +2,7 @@ import { useLoginStore } from "@/store/useLoginStore";
 import { useWalletStore } from "@/store/useWalletStore";
 
 export const useDashboardViewModel = () => {
-  const { ammount, setAmmount, error, setError } = useWalletStore();
+  const { setAmmount, error, setError } = useWalletStore();
   const { publicKey } = useLoginStore();
 
   const URL_API = "http://localhost:3000";
