@@ -3,10 +3,15 @@ import { create } from "zustand";
 // Définition des types des données du store
 interface Transaction {
   blockTime: number;
-  signatures: string[];
-  accountKeys: string[];
-  preBalances: number[];
-  postBalances: number[];
+  meta: {
+    preBalances: number[];
+    postBalances: number[];
+  };
+  transaction: {
+    message: {
+      accountKeys: string[];
+    };
+  };
 }
 
 interface TransactionStoreState {
