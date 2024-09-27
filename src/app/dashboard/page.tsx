@@ -7,13 +7,12 @@ import { useTransactionStore } from "@/store/useTransactionStore";
 import { TransactionList } from "@/components/TransactionList";
 
 const Dashboard = () => {
-  const { getWalletAmmount, getTransactionHistory } = useDashboardViewModel();
+  const { onInit } = useDashboardViewModel();
   const { ammount } = useWalletStore();
   const { transactions } = useTransactionStore();
 
   useEffect(() => {
-    getWalletAmmount();
-    getTransactionHistory();
+    onInit();
   }, []);
 
   return (

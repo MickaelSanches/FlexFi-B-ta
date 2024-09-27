@@ -16,7 +16,7 @@ interface Transaction {
 
 interface TransactionItemProps {
   transaction: Transaction;
-  userAddress: string; // Adresse du portefeuille de l'utilisateur
+  userAddress: string | null; // Adresse du portefeuille de l'utilisateur
 }
 
 export const TransactionItem: React.FC<TransactionItemProps> = ({

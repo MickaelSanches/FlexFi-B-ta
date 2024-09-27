@@ -13,7 +13,6 @@ export const useLoginViewModel = () => {
     error,
     setError,
     setIsLogged,
-    setPublicKey,
   } = useLoginStore();
 
   const router = useRouter();
@@ -67,7 +66,6 @@ export const useLoginViewModel = () => {
         password,
       });
 
-      // Récupérer le token depuis la réponse
       const token = response.token;
 
       if (token) {
@@ -76,24 +74,21 @@ export const useLoginViewModel = () => {
 
         // Décoder le token pour extraire les informations
         const decodedToken: any = jwtDecode(token);
-
         const publicKey = decodedToken.user.public_key;
+        sessionStorage.setItem("solanaPublicKey", publicKey);
 
-        // Stocker les informations dans le store
-        setIsLogged(true);
-        setPublicKey(publicKey);
+        // Mettre à jour l'état de connexion
+        setIsLogged(true); // Cette ligne mettra à jour immédiatement l'état
 
         // Rediriger l'utilisateur après la connexion réussie
-        router.push("/");
+        router.push("/dashboard");
       } else {
         throw new Error("Token not found in response");
       }
     } catch (error: any) {
-      if (error.message) {
-        setError(error.message);
-      } else {
-        setError("Erreur lors de la connexion. Veuillez réessayer.");
-      }
+      setError(
+        error.message || "Erreur lors de la connexion. Veuillez réessayer."
+      );
     } finally {
       setLoading(false);
     }

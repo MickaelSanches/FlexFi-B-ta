@@ -1,16 +1,20 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useLoginStore } from "@/store/useLoginStore";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const { isLogged } = useLoginStore();
+  useEffect(() => {
+    // Vérifie le token au chargement du composant
+    const token = sessionStorage.getItem("token");
+    setIsLogged(!!token); // Met à jour l'état selon la présence du token
+  }, []);
 
   return (
     <header className="w-full flex items-center justify-between bg-slate-950 border-b border-gray-300 p-4 md:px-32">
@@ -64,7 +68,7 @@ const Header = () => {
           </Link>
         )}
 
-        {/* Trait vertical entre Help et Sign up */}
+        {/* Vertical divider */}
         <div className="hidden md:flex border-l border-gray-300 h-6"></div>
 
         <Link

@@ -1,8 +1,7 @@
-"use client"
+"use client";
 import { useLoginViewModel } from "@/viewmodels/useLoginViewModel";
 
 const Login = () => {
-
   const {
     email,
     setEmail,
@@ -10,8 +9,8 @@ const Login = () => {
     setPassword,
     loading,
     error,
-    handleSubmit
-  } = useLoginViewModel()
+    handleSubmit,
+  } = useLoginViewModel();
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-black p-8">
