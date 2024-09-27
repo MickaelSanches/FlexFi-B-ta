@@ -13,92 +13,90 @@ const Header = () => {
   const { isLogged } = useLoginStore();
 
   return (
-    <header className="bg-slate-950 border-b border-gray-300 p-4">
-      <div className="container mx-auto flex items-center justify-between">
-        {/* Centered Navigation */}
-        <nav className="md:flex space-x-4 flex items-center">
-          <Link href="/" className="flex items-center">
-            <img
-              src="/logo/flexfi-logo.png"
-              alt="FlexFi Logo"
-              className="h-10 w-auto"
-            />
-          </Link>
-          <Link
-            href="/"
-            className="hidden md:flex cursor-pointer hover:text-[#00FEFB]"
-          >
-            Solutions
-          </Link>
-          <Link
-            href="/"
-            className="hidden md:flex cursor-pointer hover:text-[#00FEFB]"
-          >
-            Ressources
-          </Link>
-        </nav>
+    <header className="w-full flex items-center justify-between bg-slate-950 border-b border-gray-300 p-4 md:px-32">
+      {/* Centered Navigation */}
+      <nav className="md:flex space-x-4 flex items-center">
+        <Link href="/" className="flex items-center">
+          <img
+            src="/logo/flexfi-logo.png"
+            alt="FlexFi Logo"
+            className="h-10 w-auto"
+          />
+        </Link>
+        <Link
+          href="/"
+          className="hidden md:flex cursor-pointer hover:text-[#00FEFB]"
+        >
+          Solutions
+        </Link>
+        <Link
+          href="/"
+          className="hidden md:flex cursor-pointer hover:text-[#00FEFB]"
+        >
+          Ressources
+        </Link>
+      </nav>
 
-        {/* User Actions */}
-        <div className="flex items-center space-x-4">
-          {!isLogged ? (
-            <div className="flex items-center space-x-4">
-              <Link
-                className="cursor-pointer hover:scale-110 ease-out duration-300"
-                href="/login"
-              >
-                Log in
-              </Link>
+      {/* User Actions */}
+      <div className="flex items-center space-x-4">
+        {!isLogged ? (
+          <div className="flex items-center space-x-4">
+            <Link
+              className="cursor-pointer hover:scale-110 ease-out duration-300"
+              href="/login"
+            >
+              Log in
+            </Link>
 
-              <Link
-                className="border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 py-1 cursor-pointer"
-                href="/register"
-              >
-                Sign up
-              </Link>
-            </div>
-          ) : (
             <Link
               className="border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 py-1 cursor-pointer"
-              href="/dashboard"
+              href="/register"
             >
-              Dashboard
+              Sign up
             </Link>
-          )}
-
-          {/* Trait vertical entre Help et Sign up */}
-          <div className="hidden md:flex border-l border-gray-300 h-6"></div>
-
+          </div>
+        ) : (
           <Link
-            className="hidden md:flex cursor-pointer hover:scale-110 ease-out duration-300"
-            href="/help"
+            className="border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 py-1 cursor-pointer"
+            href="/dashboard"
           >
-            Help
+            Dashboard
           </Link>
-        </div>
+        )}
 
-        {/* Burger menu for small screens */}
-        <div className="md:hidden">
-          <button
-            onClick={toggleMenu}
-            className="text-gray-700 focus:outline-none"
+        {/* Trait vertical entre Help et Sign up */}
+        <div className="hidden md:flex border-l border-gray-300 h-6"></div>
+
+        <Link
+          className="hidden md:flex cursor-pointer hover:scale-110 ease-out duration-300"
+          href="/help"
+        >
+          Help
+        </Link>
+      </div>
+
+      {/* Burger menu for small screens */}
+      <div className="md:hidden">
+        <button
+          onClick={toggleMenu}
+          className="text-gray-700 focus:outline-none"
+        >
+          {/* Burger menu icon */}
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            {/* Burger menu icon */}
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              ></path>
-            </svg>
-          </button>
-        </div>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
+        </button>
       </div>
 
       {/* Dropdown menu for small screens */}

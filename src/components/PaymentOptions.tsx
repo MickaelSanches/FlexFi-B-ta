@@ -8,21 +8,21 @@ export const PaymentOptions = () => {
   >("3x6x");
 
   return (
-    <section className="bg-gray-950 min-h-screen flex items-center justify-between">
-      <div className=" mx-auto text-start px-6">
+    <section className="bg-gray-950 min-h-screen flex flex-col lg:flex-row items-center justify-between px-4 md:px-12 lg:px-32 py-12">
+      <div className="text-start w-full lg:w-2/5 mb-12 lg:mb-0">
         {/* Title Section */}
-        <h2 className="text-4xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-4">
+        <h2 className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-4">
           Flexible Crypto Payment Options
         </h2>
-        <p className="text-lg text-gray-400 mb-8">
+        <p className="text-md sm:text-lg text-gray-400 mb-8">
           Simplify your purchases with FlexFi. Pay in multiple installments
           using your favorite cryptocurrencies. Fast, secure, and decentralized.
         </p>
 
         {/* Payment Buttons */}
-        <div className="flex justify-start space-x-4 mb-12">
+        <div className="flex flex-wrap justify-start lg:space-x-4 mb-8 gap-3">
           <button
-            className={`px-6 py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 ${
+            className={`px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 ${
               activeOption === "3x6x"
                 ? "bg-[#0C8CF3] text-white"
                 : "bg-white border border-gray-300 text-gray-900"
@@ -33,7 +33,7 @@ export const PaymentOptions = () => {
           </button>
 
           <button
-            className={`px-6 py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 ${
+            className={`px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 ${
               activeOption === "10x12x"
                 ? "bg-[#0C8CF3] text-white"
                 : "bg-white border border-gray-300 text-gray-900"
@@ -44,7 +44,7 @@ export const PaymentOptions = () => {
           </button>
 
           <button
-            className={`px-6 py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 ${
+            className={`px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 ${
               activeOption === "staking"
                 ? "bg-[#0C8CF3] text-white"
                 : "bg-white border border-gray-300 text-gray-900"
@@ -56,16 +56,16 @@ export const PaymentOptions = () => {
         </div>
 
         {/* Payment Info Section */}
-        <div className="gap-8 flex justify-start">
+        <div className="gap-8 flex flex-col lg:flex-row justify-start">
           {activeOption === "3x6x" && (
-            <div className="bg-gray-800 p-8 rounded-lg shadow-md flex items-center space-x-6">
+            <div className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-md flex items-center space-x-4 lg:space-x-6">
               <img
-                src="/images/crypto-payment.png" // Remplace avec le chemin de ton image
+                src="/images/crypto-payment.png"
                 alt="Crypto Payment"
-                className="w-24 h-24 rounded-full"
+                className="w-16 h-16 sm:w-24 sm:h-24 rounded-full"
               />
               <div className="text-left">
-                <h3 className="text-xl font-semibold">
+                <h3 className="text-lg sm:text-xl font-semibold">
                   Pay in Crypto (3x or 6x)
                 </h3>
                 <p className="text-gray-400">
@@ -77,14 +77,14 @@ export const PaymentOptions = () => {
           )}
 
           {activeOption === "10x12x" && (
-            <div className="bg-gray-800 p-8 rounded-lg shadow-md flex items-center space-x-6">
+            <div className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-md flex items-center space-x-4 lg:space-x-6">
               <img
-                src="/images/crypto-payment.png" // Remplace avec le chemin de ton image
+                src="/images/crypto-payment.png"
                 alt="Crypto Payment"
-                className="w-24 h-24 rounded-full"
+                className="w-16 h-16 sm:w-24 sm:h-24 rounded-full"
               />
               <div className="text-left">
-                <h3 className="text-xl font-semibold">
+                <h3 className="text-lg sm:text-xl font-semibold">
                   Pay in Crypto (10x or 12x)
                 </h3>
                 <p className="text-gray-400">
@@ -96,14 +96,16 @@ export const PaymentOptions = () => {
           )}
 
           {activeOption === "staking" && (
-            <div className="bg-gray-800 p-8 rounded-lg shadow-md flex items-center space-x-6">
+            <div className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-md flex items-center space-x-4 lg:space-x-6">
               <img
-                src="/images/staking-rewards.png" // Remplace avec le chemin de ton image
+                src="/images/staking-rewards.png"
                 alt="Staking Rewards"
-                className="w-24 h-24 rounded-full"
+                className="w-16 h-16 sm:w-24 sm:h-24 rounded-full"
               />
               <div className="text-left">
-                <h3 className="text-xl font-semibold">Earn Staking Rewards</h3>
+                <h3 className="text-lg sm:text-xl font-semibold">
+                  Earn Staking Rewards
+                </h3>
                 <p className="text-gray-400">
                   Stake your FlexFi tokens to earn rewards and use them to
                   reduce future installment fees.
@@ -115,11 +117,13 @@ export const PaymentOptions = () => {
 
         {/* Call to Action */}
         <div className="mt-8">
-          <button className="mt-8 px-6 py-3 bg-gradient-to-r from-[#00FEFB] to-[#60259E] hover:from-[#85C8FF] hover:to-[#0C8CF3] text-white font-bold rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
+          <button className="px-6 py-3 bg-gradient-to-r from-[#00FEFB] to-[#60259E] hover:from-[#85C8FF] hover:to-[#0C8CF3] text-white font-bold rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
             Get Started with FlexFi
           </button>
         </div>
       </div>
+
+      {/* FlexFi Payment Simulator */}
       <FlexFiPaymentSimulator />
     </section>
   );

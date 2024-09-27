@@ -12,13 +12,16 @@ export default function Home() {
   return (
     <>
       {/* <ComingSoon /> */}
-      <main>
-        <div className="bg-gray-950 flex justify-around items-center h-100 pt-32 pb-32 ">
-          <Presentation />
+      <main className="w-full">
+        <div className="bg-gray-950 flex flex-col md:flex-row justify-between items-center h-auto pt-16 pb-16 px-4 md:px-32">
+          {/* Presentation component on top for smaller screens */}
+          <div className="mb-8 md:mb-0">
+            <Presentation />
+          </div>
           <img
             src="/logo/flexicon.webp"
             alt="FlexFi icone"
-            className="h-100 w-auto neon-effect animate-neon-pulse"
+            className="h-64 w-auto md:h-full neon-effect animate-neon-pulse"
           />
         </div>
 
@@ -53,10 +56,17 @@ export default function Home() {
             }
           }
         `}</style>
+
+        {/* Sections below maintain their own responsive layout */}
+
         <BusinessSolution />
+
         <PaymentOptions />
+
         <PoweredByBanner />
+
         <WhyFlexFi />
+
         <FAQFlexFi />
       </main>
     </>

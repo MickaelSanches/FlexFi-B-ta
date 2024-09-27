@@ -1,13 +1,13 @@
 export const BusinessSolution = () => {
   return (
-    <div className="bg-gray-900 p-12 rounded-lg shadow-2xl flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0 lg:space-x-16">
+    <div className="bg-gray-900 p-6 md:px-32 rounded-lg shadow-2xl flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0 lg:space-x-16">
       {/* Left section - Phone and Desktop view */}
       <div className="relative flex flex-col lg:flex-row items-center space-y-8 lg:space-y-0">
         <div className="relative">
           <img
             src="/images/phone-mockup.png" // Replace with phone image
             alt="Mobile UI"
-            className="w-44 lg:w-52 mb-4 lg:mb-0 lg:mr-8 transform transition duration-500 hover:scale-105 hover:rotate-2"
+            className="w-32 sm:w-44 lg:w-52 mb-4 lg:mb-0 lg:mr-8 transform transition duration-500 hover:scale-105 hover:rotate-2"
           />
         </div>
         <div className="relative">
@@ -21,7 +21,7 @@ export const BusinessSolution = () => {
 
       {/* Right section - Information */}
       <div className="text-white lg:w-1/2">
-        <h2 className="text-4xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-6">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-6">
           A solution that adapts to your sales channels
         </h2>
         <ul className="space-y-6">

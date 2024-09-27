@@ -30,7 +30,7 @@ const FlexFiPaymentSimulator: React.FC = () => {
     calculateFees(amount, months);
 
   return (
-    <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md mx-auto">
+    <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md">
       <h2 className="text-2xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-4">
         FlexFi Payment Simulator
       </h2>
