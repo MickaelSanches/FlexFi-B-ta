@@ -114,7 +114,7 @@ const Register = () => {
                   I accept the{" "}
                   <Link
                     href="/privacy-policy"
-                    className="text-blue-500 underline"
+                    className="text-blue-500 ml-1 underline"
                   >
                     Privacy Policy
                   </Link>

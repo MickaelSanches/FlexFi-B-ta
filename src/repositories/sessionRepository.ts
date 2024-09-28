@@ -102,9 +102,7 @@ export const sessionRepository = () => {
   ) => {
     // Vérifier si l'utilisateur a accepté la politique de confidentialité
     if (!acceptPrivacy) {
-      setError(
-        "Vous devez accepter la politique de confidentialité pour vous inscrire."
-      );
+      setError("You must accept the privacy policy to register.");
       return;
     }
 
