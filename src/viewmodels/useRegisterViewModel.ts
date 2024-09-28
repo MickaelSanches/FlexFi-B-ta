@@ -4,7 +4,7 @@ export const useRegisterViewModel = () => {
   const { handleSubmitEmail, handleSubmitCode, handleSubmitPassword } =
     sessionRepository();
 
-  const submitEmail = async (
+  const submitEmail = (
     e: React.FormEvent,
     email: string,
     acceptPrivacy: boolean,
@@ -15,17 +15,10 @@ export const useRegisterViewModel = () => {
     e.preventDefault();
     setError("");
     setLoading(true);
-
-    try {
-      await handleSubmitEmail(email, acceptPrivacy, setCurrentStep, setError);
-    } catch (err: any) {
-      setError(err.message || "Erreur lors de l'envoi de l'email.");
-    } finally {
-      setLoading(false);
-    }
+    handleSubmitEmail(email, acceptPrivacy, setCurrentStep, setError);
   };
 
-  const submitCode = async (
+  const submitCode = (
     e: React.FormEvent,
     email: string,
     confirmationCode: string,
@@ -37,16 +30,10 @@ export const useRegisterViewModel = () => {
     setError("");
     setLoading(true);
 
-    try {
-      await handleSubmitCode(email, confirmationCode, setCurrentStep, setError);
-    } catch (err: any) {
-      setError(err.message || "Erreur lors de la vérification du code.");
-    } finally {
-      setLoading(false);
-    }
+    handleSubmitCode(email, confirmationCode, setCurrentStep, setError);
   };
 
-  const submitPassword = async (
+  const submitPassword = (
     e: React.FormEvent,
     email: string,
     password: string,
@@ -61,27 +48,15 @@ export const useRegisterViewModel = () => {
     setError("");
     setLoading(true);
 
-    if (password !== confirmPassword) {
-      setError("Les mots de passe ne correspondent pas.");
-      setLoading(false);
-      return;
-    }
-
-    try {
-      await handleSubmitPassword(
-        email,
-        password,
-        confirmPassword,
-        setCurrentStep,
-        setSeedPhrase,
-        setPublicKey,
-        setError
-      );
-    } catch (err: any) {
-      setError(err.message || "Erreur lors de la création du mot de passe.");
-    } finally {
-      setLoading(false);
-    }
+    handleSubmitPassword(
+      email,
+      password,
+      confirmPassword,
+      setCurrentStep,
+      setSeedPhrase,
+      setPublicKey,
+      setError
+    );
   };
 
   return {

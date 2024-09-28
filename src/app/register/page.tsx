@@ -24,7 +24,7 @@ const Register = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-black p-8">
-      <div className="flex flex-col md:flex-row w-full max-w-5xl bg-gray-900 border border-gray-800 rounded-lg shadow-lg overflow-hidden mt-8 md:mt-0 md:absolute md:top-60">
+      <div className="flex flex-col md:flex-row w-full max-w-5xl bg-gray-900 border border-gray-800 rounded-lg shadow-lg overflow-hidden mt-8 md:mt-0 relative">
         <div
           className="w-full md:w-1/2 h-64 md:h-auto bg-cover"
           style={{ backgroundImage: "url('/logo/solana.jpg')" }}
@@ -38,7 +38,9 @@ const Register = () => {
           {error && <div className="text-red-500 mb-4">{error}</div>}
 
           {currentStep === 4 && (
-            <div className="text-center text-gray-200">
+            <div className="text-center text-gray-200 mb-12">
+              {" "}
+              {/* Added margin-bottom */}
               <h3 className="text-2xl font-bold mb-4">
                 Registration Complete!
               </h3>
@@ -58,7 +60,6 @@ const Register = () => {
               <div className="bg-gray-800 text-white p-4 rounded-lg mb-4 overflow-auto">
                 <p className="font-mono text-lg break-all">{publicKey}</p>
               </div>
-
               <p className="mb-4 text-sm text-gray-400">
                 Your seed phrase is a unique set of words that acts as the key
                 to your account. Anyone with access to this phrase can access
