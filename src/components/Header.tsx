@@ -1,24 +1,49 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { sessionRepository } from "@/repositories/sessionRepository";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
 
+  const { logout } = sessionRepository();
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  // Vérifier le token et actualiser l'état
   useEffect(() => {
-    // Vérifie le token au chargement du composant
-    const token = sessionStorage.getItem("token");
-    setIsLogged(!!token); // Met à jour l'état selon la présence du token
-  }, []);
+    const checkToken = () => {
+      const token = sessionStorage.getItem("token");
+      setIsLogged(!!token);
+    };
+
+    // Vérification initiale
+    checkToken();
+
+    // Ajouter un écouteur pour détecter les changements dans le sessionStorage
+    const handleStorageChange = () => {
+      checkToken();
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    // Nettoyer l'écouteur lors du démontage
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, [isLogged]);
+
+  // Gérer la déconnexion et réagir immédiatement sans rafraîchir
+  const handleLogout = () => {
+    logout();
+    setIsLogged(false); // Mettre à jour l'état local immédiatement
+  };
 
   return (
     <header className="w-full flex items-center justify-between bg-slate-950 border-b border-gray-300 p-4 md:px-32">
-      {/* Centered Navigation */}
       <nav className="md:flex space-x-4 flex items-center">
         <Link href="/" className="flex items-center">
           <img
@@ -41,7 +66,6 @@ const Header = () => {
         </Link>
       </nav>
 
-      {/* User Actions */}
       <div className="flex items-center space-x-4">
         {!isLogged ? (
           <div className="flex items-center space-x-4">
@@ -51,7 +75,6 @@ const Header = () => {
             >
               Log in
             </Link>
-
             <Link
               className="border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 py-1 cursor-pointer"
               href="/register"
@@ -60,17 +83,23 @@ const Header = () => {
             </Link>
           </div>
         ) : (
-          <Link
-            className="border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 py-1 cursor-pointer"
-            href="/dashboard"
-          >
-            Dashboard
-          </Link>
+          <div className="flex gap-2">
+            <Link
+              className="border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 py-1 cursor-pointer"
+              href="/dashboard"
+            >
+              Dashboard
+            </Link>
+            <button
+              className="underline underline-offset-8 hover:scale-110 ease-out duration-300 rounded-full px-4 py-1 cursor-pointer"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </div>
         )}
 
-        {/* Vertical divider */}
         <div className="hidden md:flex border-l border-gray-300 h-6"></div>
-
         <Link
           className="hidden md:flex cursor-pointer hover:scale-110 ease-out duration-300"
           href="/help"
@@ -79,13 +108,11 @@ const Header = () => {
         </Link>
       </div>
 
-      {/* Burger menu for small screens */}
       <div className="md:hidden">
         <button
           onClick={toggleMenu}
           className="text-gray-700 focus:outline-none"
         >
-          {/* Burger menu icon */}
           <svg
             className="w-6 h-6"
             fill="none"
@@ -103,7 +130,6 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Dropdown menu for small screens */}
       {isOpen && (
         <nav className="md:hidden bg-white border-t border-gray-300 flex flex-col items-center">
           <a className="block text-gray-700 px-4 py-2 hover:bg-gray-100 cursor-pointer">

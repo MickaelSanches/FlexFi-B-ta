@@ -232,10 +232,20 @@ export const sessionRepository = () => {
     }
   };
 
+  const logout = () => {
+    // Clear the JWT token and any other user-related data from sessionStorage
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("solanaPublicKey");
+
+    // Redirect the user to the login page
+    router.push("/");
+  };
+
   return {
     login, // Action pour la connexion
     handleSubmitEmail, // Action pour l'inscription (étape 1)
     handleSubmitCode, // Action pour l'inscription (étape 2)
     handleSubmitPassword, // Action pour l'inscription (étape 3)
+    logout,
   };
 };
