@@ -122,7 +122,7 @@ const Register = () => {
                 </label>
               </div>
               <button className="w-full bg-blue-500 text-white font-bold py-3 rounded-lg">
-                {loading ? "Sending..." : "Send Confirmation Code"}
+                Send Confirmation Code
               </button>
             </form>
           )}
@@ -157,7 +157,7 @@ const Register = () => {
                 />
               </div>
               <button className="w-full bg-blue-500 text-white font-bold py-3 rounded-lg">
-                {loading ? "Verifying..." : "Verify Code"}
+                Verify Code
               </button>
             </form>
           )}
@@ -211,7 +211,7 @@ const Register = () => {
                 />
               </div>
               <button className="w-full bg-blue-500 text-white font-bold py-3 rounded-lg">
-                {loading ? "Setting..." : "Set Password"}
+                Set Password
               </button>
             </form>
           )}
