@@ -16,7 +16,6 @@ const Register = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [seedPhrase, setSeedPhrase] = useState("");
   const [publicKey, setPublicKey] = useState("");
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   // Utilisation du ViewModel pour les actions de soumission
@@ -78,14 +77,7 @@ const Register = () => {
           {currentStep === 1 && (
             <form
               onSubmit={(e) =>
-                submitEmail(
-                  e,
-                  email,
-                  acceptPrivacy,
-                  setError,
-                  setLoading,
-                  setCurrentStep
-                )
+                submitEmail(e, email, acceptPrivacy, setError, setCurrentStep)
               }
             >
               <div className="mb-4">
@@ -130,14 +122,7 @@ const Register = () => {
           {currentStep === 2 && (
             <form
               onSubmit={(e) =>
-                submitCode(
-                  e,
-                  email,
-                  confirmationCode,
-                  setError,
-                  setLoading,
-                  setCurrentStep
-                )
+                submitCode(e, email, confirmationCode, setError, setCurrentStep)
               }
             >
               <div className="mb-4">
@@ -171,7 +156,6 @@ const Register = () => {
                   password,
                   confirmPassword,
                   setError,
-                  setLoading,
                   setCurrentStep,
                   setSeedPhrase,
                   setPublicKey
