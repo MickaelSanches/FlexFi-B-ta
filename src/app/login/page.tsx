@@ -1,17 +1,17 @@
-"use client"
+"use client";
 import { useLoginViewModel } from "@/viewmodels/useLoginViewModel";
+import { useState, FormEvent } from "react";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { handleSubmit } = useLoginViewModel();
 
-  const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    loading,
-    error,
-    handleSubmit
-  } = useLoginViewModel()
+  // Fonction pour gérer la soumission du formulaire
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Empêche le rechargement de la page
+    handleSubmit(email, password); // Appelle handleSubmit avec les valeurs appropriées
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-black p-8">
@@ -29,9 +29,7 @@ const Login = () => {
             Login
           </h2>
 
-          {error && <div className="text-red-500 mb-4">{error}</div>}
-
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={onSubmit}>
             <div className="mb-4 md:mb-6">
               <label
                 className="block text-gray-200 text-sm md:text-lg font-bold mb-2 md:mb-3"
@@ -69,7 +67,7 @@ const Login = () => {
                 type="submit"
                 className="w-full bg-blue-500 text-white font-bold py-2 md:py-3 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
               >
-                {loading ? "Connecting..." : "Login"}
+                Login
               </button>
             </div>
           </form>

@@ -1,6 +1,5 @@
 import React from "react";
 import { TransactionItem } from "./TransactionItem";
-import { useLoginStore } from "@/store/useLoginStore";
 
 interface Transaction {
   blockTime: number;
@@ -12,6 +11,7 @@ interface Transaction {
     message: {
       accountKeys: string[];
     };
+    signatures: string[];
   };
 }
 
@@ -22,7 +22,7 @@ interface TransactionListProps {
 export const TransactionList: React.FC<TransactionListProps> = ({
   transactions,
 }) => {
-  const { publicKey } = useLoginStore();
+  const solanaPublicKey = sessionStorage.getItem("solanaPublicKey");
   return (
     <div className="bg-gradient-to-tr from-gray-800 via-gray-900 to-black border border-gray-700 shadow-xl rounded-3xl p-8">
       <h3 className="text-3xl font-extrabold text-white mb-6">
@@ -34,7 +34,7 @@ export const TransactionList: React.FC<TransactionListProps> = ({
             <TransactionItem
               key={index}
               transaction={tx}
-              userAddress={publicKey}
+              userAddress={solanaPublicKey}
             />
           ))
         ) : (

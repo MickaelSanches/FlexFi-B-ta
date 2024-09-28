@@ -1,42 +1,32 @@
 "use client";
-import React from "react";
-import { useRegisterViewModel } from "../../viewmodels/useRegisterViewModel";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useRegisterViewModel } from "@/viewmodels/useRegisterViewModel";
 
 const Register = () => {
-  const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    confirmPassword,
-    setConfirmPassword,
-    acceptPrivacy,
-    setAcceptPrivacy,
-    confirmationCode,
-    setConfirmationCode,
-    currentStep,
-    handleSubmitEmail,
-    handleSubmitCode,
-    handleSubmitPassword,
-    loading,
-    error,
-    seedPhrase,
-    publicKey,
-  } = useRegisterViewModel();
-
   const router = useRouter();
+
+  // États locaux du composant
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [acceptPrivacy, setAcceptPrivacy] = useState(false);
+  const [confirmationCode, setConfirmationCode] = useState("");
+  const [currentStep, setCurrentStep] = useState(1);
+  const [seedPhrase, setSeedPhrase] = useState("");
+  const [publicKey, setPublicKey] = useState("");
+  const [error, setError] = useState("");
+
+  // Utilisation du ViewModel pour les actions de soumission
+  const { submitEmail, submitCode, submitPassword } = useRegisterViewModel();
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-black p-8">
-      <div className="flex flex-col md:flex-row w-full max-w-5xl bg-gray-900 border border-gray-800 rounded-lg shadow-lg overflow-hidden mt-8 md:mt-0 md:absolute md:top-60">
+      <div className="flex flex-col md:flex-row w-full max-w-5xl bg-gray-900 border border-gray-800 rounded-lg shadow-lg overflow-hidden mt-8 md:mt-0 relative">
         <div
           className="w-full md:w-1/2 h-64 md:h-auto bg-cover"
-          style={{
-            backgroundImage: "url('/logo/solana.jpg')",
-            backgroundPosition: "center",
-          }}
+          style={{ backgroundImage: "url('/logo/solana.jpg')" }}
         ></div>
 
         <div className="w-full md:w-1/2 p-6 md:p-12">
@@ -47,7 +37,9 @@ const Register = () => {
           {error && <div className="text-red-500 mb-4">{error}</div>}
 
           {currentStep === 4 && (
-            <div className="text-center text-gray-200">
+            <div className="text-center text-gray-200 mb-12">
+              {" "}
+              {/* Added margin-bottom */}
               <h3 className="text-2xl font-bold mb-4">
                 Registration Complete!
               </h3>
@@ -67,7 +59,6 @@ const Register = () => {
               <div className="bg-gray-800 text-white p-4 rounded-lg mb-4 overflow-auto">
                 <p className="font-mono text-lg break-all">{publicKey}</p>
               </div>
-
               <p className="mb-4 text-sm text-gray-400">
                 Your seed phrase is a unique set of words that acts as the key
                 to your account. Anyone with access to this phrase can access
@@ -84,10 +75,14 @@ const Register = () => {
           )}
 
           {currentStep === 1 && (
-            <form onSubmit={handleSubmitEmail}>
-              <div className="mb-4 md:mb-6">
+            <form
+              onSubmit={(e) =>
+                submitEmail(e, email, acceptPrivacy, setError, setCurrentStep)
+              }
+            >
+              <div className="mb-4">
                 <label
-                  className="block text-gray-200 text-sm md:text-lg font-bold mb-2 md:mb-3"
+                  className="block text-gray-200 font-bold mb-2"
                   htmlFor="email"
                 >
                   Email
@@ -97,12 +92,12 @@ const Register = () => {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-3 md:px-4 py-2 md:py-3 bg-gray-800 text-gray-200 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 bg-gray-800 text-gray-200 border rounded-lg"
                   required
                 />
               </div>
               <div className="mb-4">
-                <label className="flex items-center text-gray-200 text-sm md:text-lg">
+                <label className="flex items-center text-gray-200">
                   <input
                     type="checkbox"
                     checked={acceptPrivacy}
@@ -112,29 +107,28 @@ const Register = () => {
                   I accept the{" "}
                   <Link
                     href="/privacy-policy"
-                    className="text-blue-500 underline ml-1"
+                    className="text-blue-500 ml-1 underline"
                   >
                     Privacy Policy
                   </Link>
                 </label>
               </div>
-              <div className="flex items-center justify-between">
-                <button
-                  type="submit"
-                  className="w-full bg-blue-500 text-white font-bold py-2 md:py-3 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                >
-                  {loading ? "Sending..." : "Send Confirmation Code"}
-                </button>
-              </div>
+              <button className="w-full bg-blue-500 text-white font-bold py-3 rounded-lg">
+                Send Confirmation Code
+              </button>
             </form>
           )}
 
           {currentStep === 2 && (
-            <form onSubmit={handleSubmitCode}>
-              <div className="mb-4 md:mb-6">
+            <form
+              onSubmit={(e) =>
+                submitCode(e, email, confirmationCode, setError, setCurrentStep)
+              }
+            >
+              <div className="mb-4">
                 <label
-                  className="block text-gray-200 text-sm md:text-lg font-bold mb-2 md:mb-3"
-                  htmlFor="confirmationCode"
+                  className="block text-gray-200 font-bold mb-2"
+                  htmlFor="code"
                 >
                   Confirmation Code
                 </label>
@@ -143,26 +137,34 @@ const Register = () => {
                   id="code"
                   value={confirmationCode}
                   onChange={(e) => setConfirmationCode(e.target.value)}
-                  className="w-full px-3 md:px-4 py-2 md:py-3 bg-gray-800 text-gray-200 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 bg-gray-800 text-gray-200 border rounded-lg"
                   required
                 />
               </div>
-              <div className="flex items-center justify-between">
-                <button
-                  type="submit"
-                  className="w-full bg-blue-500 text-white font-bold py-2 md:py-3 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                >
-                  {loading ? "Verifying..." : "Verify Code"}
-                </button>
-              </div>
+              <button className="w-full bg-blue-500 text-white font-bold py-3 rounded-lg">
+                Verify Code
+              </button>
             </form>
           )}
 
           {currentStep === 3 && (
-            <form onSubmit={handleSubmitPassword}>
-              <div className="mb-4 mt-4 md:mb-6">
+            <form
+              onSubmit={(e) =>
+                submitPassword(
+                  e,
+                  email,
+                  password,
+                  confirmPassword,
+                  setError,
+                  setCurrentStep,
+                  setSeedPhrase,
+                  setPublicKey
+                )
+              }
+            >
+              <div className="mb-4">
                 <label
-                  className="block text-gray-200 text-sm md:text-lg font-bold mb-2 md:mb-3"
+                  className="block text-gray-200 font-bold mb-2"
                   htmlFor="password"
                 >
                   Password
@@ -172,13 +174,13 @@ const Register = () => {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-3 md:px-4 py-2 md:py-3 bg-gray-800 text-gray-200 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 bg-gray-800 text-gray-200 border rounded-lg"
                   required
                 />
               </div>
-              <div className="mb-4 md:mb-6">
+              <div className="mb-4">
                 <label
-                  className="block text-gray-200 text-sm md:text-lg font-bold mb-2 md:mb-3"
+                  className="block text-gray-200 font-bold mb-2"
                   htmlFor="confirmPassword"
                 >
                   Confirm Password
@@ -188,18 +190,13 @@ const Register = () => {
                   id="confirmPassword"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full px-3 md:px-4 py-2 md:py-3 bg-gray-800 text-gray-200 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 bg-gray-800 text-gray-200 border rounded-lg"
                   required
                 />
               </div>
-              <div className="flex items-center justify-between">
-                <button
-                  type="submit"
-                  className="w-full bg-blue-500 text-white font-bold py-2 md:py-3 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                >
-                  {loading ? "Setting..." : "Set Password"}
-                </button>
-              </div>
+              <button className="w-full bg-blue-500 text-white font-bold py-3 rounded-lg">
+                Set Password
+              </button>
             </form>
           )}
         </div>

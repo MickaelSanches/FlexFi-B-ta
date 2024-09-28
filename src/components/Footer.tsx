@@ -4,7 +4,7 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <footer className="bg-slate-950 text-gray-400 py-8 w-full">
-      <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 w-full">
+      <div className="  px-4 flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 w-full md:px-32">
         {/* FlexFi Section */}
         <div className="flex flex-col space-y-4 text-center md:text-left">
           <h5 className="text-white font-semibold">FlexFi</h5>

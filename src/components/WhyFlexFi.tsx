@@ -1,12 +1,12 @@
 export const WhyFlexFi = () => {
   return (
-    <section className="bg-gray-950 py-12">
-      <div className="container mx-auto text-center px-6">
+    <section className="bg-gray-950 py-12 px-4 md:px-32">
+      <div className="container text-center">
         {/* Title Section */}
-        <h2 className="text-4xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-4">
+        <h2 className="text-4xl text-start font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-4">
           Why Choose FlexFi?
         </h2>
-        <p className="text-lg mb-8">
+        <p className="text-lg text-start mb-8">
           Our mission is to empower users globally with flexible, decentralized
           payment options using cryptocurrencies. Our solution stands out in the
           market.

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 interface Transaction {
-  blockTime: number;
+  blockTime: number | null; // Peut être null si la valeur est absente
   meta: {
     preBalances: number[];
     postBalances: number[];
@@ -10,21 +10,25 @@ interface Transaction {
     message: {
       accountKeys: string[];
     };
+    signatures: string[]; // La signature peut être vide ou absente
   };
 }
 
 interface TransactionItemProps {
   transaction: Transaction;
-  userAddress: string; // User's wallet address
+  userAddress: string | null; // Adresse du portefeuille de l'utilisateur
 }
 
 export const TransactionItem: React.FC<TransactionItemProps> = ({
   transaction,
-  userAddress, // Passing the user's address here
+  userAddress,
 }) => {
   const [showFullAddress, setShowFullAddress] = useState(false);
 
-  // Function to calculate the transaction amount in SOL
+  // Vérification que blockTime existe bien avant de le convertir en date
+  const blockTime = transaction.blockTime ? transaction.blockTime * 1000 : null;
+
+  // Fonction pour calculer le montant de la transaction en SOL
   const calculateTransactionAmount = (
     preBalances: number[],
     postBalances: number[]
@@ -43,64 +47,70 @@ export const TransactionItem: React.FC<TransactionItemProps> = ({
   );
 
   const fromAddress =
-    transaction.transaction.message?.accountKeys?.[0] || "Unknown Address"; // First element of accountKeys is often the sender
+    transaction.transaction.message?.accountKeys?.[0] || "Adresse inconnue";
   const shortAddress =
     fromAddress.substring(0, 6) +
     "..." +
     fromAddress.substring(fromAddress.length - 4);
 
-  // Format the date in English (MM/DD/YYYY HH:mm:ss)
-  const transactionDate = new Date(transaction.blockTime * 1000).toLocaleString(
-    "en-US", // Specify the English format
-    {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: false, // Use 24-hour format
-    }
-  );
+  // Formatage de la date si blockTime est défini
+  const transactionDate = blockTime
+    ? new Date(blockTime).toLocaleString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      })
+    : "Date inconnue";
 
-  // Check if the transaction was sent or received
-  const isSent = fromAddress === userAddress; // Compare the sender's address with the user's address
+  // Vérification que signature existe avant d'y accéder
+  const transactionLink =
+    transaction.transaction.signatures &&
+    transaction.transaction.signatures.length > 0
+      ? `https://explorer.solana.com/tx/${transaction.transaction.signatures[0]}?cluster=devnet`
+      : "https://explorer.solana.com"; // Lien par défaut si la signature est absente
+
+  const isSent = fromAddress === userAddress;
 
   return (
-    <li
-      className={`bg-gray-700 bg-opacity-30 p-4 rounded-xl shadow-md hover:bg-gray-700 transition duration-300 ease-in-out ${
-        isSent ? "border-l-4 border-red-500" : "border-l-4 border-green-500"
-      }`}
-    >
-      <div>
-        {/* Flex container with responsive adjustments */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-          {/* Date and address section */}
-          <div className="mb-2 sm:mb-0 sm:mr-4 text-sm md:text-base">
-            <span className="font-bold text-gray-500">{transactionDate}</span> |{" "}
-            <span className="font-bold text-teal-300">Key:</span>{" "}
-            <span
-              onClick={() => setShowFullAddress(!showFullAddress)}
-              className="cursor-pointer hover:underline"
-            >
-              {showFullAddress ? fromAddress : shortAddress}
-            </span>
-          </div>
+    <a href={transactionLink} target="_blank" rel="noopener noreferrer">
+      <li
+        className={` mb-4 bg-gray-700 bg-opacity-30 p-4 rounded-xl shadow-md hover:bg-gray-700 transition duration-300 ease-in-out ${
+          isSent ? "border-l-4 border-[#00FEFB]" : "border-l-4 border-green-500"
+        }`}
+      >
+        <div>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+            {/* Section de la date et de l'adresse */}
+            <div className="mb-2 sm:mb-0 sm:mr-4 text-sm md:text-base">
+              <span className="font-bold text-gray-500">{transactionDate}</span>{" "}
+              | <span className="font-bold text-teal-300">Clé :</span>{" "}
+              <span
+                onClick={() => setShowFullAddress(!showFullAddress)}
+                className="cursor-pointer hover:underline"
+              >
+                {showFullAddress ? fromAddress : shortAddress}
+              </span>
+            </div>
 
-          {/* Amount section */}
-          <div className="text-right text-sm md:text-base">
-            <span className="font-bold text-teal-300">Amount:</span>{" "}
-            {amount !== null && amount !== undefined
-              ? `${amount.toFixed(4)} SOL`
-              : "N/A"}{" "}
-            {isSent ? (
-              <span className="text-red-400">(Sent)</span>
-            ) : (
-              <span className="text-green-400">(Received)</span>
-            )}
+            {/* Section du montant */}
+            <div className="text-right text-sm md:text-base">
+              <span className="font-bold text-teal-300">Montant :</span>{" "}
+              {amount !== null && amount !== undefined
+                ? `${amount.toFixed(4)} SOL`
+                : "N/A"}{" "}
+              {isSent ? (
+                <span className="text-red-400">(Sent)</span>
+              ) : (
+                <span className="text-green-400">(Received)</span>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </li>
+      </li>
+    </a>
   );
 };

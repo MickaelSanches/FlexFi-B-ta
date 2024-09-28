@@ -12,6 +12,8 @@
     "@eslint/config-array": "^0.18.0",
     "@eslint/object-schema": "^2.1.4",
     "@solana/web3.js": "^1.95.3",
+    "@types/firebase": "^2.4.32",
+    "firebase": "^10.13.2",
     "framer-motion": "^11.3.29",
     "glob": "^11.0.0",
     "jwt-decode": "^4.0.0",
