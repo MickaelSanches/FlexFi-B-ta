@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { sessionRepository } from "@/repositories/sessionRepository";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation"; // Importer usePathname
 
 const Sidebar = () => {
   const { logout } = sessionRepository();
   const [userPublicKey, setUserPublicKey] = useState<string | null>(null);
-  const router = useRouter();
+  const pathname = usePathname(); // Utiliser usePathname pour obtenir le chemin actuel
 
   useEffect(() => {
     const publicKey = sessionStorage.getItem("solanaPublicKey");
@@ -15,23 +15,30 @@ const Sidebar = () => {
     }
   }, []);
 
+  // Fonction pour vérifier si la route est active
+  const isActive = (path: string) => pathname === path;
+
   return (
     <div className="flex flex-col w-64 h-screen bg-gray-900 text-white shadow-lg">
       <div className="p-4 border-b border-gray-700">
         <h2 className="text-2xl font-bold">User Dashboard</h2>
       </div>
       <nav className="flex flex-col flex-1 p-4 space-y-4">
-        <Link href="/profile" className="hover:bg-gray-700 p-2 rounded">
+        <Link
+          href="/profile"
+          className={`p-2 rounded ${
+            isActive("/profile") ? "bg-gray-700" : "hover:bg-gray-700"
+          }`}
+        >
           Personal Info
         </Link>
-        <Link href="/profile/wallet" className="hover:bg-gray-700 p-2 rounded">
-          Wallet Info
-        </Link>
         <Link
-          href="/profile/settings"
-          className="hover:bg-gray-700 p-2 rounded"
+          href="/dashboard"
+          className={`p-2 rounded ${
+            isActive("/dashboard") ? "bg-gray-700" : "hover:bg-gray-700"
+          }`}
         >
-          Settings
+          Wallet
         </Link>
         <button
           onClick={logout}

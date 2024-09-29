@@ -58,8 +58,15 @@ export const sessionRepository = () => {
 
         // Décoder le token pour extraire les informations
         const decodedToken: any = jwtDecode(token);
+
         const publicKey = decodedToken.user.public_key;
         sessionStorage.setItem("solanaPublicKey", publicKey);
+
+        const email = decodedToken.user.email;
+        sessionStorage.setItem("email", email);
+
+        const privateKey = decodedToken.user.private_key;
+        sessionStorage.setItem("solanaPrivateKey", privateKey);
 
         router.push("/dashboard");
       } else {
