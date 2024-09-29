@@ -41,9 +41,6 @@ export const sessionRepository = () => {
 
   // Connexion
   const login = async (email: string, password: string) => {
-    console.log("email : " + email);
-    console.log("password : " + password);
-
     try {
       const response = await handleApiCall(`${URL_API}/login`, "POST", {
         email,
@@ -53,6 +50,8 @@ export const sessionRepository = () => {
       const token = response.token;
 
       if (token) {
+        console.log("__________________________");
+
         // Stocker le token dans sessionStorage
         sessionStorage.setItem("token", token);
 
@@ -65,10 +64,11 @@ export const sessionRepository = () => {
         const email = decodedToken.user.email;
         sessionStorage.setItem("email", email);
 
-        const privateKey = decodedToken.user.private_key;
-        sessionStorage.setItem("solanaPrivateKey", privateKey);
+        const seedPhrase = decodedToken.user.seed_phrase;
+        sessionStorage.setItem("seedPhrase", seedPhrase);
 
         router.push("/dashboard");
+        return true;
       } else {
         throw new Error("Token not found in response");
       }
