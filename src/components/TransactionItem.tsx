@@ -87,7 +87,7 @@ export const TransactionItem: React.FC<TransactionItemProps> = ({
             {/* Section de la date et de l'adresse */}
             <div className="mb-2 sm:mb-0 sm:mr-4 text-sm md:text-base">
               <span className="font-bold text-gray-500">{transactionDate}</span>{" "}
-              | <span className="font-bold text-teal-300">Clé :</span>{" "}
+              | <span className="font-bold text-teal-300">Key :</span>{" "}
               <span
                 onClick={() => setShowFullAddress(!showFullAddress)}
                 className="cursor-pointer hover:underline"
@@ -98,7 +98,7 @@ export const TransactionItem: React.FC<TransactionItemProps> = ({
 
             {/* Section du montant */}
             <div className="text-right text-sm md:text-base">
-              <span className="font-bold text-teal-300">Montant :</span>{" "}
+              <span className="font-bold text-teal-300">Amount :</span>{" "}
               {amount !== null && amount !== undefined
                 ? `${amount.toFixed(4)} SOL`
                 : "N/A"}{" "}
