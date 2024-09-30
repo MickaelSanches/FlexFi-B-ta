@@ -1,23 +1,12 @@
 export const BusinessSolution = () => {
   return (
-    <div className="bg-gray-900 p-6 md:px-32 rounded-lg shadow-2xl flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0 lg:space-x-16">
+    <div className=" bg-gray-900 p-6 sm:p-8 md:px-32 rounded-lg shadow-2xl flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0 lg:space-x-16">
       {/* Left section - Phone and Desktop view */}
-      <div className="relative flex flex-col lg:flex-row items-center space-y-8 lg:space-y-0">
-        <div className="relative">
-          <img
-            src="/images/phone-mockup.png" // Replace with phone image
-            alt="Mobile UI"
-            className="w-32 sm:w-44 lg:w-52 mb-4 lg:mb-0 lg:mr-8 transform transition duration-500 hover:scale-105 hover:rotate-2"
-          />
-        </div>
-        <div className="relative">
-          <img
-            src="/images/desktop-mockup.png" // Replace with desktop image
-            alt="Desktop UI"
-            className="w-full lg:w-96 shadow-xl transform transition duration-500 hover:scale-105 hover:rotate-2"
-          />
-        </div>
-      </div>
+      <img
+        src="/images/flexfi-payment-solution-adaptable-sales-channels_1.webp"
+        alt="Mobile UI"
+        className="  w-80 xl:w-96 transform transition duration-500 hover:scale-105 hover:rotate-2"
+      />
 
       {/* Right section - Information */}
       <div className="text-white lg:w-1/2">
@@ -43,8 +32,8 @@ export const BusinessSolution = () => {
               </svg>
             </span>
             <div>
-              <h3 className="text-lg font-semibold">E-commerce</h3>
-              <p className="text-gray-200">
+              <h3 className="text-base sm:text-lg font-semibold">E-commerce</h3>
+              <p className="text-gray-200 text-sm sm:text-base">
                 Your customers pay online in less than 10 seconds without
                 leaving your website.
               </p>
@@ -68,8 +57,10 @@ export const BusinessSolution = () => {
               </svg>
             </span>
             <div>
-              <h3 className="text-lg font-semibold">Point of Sale</h3>
-              <p className="text-gray-200">
+              <h3 className="text-base sm:text-lg font-semibold">
+                Point of Sale
+              </h3>
+              <p className="text-gray-200 text-sm sm:text-base">
                 Your customers pay via a payment link or on a payment terminal.
               </p>
             </div>
@@ -92,16 +83,16 @@ export const BusinessSolution = () => {
               </svg>
             </span>
             <div>
-              <h3 className="text-lg font-semibold">
+              <h3 className="text-base sm:text-lg font-semibold">
                 Call Center & Remote Sales
               </h3>
-              <p className="text-gray-200">
+              <p className="text-gray-200 text-sm sm:text-base">
                 Your customers receive a payment link via email or SMS.
               </p>
             </div>
           </li>
         </ul>
-        <button className="mt-8 px-6 py-3 bg-gradient-to-r from-[#00FEFB] to-[#60259E] hover:from-[#85C8FF] hover:to-[#0C8CF3] text-white font-bold rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
+        <button className="mt-8 px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-[#00FEFB] to-[#60259E] hover:from-[#85C8FF] hover:to-[#0C8CF3] text-white font-bold rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
           Get Started with FlexFi
         </button>
       </div>
