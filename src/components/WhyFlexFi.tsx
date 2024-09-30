@@ -16,7 +16,7 @@ export const WhyFlexFi = () => {
           {/* Left Section - Map/Graphic */}
           <div className="w-full lg:w-1/2 mb-8 lg:mb-0">
             <img
-              src="/images/flexfi-map.png" // Replace with actual map or graphic
+              src="/images/flexfi-crypto-payment-user-advantages_1.webp" // Replace with actual map or graphic
               alt="FlexFi in Europe"
               className="w-full object-contain"
             />
