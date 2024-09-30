@@ -60,7 +60,7 @@ export const PaymentOptions = () => {
           {activeOption === "3x6x" && (
             <div className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-md flex items-center space-x-4 lg:space-x-6">
               <img
-                src="/images/crypto-payment.png"
+                src="/images/Pay-in-crypto-FlexFi_1.webp"
                 alt="Crypto Payment"
                 className="w-16 h-16 sm:w-24 sm:h-24 rounded-full"
               />
@@ -79,7 +79,7 @@ export const PaymentOptions = () => {
           {activeOption === "10x12x" && (
             <div className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-md flex items-center space-x-4 lg:space-x-6">
               <img
-                src="/images/crypto-payment.png"
+                src="/images/Pay-in-crypto-FlexFi_1.webp"
                 alt="Crypto Payment"
                 className="w-16 h-16 sm:w-24 sm:h-24 rounded-full"
               />
@@ -98,7 +98,7 @@ export const PaymentOptions = () => {
           {activeOption === "staking" && (
             <div className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-md flex items-center space-x-4 lg:space-x-6">
               <img
-                src="/images/staking-rewards.png"
+                src="/images/Staking-reward-FlexFi_1.webp"
                 alt="Staking Rewards"
                 className="w-16 h-16 sm:w-24 sm:h-24 rounded-full"
               />
