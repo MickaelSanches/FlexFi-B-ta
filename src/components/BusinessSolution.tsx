@@ -11,7 +11,7 @@ export const BusinessSolution = () => {
       {/* Right section - Information */}
       <div className="text-white lg:w-1/2">
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-6">
-          A solution that adapts to your sales channels
+          Adaptable Payments for Every Channel
         </h2>
         <ul className="space-y-6">
           <li className="flex items-start">
@@ -34,8 +34,8 @@ export const BusinessSolution = () => {
             <div>
               <h3 className="text-base sm:text-lg font-semibold">E-commerce</h3>
               <p className="text-gray-200 text-sm sm:text-base">
-                Your customers pay online in less than 10 seconds without
-                leaving your website.
+                Fast online payment: your customers complete transactions in
+                less than 10 seconds.
               </p>
             </div>
           </li>
@@ -61,7 +61,8 @@ export const BusinessSolution = () => {
                 Point of Sale
               </h3>
               <p className="text-gray-200 text-sm sm:text-base">
-                Your customers pay via a payment link or on a payment terminal.
+                Effortless payments via payment link or terminal, directly at
+                your point of sale.
               </p>
             </div>
           </li>
@@ -84,10 +85,11 @@ export const BusinessSolution = () => {
             </span>
             <div>
               <h3 className="text-base sm:text-lg font-semibold">
-                Call Center & Remote Sales
+                Remote Sales
               </h3>
               <p className="text-gray-200 text-sm sm:text-base">
-                Your customers receive a payment link via email or SMS.
+                Your customers receive a payment link via email or SMS,
+                anywhere, anytime.
               </p>
             </div>
           </li>

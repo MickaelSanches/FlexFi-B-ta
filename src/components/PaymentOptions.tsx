@@ -15,8 +15,8 @@ export const PaymentOptions = () => {
           Flexible Crypto Payment Options
         </h2>
         <p className="text-md sm:text-lg text-gray-400 mb-8">
-          Simplify your purchases with FlexFi. Pay in multiple installments
-          using your favorite cryptocurrencies. Fast, secure, and decentralized.
+          Simplify your purchase with FlexFi. Pay in multiple installments using
+          your favorite crypto.
         </p>
 
         {/* Payment Buttons */}
@@ -107,8 +107,7 @@ export const PaymentOptions = () => {
                   Earn Staking Rewards
                 </h3>
                 <p className="text-gray-400">
-                  Stake your FlexFi tokens to earn rewards and use them to
-                  reduce future installment fees.
+                  Stake your USDC to earn rewards and unlock the features
                 </p>
               </div>
             </div>

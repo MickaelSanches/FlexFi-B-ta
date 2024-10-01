@@ -14,34 +14,41 @@ export const FAQFlexFi = () => {
 
   const faqs: FAQItem[] = [
     {
-      question: "How does the multiple payment option work on FlexFi?",
+      question: "How Does the Multi-Payment Option Work on FlexFi?",
       answer:
-        "With FlexFi, you can split your purchases into multiple installments using cryptocurrency. Simply choose the payment plan that suits you best, and the payments will be automatically deducted from your wallet.",
+        "With FlexFi, your customers can split their payment into 6 or 12 monthly installments using cryptocurrencies. When a customer selects FlexFi at checkout, they choose their payment plan. You receive the full payment immediately, and FlexFi handles the collection of the installments.",
     },
     {
-      question: "What are the fees for using FlexFi?",
+      question: "What Are the Fees for Using FlexFi?",
       answer:
-        "FlexFi offers competitive fees of 0.5% per transaction. For premium users, staking rewards can reduce or even eliminate these fees.",
+        "FlexFi offers a transparent fee structure. Merchants pay competitive transaction fees with no hidden costs: 0% on standard transactions and 2% for BNPL. Integration is free, making it a simple and affordable solution.",
     },
     {
-      question: "What services are included with FlexFi?",
-      answer:
-        "FlexFi includes flexible installment payments, staking rewards, and an API for merchants to integrate multi-payment options into their platform.",
+      question: "What Services Are Included with FlexFi?",
+      answer: `FlexFi includes:
+- Buy Now, Pay Later (BNPL) with cryptocurrency.
+- Full support for integration.
+- Access to consumer data to better understand your customers.`,
     },
     {
-      question: "What are the conditions to pay in multiple installments?",
+      question: "What Cryptocurrencies Are Accepted by FlexFi?",
       answer:
-        "To use the multi-payment feature, users must complete the KYC process and ensure that their wallet is funded for upcoming payments.",
+        "FlexFi accepts major cryptocurrencies, including Bitcoin (BTC), Solana (SOL), and several stablecoins like USDC and PYUSD. This allows your customers to choose their preferred crypto, providing greater flexibility.",
     },
     {
-      question: "What cryptocurrencies are accepted by FlexFi?",
+      question: "Is the Multi-Payment Feature Secure?",
       answer:
-        "FlexFi accepts various cryptocurrencies, including Bitcoin, Ethereum, Solana, and FlexFi tokens. More cryptocurrencies will be added in the future.",
+        "Yes. FlexFi uses blockchain technology and advanced security protocols to ensure transactions are secure. This guarantees the security of payments, giving you complete peace of mind.",
     },
     {
-      question: "Is the multi-payment feature secure?",
+      question: "How Do I Integrate FlexFi in My Store?",
       answer:
-        "Yes, FlexFi uses smart contracts on the Solana blockchain to ensure that each transaction is secure, transparent, and fully automated. Your funds are safe and protected.",
+        "Integrating FlexFi is simple. For online stores, we offer plugins compatible with major e-commerce platforms. In physical stores, FlexFi works via payment terminals or payment links. Our team assists you at every step for a quick setup.",
+    },
+    {
+      question: "What Are the Conditions to Offer Multi-Installments?",
+      answer:
+        "To offer the multi-payment option, customers must complete a simple KYC verification and stake a minimum of $30 in cryptocurrency. This ensures transaction security and allows customers to benefit from flexible payment plans with no hidden fees.",
     },
   ];
 

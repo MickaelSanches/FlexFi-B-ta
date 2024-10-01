@@ -12,14 +12,9 @@ export const WhyFlexFi = () => {
     >
       <div className="container text-center">
         {/* Title Section */}
-        <h2 className="text-4xl text-start font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-4">
+        <h2 className="text-4xl text-start font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-6">
           Why Choose FlexFi?
         </h2>
-        <p className="text-lg text-start mb-8">
-          Our mission is to empower users globally with flexible, decentralized
-          payment options using cryptocurrencies. Our solution stands out in the
-          market.
-        </p>
 
         <div className="flex flex-col lg:flex-row items-center justify-between">
           {/* Right Section - Benefits */}
@@ -27,30 +22,31 @@ export const WhyFlexFi = () => {
             <ul className="space-y-6">
               <li>
                 <h3 className="text-2xl text-white font-bold">
-                  A Solution Centered on Flexibility
+                  Built for Flexibility
                 </h3>
                 <p className="text-gray-600">
-                  Focus on what matters the most while we handle your payments.
-                  FlexFi offers seamless crypto payments with no hassle.
+                  Focus on your business, not the payments. FlexFi offers
+                  seamless crypto payment solutions that adapt to your needs,
+                  effortlessly.
                 </p>
               </li>
               <li>
                 <h3 className="text-2xl font-bold text-white">
-                  Ethical Approach for All Users
+                  Ethical and Transparent Payments
                 </h3>
                 <p className="text-gray-600">
-                  Users can adjust their payment schedule anytime without any
-                  hidden fees or penalties, ensuring transparency.
+                  No hidden fees, no penalties. FlexFi empowers users to adjust
+                  payment schedules as needed, ensuring fairness and full
+                  transparency.
                 </p>
               </li>
               <li>
                 <h3 className="text-2xl font-bold text-white">
-                  Crypto Payment Plans Across the World
+                  Global Crypto Payment Plans
                 </h3>
                 <p className="text-gray-600">
-                  Available in regions across Europe, the Americas, and beyond.
-                  Your crypto transactions are secure, quick, and flexible with
-                  FlexFi.
+                  FlexFi provides secure, fast, and adaptable crypto payments to
+                  meet the needs of a global audience.
                 </p>
               </li>
             </ul>
