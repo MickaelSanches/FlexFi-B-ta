@@ -9,7 +9,7 @@ export const PaymentOptions = () => {
   >("3x6x");
 
   return (
-    <section className="bg-black h-3/5 flex flex-col lg:flex-row items-center justify-between px-4 md:px-12 lg:px-32 py-12">
+    <section className="relative bg-black h-3/5 flex flex-col lg:flex-row items-center justify-between px-4 md:px-12 lg:px-32 py-12 pb-0">
       <div className="text-start w-full lg:w-2/5 mb-12 lg:mb-0">
         {/* Title Section */}
         <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
@@ -118,7 +118,12 @@ export const PaymentOptions = () => {
       </div>
 
       {/* FlexFi Payment Simulator */}
-      <FlexFiPaymentSimulator />
+      {/* <FlexFiPaymentSimulator /> */}
+      <img
+        className="md:w-3/6 md:relative md:right-10 md:bottom-0"
+        src="/images/Flexible-crypto-payments-options.webp"
+        alt="men"
+      />
     </section>
   );
 };

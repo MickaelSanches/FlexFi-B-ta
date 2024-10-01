@@ -9,7 +9,7 @@ export const PoweredByBanner = () => {
         <div className="flex flex-col md:flex-row justify-center gap-10 items-center md:space-x-16 space-y-10 md:space-y-0">
           {/* Powered by Section */}
           <div>
-            <h2 className="text-2xl md:text-2xl font-extrabold text-white mb-1 ">
+            <h2 className="text-2xl md:text-2xl font-extrabold text-white mb-1 mt-5 ">
               Powered by
             </h2>
             <div className="flex justify-center items-center space-x-8">
@@ -33,7 +33,7 @@ export const PoweredByBanner = () => {
 
           {/* Partners Section */}
           <div>
-            <h2 className="text-2xl md:text-2xl font-extrabold text-white mb-1 ">
+            <h2 className="text-2xl md:text-2xl font-extrabold text-white mb-1 mt-6">
               Partner
             </h2>
             <div className="flex justify-center items-center space-x-8">
