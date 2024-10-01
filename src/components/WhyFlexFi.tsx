@@ -1,6 +1,15 @@
 export const WhyFlexFi = () => {
   return (
-    <section className="bg-gray-950 py-12 px-4 md:px-32">
+    <section
+      className="bg-black py-12 px-4 md:px-32 h-full"
+      style={{
+        backgroundImage:
+          "url('/images/flexfi-crypto-payment-user-advantages.webp')",
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "right",
+      }}
+    >
       <div className="container text-center">
         {/* Title Section */}
         <h2 className="text-4xl text-start font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-4">
@@ -13,15 +22,6 @@ export const WhyFlexFi = () => {
         </p>
 
         <div className="flex flex-col lg:flex-row items-center justify-between">
-          {/* Left Section - Map/Graphic */}
-          <div className="w-full lg:w-1/2 mb-8 lg:mb-0">
-            <img
-              src="/images/flexfi-crypto-payment-user-advantages_1.webp" // Replace with actual map or graphic
-              alt="FlexFi in Europe"
-              className="w-full object-contain"
-            />
-          </div>
-
           {/* Right Section - Benefits */}
           <div className="w-full lg:w-1/2 text-left lg:pl-12">
             <ul className="space-y-6">
