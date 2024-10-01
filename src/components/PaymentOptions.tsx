@@ -11,10 +11,10 @@ export const PaymentOptions = () => {
     <section className="bg-gray-950 min-h-screen flex flex-col lg:flex-row items-center justify-between px-4 md:px-12 lg:px-32 py-12">
       <div className="text-start w-full lg:w-2/5 mb-12 lg:mb-0">
         {/* Title Section */}
-        <h2 className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-4">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
           Flexible Crypto Payment Options
         </h2>
-        <p className="text-md sm:text-lg text-gray-400 mb-8">
+        <p className="text-md sm:text-lg  mb-8">
           Simplify your purchase with FlexFi. Pay in multiple installments using
           your favorite crypto.
         </p>
@@ -68,7 +68,7 @@ export const PaymentOptions = () => {
                 <h3 className="text-lg sm:text-xl font-semibold">
                   Pay in Crypto (3x or 6x)
                 </h3>
-                <p className="text-gray-400">
+                <p>
                   Split your payments over several months with the power of
                   crypto. Secure, fast, and accessible to all.
                 </p>
@@ -87,7 +87,7 @@ export const PaymentOptions = () => {
                 <h3 className="text-lg sm:text-xl font-semibold">
                   Pay in Crypto (10x or 12x)
                 </h3>
-                <p className="text-gray-400">
+                <p>
                   Enjoy flexible installment options and spread your payments
                   across up to 12 months.
                 </p>
@@ -106,9 +106,7 @@ export const PaymentOptions = () => {
                 <h3 className="text-lg sm:text-xl font-semibold">
                   Earn Staking Rewards
                 </h3>
-                <p className="text-gray-400">
-                  Stake your USDC to earn rewards and unlock the features
-                </p>
+                <p>Stake your USDC to earn rewards and unlock the features</p>
               </div>
             </div>
           )}

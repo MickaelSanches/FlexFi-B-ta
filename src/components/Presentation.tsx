@@ -8,7 +8,7 @@ const Presentation = () => {
 
   return (
     <section className="container text-start mb-14 w-full max-w-lg">
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4">
         Split your payment with crypto
       </h1>
       {!isLogged && (

@@ -10,7 +10,7 @@ export const BusinessSolution = () => {
 
       {/* Right section - Information */}
       <div className="text-white lg:w-1/2">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-6">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-6">
           Adaptable Payments for Every Channel
         </h2>
         <ul className="space-y-6">

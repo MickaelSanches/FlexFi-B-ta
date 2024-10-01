@@ -55,9 +55,7 @@ export const FAQFlexFi = () => {
   return (
     <div className="bg-gray-900 py-12">
       <div className="container mx-auto px-4 md:px-32">
-        <h2 className="text-4xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-4">
-          FAQ
-        </h2>
+        <h2 className="text-4xl font-extrabold text-white mb-4">FAQ</h2>
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <div

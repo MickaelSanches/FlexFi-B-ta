@@ -12,7 +12,7 @@ export const WhyFlexFi = () => {
     >
       <div className="container text-center">
         {/* Title Section */}
-        <h2 className="text-4xl text-start font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-6">
+        <h2 className="text-4xl font-extrabold text-white mb-6 w-full lg:w-1/2 text-left lg:pl-12">
           Why Choose FlexFi?
         </h2>
 
@@ -24,7 +24,7 @@ export const WhyFlexFi = () => {
                 <h3 className="text-2xl text-white font-bold">
                   Built for Flexibility
                 </h3>
-                <p className="text-gray-600">
+                <p>
                   Focus on your business, not the payments. FlexFi offers
                   seamless crypto payment solutions that adapt to your needs,
                   effortlessly.
@@ -34,7 +34,7 @@ export const WhyFlexFi = () => {
                 <h3 className="text-2xl font-bold text-white">
                   Ethical and Transparent Payments
                 </h3>
-                <p className="text-gray-600">
+                <p>
                   No hidden fees, no penalties. FlexFi empowers users to adjust
                   payment schedules as needed, ensuring fairness and full
                   transparency.
@@ -44,7 +44,7 @@ export const WhyFlexFi = () => {
                 <h3 className="text-2xl font-bold text-white">
                   Global Crypto Payment Plans
                 </h3>
-                <p className="text-gray-600">
+                <p>
                   FlexFi provides secure, fast, and adaptable crypto payments to
                   meet the needs of a global audience.
                 </p>
