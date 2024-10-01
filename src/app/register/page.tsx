@@ -24,32 +24,13 @@ const Register = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-black p-8">
       <div className="flex flex-col md:flex-row w-full max-w-5xl bg-gray-900 border border-gray-800 rounded-lg shadow-lg overflow-hidden mt-8 md:mt-0 relative">
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-start w-full md:w-1/2 p-0">
           <img
-            src="/logo/flexicon.webp"
+            src="/images/Sign-up-FlexFi.webp"
             alt="FlexFi icone"
-            className="h-64 w-auto md:h-full neon-effect animate-neon-pulse"
+            className="object-cover w-full h-full"
           />
         </div>
-        <style>{`
-      /* Néon effect */
-      .neon-effect {
-        filter: drop-shadow(0 0 8px #00fefb) drop-shadow(0 0 16px #00fefb);
-        animation: slideInRight 1s ease-out forwards,
-          neon 1.5s infinite alternate;
-      }
-
-      /* Pulsation and neon animation */
-      @keyframes neon {
-        from {
-          filter: drop-shadow(0 0 8px #00fefb) drop-shadow(0 0 16px #00fefb);
-        }
-        to {
-          filter: drop-shadow(0 0 14px #00fefb)
-            drop-shadow(0 0 28px #00fefb);
-        }
-      }
-    `}</style>
 
         <div className="w-full md:w-1/2 p-6 md:p-12">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-200 mb-6 md:mb-12">

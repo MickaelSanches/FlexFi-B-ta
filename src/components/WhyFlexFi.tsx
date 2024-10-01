@@ -14,14 +14,14 @@ export const WhyFlexFi = () => {
     >
       <div className="container text-center">
         {/* Title Section */}
-        <h2 className="text-4xl font-extrabold text-white mb-6 w-full lg:w-1/2 text-left lg:pl-12">
+        <h2 className="text-4xl font-extrabold text-white mb-16 w-full lg:w-1/2 text-left lg:pl-12 mt-20">
           Why Choose FlexFi?
         </h2>
 
-        <div className="flex flex-col lg:flex-row items-center justify-between">
+        <div className="flex flex-col lg:flex-row items-center justify-between mb-20">
           {/* Right Section - Benefits */}
           <div className="w-full lg:w-1/2 text-left lg:pl-12">
-            <ul className="space-y-6">
+            <ul className="space-y-6 mb-16">
               <li>
                 <h3 className="text-2xl text-white font-bold">
                   Built for Flexibility

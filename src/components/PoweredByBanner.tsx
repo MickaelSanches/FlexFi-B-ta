@@ -3,13 +3,13 @@ export const PoweredByBanner = () => {
   const partnerLogos = ["/logo/logo-comptacrypto.webp"];
 
   return (
-    <div className="bg-gray-900 py-10">
+    <div className="bg-black py-4 border-t border-b">
       <div className="container mx-auto text-center">
         {/* Section with Powered by and Partners on the same line */}
-        <div className="flex flex-col md:flex-row justify-between items-center md:space-x-16 space-y-10 md:space-y-0">
+        <div className="flex flex-col md:flex-row justify-center gap-10 items-center md:space-x-16 space-y-10 md:space-y-0">
           {/* Powered by Section */}
           <div>
-            <h2 className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-6 uppercase">
+            <h2 className="text-2xl md:text-2xl font-extrabold text-white mb-1 ">
               Powered by
             </h2>
             <div className="flex justify-center items-center space-x-8">
@@ -33,7 +33,7 @@ export const PoweredByBanner = () => {
 
           {/* Partners Section */}
           <div>
-            <h2 className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-6 uppercase">
+            <h2 className="text-2xl md:text-2xl font-extrabold text-white mb-1 ">
               Partner
             </h2>
             <div className="flex justify-center items-center space-x-8">
