@@ -1,3 +1,5 @@
+import { GetStartedButton } from "./GetStartedButton";
+
 export const BusinessSolution = () => {
   return (
     <div className=" bg-black p-6 sm:p-8 md:px-32 rounded-lg shadow-2xl flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0 lg:space-x-16">
@@ -94,9 +96,7 @@ export const BusinessSolution = () => {
             </div>
           </li>
         </ul>
-        <button className="mt-8 px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-[#00FEFB] to-[#60259E] hover:from-[#85C8FF] hover:to-[#0C8CF3] text-white font-bold rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
-          Get Started with FlexFi
-        </button>
+        <GetStartedButton />
       </div>
     </div>
   );
