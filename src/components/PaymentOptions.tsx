@@ -9,15 +9,15 @@ export const PaymentOptions = () => {
   >("3x6x");
 
   return (
-    <section className="bg-gray-950 min-h-screen flex flex-col lg:flex-row items-center justify-between px-4 md:px-12 lg:px-32 py-12">
+    <section className="bg-gray-950 h-3/5 flex flex-col lg:flex-row items-center justify-between px-4 md:px-12 lg:px-32 py-12">
       <div className="text-start w-full lg:w-2/5 mb-12 lg:mb-0">
         {/* Title Section */}
         <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
           Flexible Crypto Payment Options
         </h2>
         <p className="text-md sm:text-lg  mb-8">
-          Simplify your purchase with FlexFi. Pay in multiple installments using
-          your favorite crypto.
+          Simplify sales with FlexFi. Allow your customers to pay in multiple
+          installments using their favorite cryptocurrency.
         </p>
 
         {/* Payment Buttons */}
