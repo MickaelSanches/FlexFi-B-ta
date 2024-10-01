@@ -1,9 +1,9 @@
 export const BusinessSolution = () => {
   return (
-    <div className=" bg-gray-900 p-6 sm:p-8 md:px-32 rounded-lg shadow-2xl flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0 lg:space-x-16">
+    <div className=" bg-black p-6 sm:p-8 md:px-32 rounded-lg shadow-2xl flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0 lg:space-x-16">
       {/* Left section - Phone and Desktop view */}
       <img
-        src="/images/flexfi-payment-solution-adaptable-sales-channels_1.webp"
+        src="/images/flexfi-payment-solution-adaptable-sales-channels.webp"
         alt="Mobile UI"
         className="  w-80 xl:w-1/3 transform transition duration-500 hover:scale-105 hover:rotate-2 rounded-3xl"
       />
