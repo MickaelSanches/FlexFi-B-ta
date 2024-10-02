@@ -24,10 +24,13 @@ const Register = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-black p-8">
       <div className="flex flex-col md:flex-row w-full max-w-5xl bg-gray-900 border border-gray-800 rounded-lg shadow-lg overflow-hidden mt-8 md:mt-0 relative">
-        <div
-          className="w-full md:w-1/2 h-64 md:h-auto bg-cover"
-          style={{ backgroundImage: "url('/logo/solana.jpg')" }}
-        ></div>
+        <div className="flex items-center justify-start w-full md:w-1/2 p-0">
+          <img
+            src="/images/Sign-up-FlexFi.webp"
+            alt="FlexFi icone"
+            className="object-cover w-full h-full"
+          />
+        </div>
 
         <div className="w-full md:w-1/2 p-6 md:p-12">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-200 mb-6 md:mb-12">

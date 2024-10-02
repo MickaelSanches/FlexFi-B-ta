@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FlexFiPaymentSimulator from "./FlexFiPaymentSimulator";
+import { GetStartedButton } from "./GetStartedButton";
 
 export const PaymentOptions = () => {
   // State pour suivre l'option active
@@ -8,19 +9,19 @@ export const PaymentOptions = () => {
   >("3x6x");
 
   return (
-    <section className="bg-gray-950 min-h-screen flex flex-col lg:flex-row items-center justify-between px-4 md:px-12 lg:px-32 py-12">
+    <section className="relative bg-black h-3/5 flex flex-col lg:flex-row items-center justify-between px-4 md:px-12 lg:px-32 py-12 pb-0 pt-0">
       <div className="text-start w-full lg:w-2/5 mb-12 lg:mb-0">
         {/* Title Section */}
-        <h2 className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-4">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
           Flexible Crypto Payment Options
         </h2>
-        <p className="text-md sm:text-lg text-gray-400 mb-8">
-          Simplify your purchases with FlexFi. Pay in multiple installments
-          using your favorite cryptocurrencies. Fast, secure, and decentralized.
+        <p className="text-md sm:text-lg  mb-8">
+          Simplify sales with FlexFi. Allow your customers to pay in multiple
+          installments using their favorite cryptocurrency.
         </p>
 
         {/* Payment Buttons */}
-        <div className="flex flex-wrap justify-start lg:space-x-4 mb-8 gap-3">
+        <div className="flex flex-wrap flex-col md:flex-row sm:justify-start md:justify-between lg:space-x-4 mb-8 gap-3">
           <button
             className={`px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 ${
               activeOption === "3x6x"
@@ -34,17 +35,6 @@ export const PaymentOptions = () => {
 
           <button
             className={`px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 ${
-              activeOption === "10x12x"
-                ? "bg-[#0C8CF3] text-white"
-                : "bg-white border border-gray-300 text-gray-900"
-            }`}
-            onClick={() => setActiveOption("10x12x")}
-          >
-            Pay in 10x or 12x
-          </button>
-
-          <button
-            className={`px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 ${
               activeOption === "staking"
                 ? "bg-[#0C8CF3] text-white"
                 : "bg-white border border-gray-300 text-gray-900"
@@ -53,6 +43,24 @@ export const PaymentOptions = () => {
           >
             Staking Rewards
           </button>
+
+          <button
+            className={`px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 bg-white border border-gray-300 text-gray-900`}
+            onClick={() => document.getElementById("my_modal_3").showModal()}
+          >
+            Simulation
+          </button>
+          <dialog id="my_modal_3" className="modal bg-zinc-900 rounded-2xl">
+            <div className="modal-box">
+              <form method="dialog">
+                {/* if there is a button in form, it will close the modal */}
+                <button className="btn btn-sm btn-circle text-white btn-ghost absolute right-2 top-2">
+                  ✕
+                </button>
+              </form>
+              <FlexFiPaymentSimulator />
+            </div>
+          </dialog>
         </div>
 
         {/* Payment Info Section */}
@@ -60,15 +68,15 @@ export const PaymentOptions = () => {
           {activeOption === "3x6x" && (
             <div className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-md flex items-center space-x-4 lg:space-x-6">
               <img
-                src="/images/crypto-payment.png"
+                src="/images/Pay-in-crypto-FlexFi.webp"
                 alt="Crypto Payment"
-                className="w-16 h-16 sm:w-24 sm:h-24 rounded-full"
+                className="w-16 h-16 sm:w-24 sm:h-24"
               />
               <div className="text-left">
                 <h3 className="text-lg sm:text-xl font-semibold">
                   Pay in Crypto (3x or 6x)
                 </h3>
-                <p className="text-gray-400">
+                <p>
                   Split your payments over several months with the power of
                   crypto. Secure, fast, and accessible to all.
                 </p>
@@ -79,15 +87,15 @@ export const PaymentOptions = () => {
           {activeOption === "10x12x" && (
             <div className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-md flex items-center space-x-4 lg:space-x-6">
               <img
-                src="/images/crypto-payment.png"
+                src="/images/Pay-in-crypto-FlexFi.webp"
                 alt="Crypto Payment"
-                className="w-16 h-16 sm:w-24 sm:h-24 rounded-full"
+                className="w-16 h-16 sm:w-24 sm:h-24 "
               />
               <div className="text-left">
                 <h3 className="text-lg sm:text-xl font-semibold">
                   Pay in Crypto (10x or 12x)
                 </h3>
-                <p className="text-gray-400">
+                <p>
                   Enjoy flexible installment options and spread your payments
                   across up to 12 months.
                 </p>
@@ -98,33 +106,33 @@ export const PaymentOptions = () => {
           {activeOption === "staking" && (
             <div className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-md flex items-center space-x-4 lg:space-x-6">
               <img
-                src="/images/staking-rewards.png"
+                src="/images/Staking-reward-FlexFi.webp"
                 alt="Staking Rewards"
-                className="w-16 h-16 sm:w-24 sm:h-24 rounded-full"
+                className="w-16 h-16 sm:w-24 sm:h-24 "
               />
               <div className="text-left">
                 <h3 className="text-lg sm:text-xl font-semibold">
                   Earn Staking Rewards
                 </h3>
-                <p className="text-gray-400">
-                  Stake your FlexFi tokens to earn rewards and use them to
-                  reduce future installment fees.
-                </p>
+                <p>Stake your USDC to earn rewards and unlock the features</p>
               </div>
             </div>
           )}
         </div>
 
         {/* Call to Action */}
-        <div className="mt-8">
-          <button className="px-6 py-3 bg-gradient-to-r from-[#00FEFB] to-[#60259E] hover:from-[#85C8FF] hover:to-[#0C8CF3] text-white font-bold rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
-            Get Started with FlexFi
-          </button>
-        </div>
+        <GetStartedButton />
       </div>
 
       {/* FlexFi Payment Simulator */}
-      <FlexFiPaymentSimulator />
+      {/* <FlexFiPaymentSimulator /> */}
+      <img
+        className="w-80 md:w-3/6 md:absolut md:right-0 bottom-0"
+        src="/images/Flexible-crypto-payments-options.webp"
+        alt="men"
+      />
+
+      {/* You can open the modal using document.getElementById('ID').showModal() method */}
     </section>
   );
 };

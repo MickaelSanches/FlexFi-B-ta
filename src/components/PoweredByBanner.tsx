@@ -1,60 +1,59 @@
 export const PoweredByBanner = () => {
-  // Liste des logos à afficher
-  const logos = [
-    "/logo/logo-STF.webp",
-    // Ajoute ici les autres logos
-  ];
+  const poweredByLogos = ["/logo/logo-STF.webp"];
+  const partnerLogos = ["/logo/logo-comptacrypto.webp"];
 
   return (
-    <div className="bg-gray-900 py-10">
+    <div className="bg-slate-950 py-4">
       <div className="container mx-auto text-center">
-        {/* Title */}
-        <h2 className="text-3xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-6 uppercase tracking-widest">
-          Powered by
-        </h2>
+        {/* Section with Powered by and Partners on the same line */}
+        <div className="flex flex-col md:flex-row justify-center gap-10 items-center md:space-x-16 space-y-10 md:space-y-0">
+          {/* Powered by Section */}
+          <div>
+            <h2 className="text-2xl md:text-2xl font-extrabold text-white mb-1 mt-5 ">
+              Powered by
+            </h2>
+            <div className="flex justify-center items-center space-x-8">
+              {poweredByLogos.map((logo, index) => (
+                <img
+                  key={index}
+                  src={logo}
+                  alt={`Powered by Logo ${index + 1}`}
+                  className="w-40 h-auto md:h-32 object-contain neon-glow"
+                />
+              ))}
+            </div>
+          </div>
 
-        {/* Logos - Scrolling */}
-        <div className="relative overflow-hidden">
-          <div className="flex items-center justify-around animate-scroll space-x-8">
-            {/* Logos dupliqués pour un effet infini */}
-            {[...logos, ...logos].map((logo, index) => (
-              <img
-                key={index}
-                src={logo}
-                alt={`Logo ${index + 1}`}
-                className="w-auto h-24 md:h-32 object-contain neon-glow"
-              />
-            ))}
+          {/* Central logo */}
+          <img
+            src="/logo/flexicon.webp"
+            alt="logo FlexFi"
+            className="w-40 h-auto md:h-32 object-contain neon-glow"
+          />
+
+          {/* Partners Section */}
+          <div>
+            <h2 className="text-2xl md:text-2xl font-extrabold text-white mb-1 mt-6">
+              Partner
+            </h2>
+            <div className="flex justify-center items-center space-x-8">
+              {partnerLogos.map((logo, index) => (
+                <img
+                  key={index}
+                  src={logo}
+                  alt={`Partner Logo ${index + 1}`}
+                  className="w-56 h-auto md:h-32 object-contain neon-glow"
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Animation CSS */}
       <style>{`
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-
-        .animate-scroll {
-          display: flex;
-          white-space: nowrap;
-          will-change: transform;
-          animation: scroll 20s linear infinite;
-        }
-
         .neon-glow {
-          filter: drop-shadow(0 0 8px rgba(0, 252, 255, 0.7)) drop-shadow(0 0 16px rgba(0, 252, 255, 0.4));
-          transition: transform 0.3s ease, filter 0.3s ease;
-        }
-
-        .neon-glow:hover {
-          transform: scale(1.1);
-          filter: drop-shadow(0 0 16px rgba(0, 252, 255, 1)) drop-shadow(0 0 24px rgba(0, 252, 255, 0.8));
+          filter: drop-shadow(0 0 1px rgba(0, 255, 255, 0.6)) drop-shadow(0 0 1px rgba(0, 255, 255, 0.8));
         }
       `}</style>
     </div>
