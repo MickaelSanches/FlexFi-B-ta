@@ -6,11 +6,11 @@ export const bnplRepository = () => {
 
   const getPurchases = async () => {
     try {
-      const response = await axios.get(
+      const purchases = await axios.get(
         `${URL_API}/bnpl/user/${SolanaPublicKey}/sales`
       );
-      if (response) {
-        return response.data;
+      if (purchases) {
+        return purchases.data;
       }
     } catch (error) {
       console.error("Error fetching purchases:", error);
@@ -18,7 +18,21 @@ export const bnplRepository = () => {
     }
   };
 
+  const downloadPurchaseInfoInPDF = async (saleId: number, type: string) => {
+    try {
+      const response = await axios.get(
+        `${URL_API}/bnpl/sale/${saleId}/schedule/${type}/pdf`,
+        { responseType: "blob" } // Assure que les données sont traitées comme un blob (binaire)
+      );
+      return response;
+    } catch (error) {
+      console.error("Error downloading purchase PDF:", error);
+      return null;
+    }
+  };
+
   return {
     getPurchases,
+    downloadPurchaseInfoInPDF,
   };
 };

@@ -35,7 +35,7 @@ const Sidebar = () => {
         <Link
           href="/purchases"
           className={`p-2 rounded ${
-            isActive("/profile") ? "bg-gray-700" : "hover:bg-gray-700"
+            isActive("/purchases") ? "bg-gray-700" : "hover:bg-gray-700"
           }`}
         >
           My purchases
