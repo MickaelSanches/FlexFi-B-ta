@@ -7,7 +7,7 @@ const Presentation = () => {
   const { isLogged } = useLoginStore();
 
   return (
-    <section className="container text-start mb-14 w-full max-w-lg h-72 flex flex-col justify-between">
+    <section className="container w-60 justify-center text-start mb-14 md:w-full max-w-lg h-72 flex flex-col md:justify-between">
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4">
         Split your payment with crypto
       </h1>

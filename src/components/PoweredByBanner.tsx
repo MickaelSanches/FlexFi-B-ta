@@ -3,7 +3,7 @@ export const PoweredByBanner = () => {
   const partnerLogos = ["/logo/logo-comptacrypto.webp"];
 
   return (
-    <div className="bg-black py-4 border-t border-b">
+    <div className="bg-slate-950 py-4">
       <div className="container mx-auto text-center">
         {/* Section with Powered by and Partners on the same line */}
         <div className="flex flex-col md:flex-row justify-center gap-10 items-center md:space-x-16 space-y-10 md:space-y-0">

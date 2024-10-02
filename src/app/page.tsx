@@ -14,7 +14,7 @@ export default function Home() {
       {/* <ComingSoon /> */}
       <main className="w-full">
         <div
-          className="bg-gray-950 flex flex-col md:flex-row justify-between items-center h-auto min-h-screen pt-16 pb-16 px-4 md:px-32 bg-cover bg-center"
+          className="bg-gray-950 flex flex-col md:flex-row justify-between items-center h-auto md:min-h-screen pt-16 pb-16 px-4 md:px-32 bg-cover bg-center"
           style={{
             backgroundImage: "url('/images/flexfi-crypto-payment.webp')",
             backgroundSize: "cover", // Pour assurer que l'image couvre toute la surface de la div

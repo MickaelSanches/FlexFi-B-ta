@@ -7,7 +7,7 @@ export const BusinessSolution = () => {
       <img
         src="/images/flexfi-payment-solution-adaptable-sales-channels-.webp"
         alt="Mobile UI"
-        className="  w-80 xl:w-3/6 transform transition duration-500 hover:scale-105 hover:rotate-2 rounded-3xl"
+        className="  w-80 xl:size-2/4 transform transition duration-500 hover:scale-105 hover:rotate-2 rounded-3xl"
       />
 
       {/* Right section - Information */}

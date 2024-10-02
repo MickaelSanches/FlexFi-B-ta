@@ -9,7 +9,7 @@ export const PaymentOptions = () => {
   >("3x6x");
 
   return (
-    <section className="relative bg-black h-3/5 flex flex-col lg:flex-row items-center justify-between px-4 md:px-12 lg:px-32 py-12 pb-0">
+    <section className="relative bg-black h-3/5 flex flex-col lg:flex-row items-center justify-between px-4 md:px-12 lg:px-32 py-12 pb-0 pt-0">
       <div className="text-start w-full lg:w-2/5 mb-12 lg:mb-0">
         {/* Title Section */}
         <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
@@ -21,7 +21,7 @@ export const PaymentOptions = () => {
         </p>
 
         {/* Payment Buttons */}
-        <div className="flex flex-wrap justify-start lg:space-x-4 mb-8 gap-3">
+        <div className="flex flex-wrap flex-col md:flex-row sm:justify-start md:justify-between lg:space-x-4 mb-8 gap-3">
           <button
             className={`px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 ${
               activeOption === "3x6x"
@@ -35,17 +35,6 @@ export const PaymentOptions = () => {
 
           <button
             className={`px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 ${
-              activeOption === "10x12x"
-                ? "bg-[#0C8CF3] text-white"
-                : "bg-white border border-gray-300 text-gray-900"
-            }`}
-            onClick={() => setActiveOption("10x12x")}
-          >
-            Pay in 10x or 12x
-          </button>
-
-          <button
-            className={`px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 ${
               activeOption === "staking"
                 ? "bg-[#0C8CF3] text-white"
                 : "bg-white border border-gray-300 text-gray-900"
@@ -54,6 +43,24 @@ export const PaymentOptions = () => {
           >
             Staking Rewards
           </button>
+
+          <button
+            className={`px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 bg-white border border-gray-300 text-gray-900`}
+            onClick={() => document.getElementById("my_modal_3").showModal()}
+          >
+            Simulation
+          </button>
+          <dialog id="my_modal_3" className="modal bg-zinc-900 rounded-2xl">
+            <div className="modal-box">
+              <form method="dialog">
+                {/* if there is a button in form, it will close the modal */}
+                <button className="btn btn-sm btn-circle text-white btn-ghost absolute right-2 top-2">
+                  ✕
+                </button>
+              </form>
+              <FlexFiPaymentSimulator />
+            </div>
+          </dialog>
         </div>
 
         {/* Payment Info Section */}
@@ -120,10 +127,12 @@ export const PaymentOptions = () => {
       {/* FlexFi Payment Simulator */}
       {/* <FlexFiPaymentSimulator /> */}
       <img
-        className="md:w-3/6 md:relative md:right-10 md:bottom-0"
+        className="w-80 md:w-3/6 md:absolut md:right-0 bottom-0"
         src="/images/Flexible-crypto-payments-options.webp"
         alt="men"
       />
+
+      {/* You can open the modal using document.getElementById('ID').showModal() method */}
     </section>
   );
 };
