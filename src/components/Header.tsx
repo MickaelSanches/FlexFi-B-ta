@@ -43,7 +43,7 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full flex items-center justify-between bg-slate-950 border-b border-gray-300 p-4 md:px-32">
+    <header className="w-full flex items-center justify-between bg-black bg-opacity-90 p-4 md:px-32 sticky top-0 py-2 transition-colors duration-300 z-50">
       <nav className="md:flex space-x-4 flex items-center">
         <Link href="/" className="flex items-center">
           <img
