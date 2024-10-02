@@ -13,6 +13,7 @@
     "@eslint/object-schema": "^2.1.4",
     "@solana/web3.js": "^1.95.3",
     "@types/firebase": "^2.4.32",
+    "axios": "^1.7.7",
     "firebase": "^10.13.2",
     "framer-motion": "^11.3.29",
     "glob": "^11.0.0",
