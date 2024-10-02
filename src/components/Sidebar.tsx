@@ -33,6 +33,14 @@ const Sidebar = () => {
           Personal Info
         </Link>
         <Link
+          href="/purchases"
+          className={`p-2 rounded ${
+            isActive("/profile") ? "bg-gray-700" : "hover:bg-gray-700"
+          }`}
+        >
+          My purchases
+        </Link>
+        <Link
           href="/dashboard"
           className={`p-2 rounded ${
             isActive("/dashboard") ? "bg-gray-700" : "hover:bg-gray-700"
