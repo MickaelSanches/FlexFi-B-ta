@@ -4,7 +4,17 @@ import PurchasesItem from "@/components/PurchasesItem";
 import DashboardLayout from "../dashboard/layout";
 import { useEffect, useState } from "react";
 import { useMyPurchasesViewModel } from "@/viewmodels/useMyPurchasesViewModel";
-import { bnplRepository } from "@/repositories/bnplRepository";
+
+interface Schedule {
+  id: number;
+  sale_id: number;
+  month_number: number;
+  payment_amount: string;
+  due_date: string;
+  paid: boolean;
+  payment_hash: string;
+  created_at: string;
+}
 
 interface Purchase {
   id: number;
@@ -12,12 +22,12 @@ interface Purchase {
   amount: number;
   months: number;
   monthly_payment: string;
+  schedule: Schedule[];
 }
 
 const Purchases: React.FC = () => {
   const [purchases, setPurchases] = useState<Purchase[]>([]);
-  const { onInit } = useMyPurchasesViewModel(setPurchases);
-  const { downloadPurchaseInfoInPDF } = bnplRepository();
+  const { onInit } = useMyPurchasesViewModel(purchases, setPurchases);
 
   useEffect(() => {
     onInit();
@@ -34,6 +44,7 @@ const Purchases: React.FC = () => {
               monthlyAmount={purchase.monthly_payment}
               duration={purchase.months}
               totalPrice={purchase.amount}
+              schedule={purchase.schedule}
             />
           </div>
         ))}

@@ -18,6 +18,18 @@ export const bnplRepository = () => {
     }
   };
 
+  const getPurchasDetails = async (saleId: number) => {
+    try {
+      const response = await axios.get(`${URL_API}/bnpl/sale/${saleId}`);
+      if (response) {
+        return response.data;
+      }
+    } catch (error) {
+      console.error("Error fetching purchase details:", error);
+      return null;
+    }
+  };
+
   const downloadPurchaseInfoInPDF = async (saleId: number, type: string) => {
     try {
       const response = await axios.get(
@@ -34,5 +46,6 @@ export const bnplRepository = () => {
   return {
     getPurchases,
     downloadPurchaseInfoInPDF,
+    getPurchasDetails,
   };
 };
