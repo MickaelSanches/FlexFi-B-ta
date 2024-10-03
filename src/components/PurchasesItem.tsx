@@ -31,7 +31,7 @@ const PurchasesItem: React.FC<PurchasesItemProps> = ({
   const paidMonths = schedule.filter((s) => s.paid).length;
 
   return (
-    <div className="bg-gray-950 text-white p-8 rounded-3xl shadow-2xl ">
+    <div className="bg-gray-900 text-white p-8 rounded-3xl shadow-2xl ">
       <div className="flex justify-between items-center space-x-6 mb-4">
         <div className="flex items-center space-x-2">
           <FaUser className="text-indigo-400" />

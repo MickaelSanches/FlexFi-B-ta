@@ -8,6 +8,7 @@ export const useDashboardViewModel = () => {
   const { getWalletAmount, getTransactionHistory } = solanaWalletRepository();
 
   const onInit = async () => {
+    setTransactions([]);
     const amount = await getWalletAmount();
     if (amount !== undefined) {
       console.log("on init set amount");
