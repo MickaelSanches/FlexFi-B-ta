@@ -83,6 +83,24 @@ export const sessionRepository = () => {
     }
   };
 
+  const loginForSeedPhrase = async (email: string, password: string) => {
+    try {
+      const response = await handleApiCall(`${URL_API}/login`, "POST", {
+        email,
+        password,
+      });
+
+      if (response) {
+        return response;
+      } else {
+        throw new Error("Token not found in response");
+      }
+    } catch (error: any) {
+      console.error("Login error:", error);
+      throw error;
+    }
+  };
+
   // Inscription - Étape 1 : Envoi de l'email de confirmation
   const sendConfirmationEmail = async (
     email: string,
@@ -284,6 +302,7 @@ export const sessionRepository = () => {
     handleSubmitEmail, // Action pour l'inscription (étape 1)
     handleSubmitCode, // Action pour l'inscription (étape 2)
     handleSubmitPassword, // Action pour l'inscription (étape 3)
+    loginForSeedPhrase,
     logout,
   };
 };

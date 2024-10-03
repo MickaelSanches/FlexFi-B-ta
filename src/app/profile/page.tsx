@@ -1,32 +1,22 @@
 "use client";
 
 import DashboardLayout from "@/app/dashboard/layout";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { sessionRepository } from "@/repositories/sessionRepository";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const Profile = () => {
-  const { login } = sessionRepository();
-  const [email, setEmail] = useState<string | null>(null);
-  const [publicKey, setPublicKey] = useState("");
-  const [seedPhrase, setSeedPhrase] = useState("");
+  const { loginForSeedPhrase } = sessionRepository();
   const [showSeedPhrase, setShowSeedPhrase] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    const storedEmail = sessionStorage.getItem("email");
-    const storedPublicKey = sessionStorage.getItem("solanaPublicKey");
-    const storedSeedPhrase = sessionStorage.getItem("seedPhrase");
-
-    if (storedEmail) setEmail(storedEmail);
-    if (storedPublicKey) setPublicKey(storedPublicKey);
-    if (storedSeedPhrase) setSeedPhrase(storedSeedPhrase);
-  }, []);
+  const { email, publicKey, seedPhrase } = useAuthStore();
 
   const handleShowPrivateKey = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const isLoged = await login(email!, password);
+      const isLoged = await loginForSeedPhrase(email!, password);
       if (isLoged) {
         setShowSeedPhrase(true);
         setError("");
