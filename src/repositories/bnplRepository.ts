@@ -1,13 +1,14 @@
+import { useAuthStore } from "@/store/useAuthStore";
 import axios from "axios";
 
 export const bnplRepository = () => {
   const URL_API = "http://localhost:3000";
-  const SolanaPublicKey = sessionStorage.getItem("solanaPublicKey");
+  const { publicKey } = useAuthStore();
 
   const getPurchases = async () => {
     try {
       const purchases = await axios.get(
-        `${URL_API}/bnpl/user/${SolanaPublicKey}/sales`
+        `${URL_API}/bnpl/user/${publicKey}/sales`
       );
       if (purchases) {
         return purchases.data;
