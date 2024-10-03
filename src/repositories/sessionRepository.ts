@@ -200,6 +200,12 @@ export const sessionRepository = () => {
     email: string,
     password: string,
     confirmPassword: string,
+    siren: string,
+    mainActivity: string,
+    companyName: string,
+    creationDate: string,
+    legalCategory: string,
+    isPro: boolean,
     setCurrentStep: React.Dispatch<React.SetStateAction<number>>,
     setSeedPhrase: React.Dispatch<React.SetStateAction<string>>,
     setPublicKey: React.Dispatch<React.SetStateAction<string>>,
@@ -220,16 +226,35 @@ export const sessionRepository = () => {
     }
 
     try {
-      const userCreat = await handleApiCall(`${URL_API}/register`, "POST", {
-        email,
-        password,
-      });
+      let userCreat;
 
-      // Récupérer la seed phrase et la clé publique du wallet Solana
+      if (isPro) {
+        // Inscription pour un utilisateur professionnel
+        userCreat = await handleApiCall(
+          `${URL_API}/register-professional`,
+          "POST",
+          {
+            email,
+            password,
+            siren,
+            mainActivity,
+            companyName,
+            creationDate,
+            legalCategory,
+          }
+        );
+      } else {
+        // Inscription pour un utilisateur standard
+        userCreat = await handleApiCall(`${URL_API}/register`, "POST", {
+          email,
+          password,
+        });
+      }
+
       setSeedPhrase(userCreat.seed_phrase as string);
       setPublicKey(userCreat.public_key as string);
 
-      setCurrentStep(4); // Redirection vers l'étape finale
+      setCurrentStep(5); // Passer à l'étape finale
     } catch (error: unknown) {
       if (error instanceof Error && error.message) {
         setError(error.message);
