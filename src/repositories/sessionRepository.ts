@@ -40,7 +40,16 @@ export const sessionRepository = () => {
   };
 
   // Connexion
-  const login = async (email: string, password: string) => {
+  const login = async (
+    email: string,
+    password: string,
+    setAuthData: (data: {
+      email: string;
+      publicKey: string;
+      seedPhrase: string;
+      isLogged: boolean;
+    }) => void
+  ) => {
     try {
       const response = await handleApiCall(`${URL_API}/login`, "POST", {
         email,
@@ -50,30 +59,27 @@ export const sessionRepository = () => {
       const token = response.token;
 
       if (token) {
-        console.log("__________________________");
-
-        // Stocker le token dans sessionStorage
-        sessionStorage.setItem("token", token);
-
         // Décoder le token pour extraire les informations
         const decodedToken: any = jwtDecode(token);
 
-        const publicKey = decodedToken.user.public_key;
-        sessionStorage.setItem("solanaPublicKey", publicKey);
+        // Passer les données déduites à la fonction passée en paramètre
+        setAuthData({
+          email: decodedToken.user.email,
+          publicKey: decodedToken.user.public_key,
+          seedPhrase: decodedToken.user.seed_phrase,
+          isLogged: true,
+        });
 
-        const email = decodedToken.user.email;
-        sessionStorage.setItem("email", email);
-
-        const seedPhrase = decodedToken.user.seed_phrase;
-        sessionStorage.setItem("seedPhrase", seedPhrase);
-
+        // Redirection après connexion réussie
         router.push("/dashboard");
+        console.log("Redirection vers le dashboard après connexion réussie");
         return true;
       } else {
         throw new Error("Token not found in response");
       }
     } catch (error: any) {
-      console.error(error.message);
+      console.error("Login error:", error);
+      throw error;
     }
   };
 

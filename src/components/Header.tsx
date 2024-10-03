@@ -1,40 +1,18 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { sessionRepository } from "@/repositories/sessionRepository";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLogged, setIsLogged] = useState(false);
+  const { isLogged, setIsLogged } = useAuthStore();
 
   const { logout } = sessionRepository();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
-  // Vérifier le token et actualiser l'état
-  useEffect(() => {
-    const checkToken = () => {
-      const token = sessionStorage.getItem("token");
-      setIsLogged(!!token);
-    };
-
-    // Vérification initiale
-    checkToken();
-
-    // Ajouter un écouteur pour détecter les changements dans le sessionStorage
-    const handleStorageChange = () => {
-      checkToken();
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-
-    // Nettoyer l'écouteur lors du démontage
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, [isLogged]);
 
   // Gérer la déconnexion et réagir immédiatement sans rafraîchir
   const handleLogout = () => {

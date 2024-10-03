@@ -327,11 +327,11 @@ const Register = () => {
             </form>
           )}
 
-          {currentStep === 4 && !isPro && (
+          {currentStep === 3 && !isPro && (
             <div>
               {/* Si l'utilisateur n'est pas un professionnel, passe directement à l'étape suivante */}
               <button
-                onClick={() => setCurrentStep(5)}
+                onClick={() => setCurrentStep(4)}
                 className="w-full bg-blue-500 text-white font-bold py-3 rounded-lg"
               >
                 Continue to Final Step

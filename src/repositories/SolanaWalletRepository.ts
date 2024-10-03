@@ -1,7 +1,9 @@
+import { useAuthStore } from "@/store/useAuthStore";
+
 export const solanaWalletRepository = () => {
   // const publicKey = "FpgzSe5gk94hpEPhU5xsiovEL2rDJTjjfzKHYbZntr2Y";
 
-  const SolanaPublicKey = sessionStorage.getItem("solanaPublicKey");
+  const { publicKey } = useAuthStore();
 
   const URL_API = "http://localhost:3000";
 
@@ -39,18 +41,14 @@ export const solanaWalletRepository = () => {
   };
 
   const getWalletAmount = async () => {
-    console.log("getWalletAmount triggered");
     try {
       const response = await handleApiCall(
-        `${URL_API}/solana/get-wallet-balance/${SolanaPublicKey}`,
+        `${URL_API}/solana/get-wallet-balance/${publicKey}`,
         "GET"
       );
-      console.log("Wallet balance response:", response); // Vérifie la réponse ici // Vérifie la réponse ici
       if (response.balance !== null && response.balance !== undefined) {
         const balance = response.balance;
         return balance;
-      } else {
-        console.log("Balance non trouvée dans la réponse");
       }
     } catch (error) {
       console.error(
@@ -63,16 +61,13 @@ export const solanaWalletRepository = () => {
   const getTransactionHistory = async () => {
     try {
       const response = await handleApiCall(
-        `${URL_API}/solana/transaction-history/${SolanaPublicKey}`,
+        `${URL_API}/solana/transaction-history/${publicKey}`,
         "GET"
       );
 
-      console.log("Transaction history response:", response); // Vérifie la réponse des transactions
       if (response.transactions) {
         const transactions = response.transactions;
         return transactions;
-      } else {
-        console.log("Aucune transaction trouvée");
       }
     } catch (error) {
       console.error(
