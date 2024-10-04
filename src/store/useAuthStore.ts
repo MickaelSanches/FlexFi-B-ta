@@ -6,11 +6,19 @@ interface AuthState {
   seedPhrase: string;
   publicKey: string;
   isLogged: boolean;
+  siren: string;
+  legalCategory: string;
+  mainActivity: string;
+  denomination: string;
 
   setEmail: (email: string) => void;
   setSeedPhrase: (seedPhrase: string) => void;
   setPublicKey: (publicKey: string) => void;
   setIsLogged: (isLogged: boolean) => void;
+  setSiren: (siren: string) => void;
+  setLegalCategory: (legalCategory: string) => void;
+  setMainActivity: (mainActivity: string) => void;
+  setDenomination: (denomination: string) => void;
   reset: () => void;
 }
 
@@ -21,11 +29,19 @@ export const useAuthStore = create<AuthState>()(
       seedPhrase: "",
       publicKey: "",
       isLogged: false,
+      siren: "",
+      legalCategory: "",
+      mainActivity: "",
+      denomination: ",",
 
       setEmail: (email) => set({ email }),
       setSeedPhrase: (seedPhrase) => set({ seedPhrase }),
       setPublicKey: (publicKey) => set({ publicKey }),
       setIsLogged: (isLogged) => set({ isLogged }),
+      setSiren: (siren) => set({ siren }),
+      setLegalCategory: (legalCategory) => set({ legalCategory }),
+      setMainActivity: (mainActivity) => set({ mainActivity }),
+      setDenomination: (denomination) => set({ denomination }),
 
       reset: () =>
         set({
@@ -33,6 +49,10 @@ export const useAuthStore = create<AuthState>()(
           seedPhrase: "",
           publicKey: "",
           isLogged: false,
+          siren: "",
+          legalCategory: "",
+          mainActivity: "",
+          denomination: "",
         }),
     }),
     {

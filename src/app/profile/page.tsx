@@ -11,7 +11,15 @@ const Profile = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { email, publicKey, seedPhrase } = useAuthStore();
+  const {
+    email,
+    publicKey,
+    seedPhrase,
+    siren,
+    legalCategory,
+    mainActivity,
+    denomination,
+  } = useAuthStore();
 
   const handleShowPrivateKey = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,6 +47,38 @@ const Profile = () => {
             {email || "Not Available"}
           </p>
         </div>
+
+        {siren && (
+          <>
+            <div className="mb-6">
+              <p className="text-sm text-gray-300 uppercase">Company name</p>
+              <p className="text-2xl font-bold text-white">
+                {denomination || "Not Available"}
+              </p>
+            </div>
+
+            <div className="mb-6">
+              <p className="text-sm text-gray-300 uppercase">Siren</p>
+              <p className="text-2xl font-bold text-white">
+                {siren || "Not Available"}
+              </p>
+            </div>
+
+            <div className="mb-6">
+              <p className="text-sm text-gray-300 uppercase">Legal Category</p>
+              <p className="text-2xl font-bold text-white">
+                {legalCategory || "Not Available"}
+              </p>
+            </div>
+
+            <div className="mb-6">
+              <p className="text-sm text-gray-300 uppercase">Main activity</p>
+              <p className="text-2xl font-bold text-white">
+                {mainActivity || "Not Available"}
+              </p>
+            </div>
+          </>
+        )}
 
         <div className="mb-6">
           <p className="text-sm text-gray-300 uppercase">Public Key</p>

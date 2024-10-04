@@ -3,7 +3,16 @@ import { useAuthStore } from "@/store/useAuthStore";
 
 export const useLoginViewModel = () => {
   const { login } = sessionRepository();
-  const { setEmail, setPublicKey, setSeedPhrase, setIsLogged } = useAuthStore();
+  const {
+    setEmail,
+    setPublicKey,
+    setSeedPhrase,
+    setIsLogged,
+    setSiren,
+    setLegalCategory,
+    setMainActivity,
+    setDenomination,
+  } = useAuthStore();
 
   const handleSubmit = async (email: string, password: string) => {
     try {
@@ -12,6 +21,11 @@ export const useLoginViewModel = () => {
         setPublicKey(authData.publicKey);
         setSeedPhrase(authData.seedPhrase);
         setIsLogged(authData.isLogged);
+        setSiren(authData.siren);
+        setLegalCategory(authData.legalCategory);
+        setMainActivity(authData.mainActivity);
+        setMainActivity(authData.mainActivity);
+        setDenomination(authData.denomination);
       });
 
       // Vérifie ici que tu es bien redirigé après la connexion

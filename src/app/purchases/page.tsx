@@ -41,6 +41,7 @@ const Purchases: React.FC = () => {
           <div key={index} className="flex justify-between items-center">
             <PurchasesItem
               seller={purchase.seller_pubkey}
+              buyer={purchase.seller_pubkey}
               monthlyAmount={purchase.monthly_payment}
               duration={purchase.months}
               totalPrice={purchase.amount}

@@ -1,3 +1,4 @@
+import { useAuthStore } from "@/store/useAuthStore";
 import {
   FaUser,
   FaCalendarAlt,
@@ -14,6 +15,7 @@ interface Schedule {
 
 interface PurchasesItemProps {
   seller: string;
+  buyer: string;
   monthlyAmount: string;
   duration: number;
   totalPrice: number;
@@ -22,6 +24,7 @@ interface PurchasesItemProps {
 
 const PurchasesItem: React.FC<PurchasesItemProps> = ({
   seller,
+  buyer,
   monthlyAmount,
   duration,
   totalPrice,
@@ -30,12 +33,18 @@ const PurchasesItem: React.FC<PurchasesItemProps> = ({
   // Calculer combien de mois ont été payés
   const paidMonths = schedule.filter((s) => s.paid).length;
 
+  const { siren } = useAuthStore();
+
   return (
     <div className="bg-gray-900 text-white p-8 rounded-3xl shadow-2xl ">
       <div className="flex justify-between items-center space-x-6 mb-4">
         <div className="flex items-center space-x-2">
           <FaUser className="text-indigo-400" />
-          <span className="text-xl font-semibold">{seller}</span>
+          {siren ? (
+            <span className="text-xl font-semibold">{buyer}</span>
+          ) : (
+            <span className="text-xl font-semibold">{seller}</span>
+          )}
         </div>
 
         <div className="flex items-center space-x-2">

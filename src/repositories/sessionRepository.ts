@@ -48,6 +48,10 @@ export const sessionRepository = () => {
       publicKey: string;
       seedPhrase: string;
       isLogged: boolean;
+      siren: string;
+      legalCategory: string;
+      mainActivity: string;
+      denomination: string;
     }) => void
   ) => {
     try {
@@ -68,6 +72,10 @@ export const sessionRepository = () => {
           publicKey: decodedToken.user.public_key,
           seedPhrase: decodedToken.user.seed_phrase,
           isLogged: true,
+          siren: decodedToken.user.siren,
+          legalCategory: decodedToken.user.categorie_juridique,
+          mainActivity: decodedToken.user.activite_principale,
+          denomination: decodedToken.user.denomination,
         });
 
         // Redirection après connexion réussie
