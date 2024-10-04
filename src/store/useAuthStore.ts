@@ -1,69 +1,66 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 interface AuthState {
   email: string;
-  password: string;
-  confirmPassword: string;
-  acceptPrivacy: boolean;
-  confirmationCode: string;
-  currentStep: number;
   seedPhrase: string;
   publicKey: string;
-  loading: boolean;
-  error: string;
   isLogged: boolean;
+  siren: string;
+  legalCategory: string;
+  mainActivity: string;
+  denomination: string;
 
   setEmail: (email: string) => void;
-  setPassword: (password: string) => void;
-  setConfirmPassword: (password: string) => void;
-  setAcceptPrivacy: (accept: boolean) => void;
-  setConfirmationCode: (code: string) => void;
-  setCurrentStep: (step: number) => void;
   setSeedPhrase: (seedPhrase: string) => void;
   setPublicKey: (publicKey: string) => void;
-  setLoading: (loading: boolean) => void;
-  setError: (error: string) => void;
   setIsLogged: (isLogged: boolean) => void;
+  setSiren: (siren: string) => void;
+  setLegalCategory: (legalCategory: string) => void;
+  setMainActivity: (mainActivity: string) => void;
+  setDenomination: (denomination: string) => void;
   reset: () => void;
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
-  email: "",
-  password: "",
-  confirmPassword: "",
-  acceptPrivacy: false,
-  confirmationCode: "",
-  currentStep: 1,
-  seedPhrase: "",
-  publicKey: "",
-  loading: false,
-  error: "",
-  isLogged: false,
-
-  setEmail: (email) => set({ email }),
-  setPassword: (password) => set({ password }),
-  setConfirmPassword: (confirmPassword) => set({ confirmPassword }),
-  setAcceptPrivacy: (acceptPrivacy) => set({ acceptPrivacy }),
-  setConfirmationCode: (confirmationCode) => set({ confirmationCode }),
-  setCurrentStep: (currentStep) => set({ currentStep }),
-  setSeedPhrase: (seedPhrase) => set({ seedPhrase }),
-  setPublicKey: (publicKey) => set({ publicKey }),
-  setLoading: (loading) => set({ loading }),
-  setError: (error) => set({ error }),
-  setIsLogged: (isLogged) => set({ isLogged }),
-
-  reset: () =>
-    set({
+export const useAuthStore = create<AuthState>()(
+  persist(
+    (set) => ({
       email: "",
-      password: "",
-      confirmPassword: "",
-      acceptPrivacy: false,
-      confirmationCode: "",
-      currentStep: 1,
       seedPhrase: "",
       publicKey: "",
-      loading: false,
-      error: "",
       isLogged: false,
+      siren: "",
+      legalCategory: "",
+      mainActivity: "",
+      denomination: ",",
+
+      setEmail: (email) => set({ email }),
+      setSeedPhrase: (seedPhrase) => set({ seedPhrase }),
+      setPublicKey: (publicKey) => set({ publicKey }),
+      setIsLogged: (isLogged) => set({ isLogged }),
+      setSiren: (siren) => set({ siren }),
+      setLegalCategory: (legalCategory) => set({ legalCategory }),
+      setMainActivity: (mainActivity) => set({ mainActivity }),
+      setDenomination: (denomination) => set({ denomination }),
+
+      reset: () =>
+        set({
+          email: "",
+          seedPhrase: "",
+          publicKey: "",
+          isLogged: false,
+          siren: "",
+          legalCategory: "",
+          mainActivity: "",
+          denomination: "",
+        }),
     }),
-}));
+    {
+      name: "auth-storage", // clé utilisée dans le localStorage
+      storage:
+        typeof window !== "undefined"
+          ? createJSONStorage(() => localStorage)
+          : undefined,
+    }
+  )
+);

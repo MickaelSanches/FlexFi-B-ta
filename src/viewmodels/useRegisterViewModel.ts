@@ -34,6 +34,12 @@ export const useRegisterViewModel = () => {
     email: string,
     password: string,
     confirmPassword: string,
+    siren: string,
+    mainActivity: string,
+    companyName: string,
+    creationDate: string,
+    legalCategory: string,
+    isPro: boolean,
     setError: React.Dispatch<React.SetStateAction<string>>,
     setCurrentStep: React.Dispatch<React.SetStateAction<number>>,
     setSeedPhrase: React.Dispatch<React.SetStateAction<string>>,
@@ -46,6 +52,12 @@ export const useRegisterViewModel = () => {
       email,
       password,
       confirmPassword,
+      siren,
+      mainActivity,
+      companyName,
+      creationDate,
+      legalCategory,
+      isPro,
       setCurrentStep,
       setSeedPhrase,
       setPublicKey,
@@ -53,9 +65,18 @@ export const useRegisterViewModel = () => {
     );
   };
 
+  const submitProfessionalInfo = (
+    e: React.FormEvent,
+    setCurrentStep: React.Dispatch<React.SetStateAction<number>>
+  ) => {
+    e.preventDefault();
+    setCurrentStep(4);
+  };
+
   return {
     submitEmail,
     submitCode,
     submitPassword,
+    submitProfessionalInfo,
   };
 };

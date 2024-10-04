@@ -17,9 +17,16 @@ const Register = () => {
   const [seedPhrase, setSeedPhrase] = useState("");
   const [publicKey, setPublicKey] = useState("");
   const [error, setError] = useState("");
+  const [isPro, setIsPro] = useState(false);
 
-  // Utilisation du ViewModel pour les actions de soumission
-  const { submitEmail, submitCode, submitPassword } = useRegisterViewModel();
+  const [siren, setSiren] = useState("");
+  const [legalCategory, setLegalCategory] = useState("");
+  const [mainActivity, setMainActivity] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [creationDate, setCreationDate] = useState("");
+
+  const { submitEmail, submitCode, submitPassword, submitProfessionalInfo } =
+    useRegisterViewModel();
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-black p-8">
@@ -39,7 +46,7 @@ const Register = () => {
 
           {error && <div className="text-red-500 mb-4">{error}</div>}
 
-          {currentStep === 4 && (
+          {currentStep === 5 && (
             <div className="text-center text-gray-200 mb-12">
               {" "}
               {/* Added margin-bottom */}
@@ -99,6 +106,19 @@ const Register = () => {
                   required
                 />
               </div>
+
+              <div className="mb-4">
+                <label className="flex items-center text-gray-200">
+                  <input
+                    type="checkbox"
+                    checked={isPro}
+                    onChange={(e) => setIsPro(e.target.checked)}
+                    className="mr-2"
+                  />
+                  Register as a professional
+                </label>
+              </div>
+
               <div className="mb-4">
                 <label className="flex items-center text-gray-200">
                   <input
@@ -116,6 +136,7 @@ const Register = () => {
                   </Link>
                 </label>
               </div>
+
               <button className="w-full bg-blue-500 text-white font-bold py-3 rounded-lg">
                 Send Confirmation Code
               </button>
@@ -150,7 +171,7 @@ const Register = () => {
             </form>
           )}
 
-          {currentStep === 3 && (
+          {currentStep === 4 && (
             <form
               onSubmit={(e) =>
                 submitPassword(
@@ -158,6 +179,12 @@ const Register = () => {
                   email,
                   password,
                   confirmPassword,
+                  siren,
+                  mainActivity,
+                  companyName,
+                  creationDate,
+                  legalCategory,
+                  isPro,
                   setError,
                   setCurrentStep,
                   setSeedPhrase,
@@ -201,6 +228,115 @@ const Register = () => {
                 Set Password
               </button>
             </form>
+          )}
+
+          {currentStep === 3 && isPro && (
+            <form
+              onSubmit={(e) => {
+                submitProfessionalInfo(e, setCurrentStep);
+              }}
+            >
+              <div className="mb-4">
+                <label
+                  className="block text-gray-200 font-bold mb-2"
+                  htmlFor="siren"
+                >
+                  SIREN
+                </label>
+                <input
+                  type="text"
+                  id="siren"
+                  value={siren}
+                  onChange={(e) => setSiren(e.target.value)}
+                  className="w-full px-4 py-3 bg-gray-800 text-gray-200 border rounded-lg"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label
+                  className="block text-gray-200 font-bold mb-2"
+                  htmlFor="categorie_juridique"
+                >
+                  Catégorie Juridique
+                </label>
+                <input
+                  type="text"
+                  id="categorie_juridique"
+                  value={legalCategory}
+                  onChange={(e) => setLegalCategory(e.target.value)}
+                  className="w-full px-4 py-3 bg-gray-800 text-gray-200 border rounded-lg"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label
+                  className="block text-gray-200 font-bold mb-2"
+                  htmlFor="activite_principale"
+                >
+                  Activité Principale
+                </label>
+                <input
+                  type="text"
+                  id="activite_principale"
+                  value={mainActivity}
+                  onChange={(e) => setMainActivity(e.target.value)}
+                  className="w-full px-4 py-3 bg-gray-800 text-gray-200 border rounded-lg"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label
+                  className="block text-gray-200 font-bold mb-2"
+                  htmlFor="denomination"
+                >
+                  Dénomination
+                </label>
+                <input
+                  type="text"
+                  id="denomination"
+                  value={companyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
+                  className="w-full px-4 py-3 bg-gray-800 text-gray-200 border rounded-lg"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label
+                  className="block text-gray-200 font-bold mb-2"
+                  htmlFor="date_creation"
+                >
+                  Date de Création
+                </label>
+                <input
+                  type="date"
+                  id="date_creation"
+                  value={creationDate}
+                  onChange={(e) => setCreationDate(e.target.value)}
+                  className="w-full px-4 py-3 bg-gray-800 text-gray-200 border rounded-lg"
+                  required
+                />
+              </div>
+
+              <button className="w-full bg-blue-500 text-white font-bold py-3 rounded-lg">
+                Submit Professional Info
+              </button>
+            </form>
+          )}
+
+          {currentStep === 3 && !isPro && (
+            <div>
+              {/* Si l'utilisateur n'est pas un professionnel, passe directement à l'étape suivante */}
+              <button
+                onClick={() => setCurrentStep(4)}
+                className="w-full bg-blue-500 text-white font-bold py-3 rounded-lg"
+              >
+                Continue to Final Step
+              </button>
+            </div>
           )}
         </div>
       </div>

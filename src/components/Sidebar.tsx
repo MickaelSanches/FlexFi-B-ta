@@ -1,19 +1,10 @@
 import Link from "next/link";
 import { sessionRepository } from "@/repositories/sessionRepository";
-import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation"; // Importer usePathname
 
 const Sidebar = () => {
   const { logout } = sessionRepository();
-  const [userPublicKey, setUserPublicKey] = useState<string | null>(null);
   const pathname = usePathname(); // Utiliser usePathname pour obtenir le chemin actuel
-
-  useEffect(() => {
-    const publicKey = sessionStorage.getItem("solanaPublicKey");
-    if (publicKey) {
-      setUserPublicKey(publicKey);
-    }
-  }, []);
 
   // Fonction pour vérifier si la route est active
   const isActive = (path: string) => pathname === path;
@@ -55,10 +46,6 @@ const Sidebar = () => {
           Logout
         </button>
       </nav>
-      <div className="p-4 border-t border-gray-700">
-        <p>Public Key:</p>
-        <p className="break-all text-sm">{userPublicKey || "Loading..."}</p>
-      </div>
     </div>
   );
 };

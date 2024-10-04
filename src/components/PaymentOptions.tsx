@@ -46,7 +46,12 @@ export const PaymentOptions = () => {
 
           <button
             className={`px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 bg-white border border-gray-300 text-gray-900`}
-            onClick={() => document.getElementById("my_modal_3").showModal()}
+            onClick={() => {
+              const modal = document.getElementById("my_modal_3");
+              if (modal) {
+                (modal as HTMLDialogElement).showModal(); // TypeScript a besoin de savoir que c'est un élément de type <dialog>
+              }
+            }}
           >
             Simulation
           </button>

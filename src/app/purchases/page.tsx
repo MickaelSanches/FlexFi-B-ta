@@ -18,6 +18,7 @@ interface Schedule {
 
 interface Purchase {
   id: number;
+  buyer_pubkey: string;
   seller_pubkey: string;
   amount: number;
   months: number;
@@ -41,6 +42,7 @@ const Purchases: React.FC = () => {
           <div key={index} className="flex justify-between items-center">
             <PurchasesItem
               seller={purchase.seller_pubkey}
+              buyer={purchase.buyer_pubkey}
               monthlyAmount={purchase.monthly_payment}
               duration={purchase.months}
               totalPrice={purchase.amount}

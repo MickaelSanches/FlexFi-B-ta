@@ -5,13 +5,16 @@ import { useWalletStore } from "@/store/useWalletStore";
 import { useDashboardViewModel } from "@/viewmodels/useDashboardViewModel";
 import { useTransactionStore } from "@/store/useTransactionStore";
 import { TransactionList } from "@/components/TransactionList";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const Dashboard = () => {
   const { onInit } = useDashboardViewModel();
   const { ammount } = useWalletStore();
   const { transactions } = useTransactionStore();
+  const { isLogged } = useAuthStore();
 
   useEffect(() => {
+    console.log("Initialisation du Dashboard, islogged = " + isLogged);
     onInit();
   }, []);
 

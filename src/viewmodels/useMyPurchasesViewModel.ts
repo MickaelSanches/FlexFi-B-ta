@@ -14,6 +14,7 @@ interface Schedule {
 
 interface Purchase {
   id: number;
+  buyer_pubkey: string;
   seller_pubkey: string;
   amount: number;
   months: number;
