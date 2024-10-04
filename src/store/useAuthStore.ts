@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 interface AuthState {
   email: string;
@@ -13,22 +14,33 @@ interface AuthState {
   reset: () => void;
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
-  email: "",
-  seedPhrase: "",
-  publicKey: "",
-  isLogged: false,
-
-  setEmail: (email) => set({ email }),
-  setSeedPhrase: (seedPhrase) => set({ seedPhrase }),
-  setPublicKey: (publicKey) => set({ publicKey }),
-  setIsLogged: (isLogged) => set({ isLogged }),
-
-  reset: () =>
-    set({
+export const useAuthStore = create<AuthState>()(
+  persist(
+    (set) => ({
       email: "",
       seedPhrase: "",
       publicKey: "",
       isLogged: false,
+
+      setEmail: (email) => set({ email }),
+      setSeedPhrase: (seedPhrase) => set({ seedPhrase }),
+      setPublicKey: (publicKey) => set({ publicKey }),
+      setIsLogged: (isLogged) => set({ isLogged }),
+
+      reset: () =>
+        set({
+          email: "",
+          seedPhrase: "",
+          publicKey: "",
+          isLogged: false,
+        }),
     }),
-}));
+    {
+      name: "auth-storage", // clé utilisée dans le localStorage
+      storage:
+        typeof window !== "undefined"
+          ? createJSONStorage(() => localStorage)
+          : undefined,
+    }
+  )
+);
