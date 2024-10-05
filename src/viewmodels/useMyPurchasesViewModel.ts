@@ -1,4 +1,5 @@
 import { bnplRepository } from "@/repositories/bnplRepository";
+import { useAuthStore } from "@/store/useAuthStore";
 import { Dispatch, SetStateAction } from "react";
 
 interface Schedule {
@@ -26,7 +27,7 @@ export const useMyPurchasesViewModel = (
   purchases: Purchase[],
   setPurchases: Dispatch<SetStateAction<Purchase[]>>
 ) => {
-  const { getPurchases, getPurchasDetails } = bnplRepository();
+  const { getPurchases, getPurchasDetails, payInstallment } = bnplRepository();
 
   const onInit = async () => {
     try {
@@ -52,5 +53,21 @@ export const useMyPurchasesViewModel = (
     }
   };
 
-  return { onInit };
+  const { email } = useAuthStore();
+
+  const onPaymentButtonClick = async (saleId: number, scheduleId: number) => {
+    try {
+      // Perform the payment for a specific installment
+      const result = await payInstallment(saleId, email);
+      if (result) {
+        console.log("Payment successful for installment:", scheduleId);
+        // Refresh the purchase data after payment
+        await onInit();
+      }
+    } catch (error) {
+      console.error("Error during installment payment:", error);
+    }
+  };
+
+  return { onInit, onPaymentButtonClick };
 };

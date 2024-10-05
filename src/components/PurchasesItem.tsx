@@ -1,25 +1,29 @@
+import { useState } from "react";
 import { useAuthStore } from "@/store/useAuthStore";
 import {
   FaUser,
   FaCalendarAlt,
   FaShoppingCart,
   FaCheckCircle,
-  FaTimesCircle, // Import de l'icône de croix
+  FaTimesCircle,
 } from "react-icons/fa";
 
 interface Schedule {
+  id: number;
   month_number: number;
   payment_amount: string;
   paid: boolean;
 }
 
 interface PurchasesItemProps {
+  id: number;
   seller: string;
   buyer: string;
   monthlyAmount: string;
   duration: number;
   totalPrice: number;
   schedule: Schedule[];
+  onPaymentButtonClick: (saleId: number, scheduleId: number) => Promise<void>;
 }
 
 const PurchasesItem: React.FC<PurchasesItemProps> = ({
@@ -29,14 +33,45 @@ const PurchasesItem: React.FC<PurchasesItemProps> = ({
   duration,
   totalPrice,
   schedule,
+  onPaymentButtonClick,
+  id,
 }) => {
-  // Calculer combien de mois ont été payés
-  const paidMonths = schedule.filter((s) => s.paid).length;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedScheduleId, setSelectedScheduleId] = useState<number | null>(
+    null
+  );
 
   const { siren } = useAuthStore();
 
+  // Ouvrir la modale de confirmation
+  const openModal = (scheduleId: number) => {
+    setSelectedScheduleId(scheduleId);
+    setIsModalOpen(true);
+  };
+
+  // Fermer la modale
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedScheduleId(null);
+  };
+
+  // Confirmer le paiement
+  const confirmPayment = async () => {
+    if (selectedScheduleId !== null) {
+      await onPaymentButtonClick(id, selectedScheduleId);
+      closeModal(); // Fermer la modale après paiement
+    }
+  };
+
+  const paidMonths = schedule.filter((s) => s.paid).length;
+  const allPaid = paidMonths === duration; // Vérifier si toutes les mensualités ont été payées
+
   return (
-    <div className="bg-gray-900 text-white p-8 rounded-3xl shadow-2xl ">
+    <div
+      className={`${
+        allPaid ? "bg-green-600" : "bg-gray-900"
+      } text-white p-8 rounded-3xl shadow-2xl transition-all duration-300 ease-in-out`}
+    >
       <div className="flex justify-between items-center space-x-6 mb-4">
         <div className="flex items-center space-x-2">
           <FaUser className="text-indigo-400" />
@@ -48,18 +83,6 @@ const PurchasesItem: React.FC<PurchasesItemProps> = ({
         </div>
 
         <div className="flex items-center space-x-2">
-          {/* Votre icône personnalisée */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1em"
-            height="1em"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill="currentColor"
-              d="M23.876 18.031l-3.962 4.14a.9.9 0 01-.306.21.9.9 0 01-.367.074H.46a.47.47 0 01-.252-.073.45.45 0 01-.17-.196.44.44 0 01-.031-.255.44.44 0 01.117-.23l3.965-4.139a.9.9 0 01.305-.21.9.9 0 01.366-.075h18.78a.47.47 0 01.252.074.45.45 0 01.17.196.44.44 0 01.031.255.44.44 0 01-.117.23zM19.914 9.696a.9.9 0 00-.306-.21.9.9 0 00-.367-.075H.46a.47.47 0 00-.252.073.45.45 0 00-.17.197.44.44 0 00-.031.254.44.44 0 00.117.23l3.965 4.14a.9.9 0 00.305.21.9.9 0 00.366.074h18.78a.47.47 0 00.252-.073.45.45 0 00.17-.196.44.44 0 00.031-.255.44.44 0 00-.117-.23zM.46 6.723h18.782a.9.9 0 00.367-.075.9.9 0 00.306-.21l3.962-4.14a.44.44 0 00.117-.23.44.44 0 00-.032-.254.45.45 0 00-.17-.196A.47.47 0 0022.202 2H4.76a.9.9 0 00-.366.074.9.9 0 00-.305.21L.125 5.97a.44.44 0 00-.117.23.44.44 0 00.03.254.45.45 0 00.17.196c.075.046.162.073.252.074z"
-            />
-          </svg>
           <span className="text-xl">{monthlyAmount} SOL/month</span>
         </div>
 
@@ -73,52 +96,66 @@ const PurchasesItem: React.FC<PurchasesItemProps> = ({
         <div className="flex items-center space-x-2">
           <FaShoppingCart className="text-pink-400" />
           <span className="text-xl font-semibold">
-            Total price: ${totalPrice}
+            Total price: {totalPrice} SOL
           </span>
         </div>
       </div>
 
-      {/* Section pour afficher le statut des paiements */}
-      <div className="grid grid-cols-2 gap-4">
-        {schedule.map((item, index) => (
-          <div
-            key={index}
-            className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 ease-in-out transform ${
-              item.paid
-                ? "bg-green-600 hover:bg-green-500"
-                : "bg-gray-800 hover:bg-gray-700"
-            }`}
-          >
-            {/* Utilisation conditionnelle de l'icône */}
-            {item.paid ? (
-              <FaCheckCircle className="text-white text-xl transition-colors duration-300 ease-in-out" />
-            ) : (
-              <FaTimesCircle className="text-red-500 text-xl transition-colors duration-300 ease-in-out" />
-            )}
-            <span className="text-lg font-medium flex items-center gap-2">
-              payment {item.month_number}: {item.payment_amount}{" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-                viewBox="0 0 24 24"
+      {/* Section pour afficher le statut des paiements, masqué si tout est payé */}
+      {!allPaid && (
+        <div className="grid grid-cols-2 gap-4">
+          {schedule.map((item, index) => (
+            <button
+              onClick={() => openModal(item.id)}
+              key={index}
+              className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 ease-in-out transform ${
+                item.paid
+                  ? "bg-green-600 hover:bg-green-500"
+                  : "bg-gray-800 hover:bg-gray-700"
+              }`}
+            >
+              {item.paid ? (
+                <FaCheckCircle className="text-white text-xl transition-colors duration-300 ease-in-out" />
+              ) : (
+                <FaTimesCircle className="text-red-500 text-xl transition-colors duration-300 ease-in-out" />
+              )}
+              {!item.paid && (
+                <span className="text-lg font-medium flex items-center gap-2">
+                  Payer {item.month_number}: {item.payment_amount}
+                </span>
+              )}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Modale de confirmation */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white rounded-lg p-6 w-96">
+            <h2 className="text-xl font-semibold mb-4">
+              Confirmation de paiement
+            </h2>
+            <p className="text-gray-700 mb-6">
+              Are you sure you want to pay this installment ?
+            </p>
+            <div className="flex justify-end space-x-4">
+              <button
+                className="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500"
+                onClick={closeModal}
               >
-                <path
-                  fill="currentColor"
-                  d="M23.876 18.031l-3.962 4.14a.9.9 0 01-.306.21.9.9 0 01-.367.074H.46a.47.47 0 01-.252-.073.45.45 0 01-.17-.196.44.44 0 01-.031-.255.44.44 0 01.117-.23l3.965-4.139a.9.9 0 01.305-.21.9.9 0 01.366-.075h18.78a.47.47 0 01.252.074.45.45 0 01.17.196.44.44 0 01.031.255.44.44 0 01-.117.23zM19.914 9.696a.9.9 0 00-.306-.21.9.9 0 00-.367-.075H.46a.47.47 0 00-.252.073.45.45 0 00-.17.197.44.44 0 00-.031.254.44.44 0 00.117.23l3.965 4.14a.9.9 0 00.305.21.9.9 0 00.366.074h18.78a.47.47 0 00.252-.073.45.45 0 00.17-.196.44.44 0 00.031-.255.44.44 0 00-.117-.23zM.46 6.723h18.782a.9.9 0 00.367-.075.9.9 0 00.306-.21l3.962-4.14a.44.44 0 00.117-.23.44.44 0 00-.032-.254.45.45 0 00-.17-.196A.47.47 0 0022.202 2H4.76a.9.9 0 00-.366.074.9.9 0 00-.305.21L.125 5.97a.44.44 0 00-.117.23.44.44 0 00.03.254.45.45 0 00.17.196c.075.046.162.073.252.074z"
-                />
-              </svg>{" "}
-              <span
-                className={`${
-                  item.paid ? "text-green-200" : "text-red-400"
-                } font-semibold`}
+                Annuler
+              </button>
+              <button
+                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                onClick={confirmPayment}
               >
-                {item.paid ? "Paid" : "Unpaid"}
-              </span>
-            </span>
+                Confirmer
+              </button>
+            </div>
           </div>
-        ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
