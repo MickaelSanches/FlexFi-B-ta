@@ -28,7 +28,10 @@ interface Purchase {
 
 const Purchases: React.FC = () => {
   const [purchases, setPurchases] = useState<Purchase[]>([]);
-  const { onInit } = useMyPurchasesViewModel(purchases, setPurchases);
+  const { onInit, onPaymentButtonClick } = useMyPurchasesViewModel(
+    purchases,
+    setPurchases
+  );
 
   useEffect(() => {
     onInit();
@@ -47,6 +50,8 @@ const Purchases: React.FC = () => {
               duration={purchase.months}
               totalPrice={purchase.amount}
               schedule={purchase.schedule}
+              onPaymentButtonClick={onPaymentButtonClick}
+              id={purchase.id}
             />
           </div>
         ))}

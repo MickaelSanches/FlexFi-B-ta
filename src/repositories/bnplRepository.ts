@@ -46,7 +46,9 @@ export const bnplRepository = () => {
 
   const getPrivatekeyByEmail = async (email: string) => {
     try {
-      const response = await axios.get(`${URL_API}/user/${email}/privateKey`);
+      const response = await axios.get(
+        `${URL_API}/bnpl/user/${email}/privateKey`
+      );
 
       if (response.status === 200) {
         const privateKey = response.data.privateKey; // Assuming the private key is inside 'data.privateKey'
@@ -65,7 +67,10 @@ export const bnplRepository = () => {
     try {
       const buyerPrivateKey = await getPrivatekeyByEmail(email);
 
-      const payment = await axios.post(`${URL_API}/payment`, {
+      console.log(`salID_________ ${saleId}`);
+      console.log(`buyerPrivateKey_________ ${buyerPrivateKey}`);
+
+      const payment = await axios.post(`${URL_API}/bnpl/payment`, {
         buyerPrivateKey,
         saleId,
       });
