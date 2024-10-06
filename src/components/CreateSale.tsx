@@ -1,3 +1,4 @@
+import { useCrateSaleViewModel } from "@/viewmodels/useCreateSaleViewModel";
 import { useState } from "react";
 
 const CreateSale = () => {
@@ -5,6 +6,14 @@ const CreateSale = () => {
   const [installments, setInstallments] = useState<number | null>(null);
   const [buyerPublicKey, setBuyerPublicKey] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { openModal, handleSubmit, handleInstallmentClick } =
+    useCrateSaleViewModel(
+      setPrice,
+      isModalOpen,
+      setInstallments,
+      setBuyerPublicKey
+    );
 
   const openModal = () => {
     setIsModalOpen(true);
