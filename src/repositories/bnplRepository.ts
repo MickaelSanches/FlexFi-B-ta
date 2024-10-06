@@ -5,6 +5,26 @@ export const bnplRepository = () => {
   const URL_API = "http://localhost:3000";
   const { publicKey } = useAuthStore();
 
+  const createSale = async (
+    sellerPubKey: string,
+    buyerPubKey: string,
+    amount: number,
+    months: number
+  ) => {
+    try {
+      const sale = await axios.post(`${URL_API}/bnpl/sale`, {
+        sellerPubKey,
+        buyerPubKey,
+        amount,
+        months,
+      });
+
+      return sale;
+    } catch (error) {
+      console.error("error create sale:", error);
+    }
+  };
+
   const getPurchases = async () => {
     try {
       const purchases = await axios.get(
@@ -89,6 +109,7 @@ export const bnplRepository = () => {
   };
 
   return {
+    createSale,
     getPurchases,
     downloadPurchaseInfoInPDF,
     getPurchasDetails,

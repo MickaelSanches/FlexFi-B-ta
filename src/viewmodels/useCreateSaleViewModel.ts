@@ -1,3 +1,4 @@
+import { bnplRepository } from "@/repositories/bnplRepository";
 import { Dispatch, SetStateAction } from "react";
 
 export const useCrateSaleViewModel = (
@@ -6,6 +7,8 @@ export const useCrateSaleViewModel = (
   setInstallments: Dispatch<SetStateAction<number | null>>,
   setBuyerPublicKey: Dispatch<SetStateAction<string>>
 ) => {
+  const { createSale } = bnplRepository();
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -17,17 +20,25 @@ export const useCrateSaleViewModel = (
     setBuyerPublicKey("");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (
+    e: React.FormEvent,
+    sellerPubKey: string,
+    buyerPubKey: string,
+    amount: number,
+    months: number
+  ) => {
     e.preventDefault();
-
-    // console.log("Creating sale with:", { price, installments, buyerPublicKey });
-
-    closeModal();
+    try {
+      await createSale(sellerPubKey, buyerPubKey, amount, months);
+      closeModal();
+    } catch (error) {
+      console.error("error create sale:", error);
+    }
   };
 
   const handleInstallmentClick = (months: number) => {
     setInstallments(months);
   };
 
-  return { openModal, handleSubmit, handleInstallmentClick };
+  return { openModal, closeModal, handleSubmit, handleInstallmentClick };
 };

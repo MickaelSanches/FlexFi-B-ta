@@ -1,5 +1,6 @@
-import { useCrateSaleViewModel } from "@/viewmodels/useCreateSaleViewModel";
 import { useState } from "react";
+import { useCrateSaleViewModel } from "@/viewmodels/useCreateSaleViewModel";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const CreateSale = () => {
   const [price, setPrice] = useState("");
@@ -7,36 +8,24 @@ const CreateSale = () => {
   const [buyerPublicKey, setBuyerPublicKey] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { openModal, handleSubmit, handleInstallmentClick } =
+  const { publicKey } = useAuthStore();
+
+  const { openModal, closeModal, handleSubmit, handleInstallmentClick } =
     useCrateSaleViewModel(
       setPrice,
-      isModalOpen,
+      setIsModalOpen,
       setInstallments,
       setBuyerPublicKey
     );
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setPrice("");
-    setInstallments(null);
-    setBuyerPublicKey("");
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Traiter les données du formulaire ici (ex: créer une vente)
-    console.log("Creating sale with:", { price, installments, buyerPublicKey });
-
-    // Après traitement, fermer la modale
-    closeModal();
-  };
-
-  const handleInstallmentClick = (months: number) => {
-    setInstallments(months);
+  const onSubmit = (e: React.FormEvent) => {
+    handleSubmit(
+      e,
+      publicKey,
+      buyerPublicKey,
+      parseFloat(price),
+      installments!
+    );
   };
 
   return (
@@ -54,7 +43,7 @@ const CreateSale = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-gray-950 rounded-lg p-6 w-96 shadow-lg">
             <h2 className="text-xl font-semibold mb-4">Create a New Sale</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={onSubmit}>
               <div className="mb-4">
                 <label className="block text-gray-200">Price (SOL)</label>
                 <input
