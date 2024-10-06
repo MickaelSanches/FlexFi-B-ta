@@ -10,6 +10,7 @@ interface AuthState {
   legalCategory: string;
   mainActivity: string;
   denomination: string;
+  isPro: boolean;
 
   setEmail: (email: string) => void;
   setSeedPhrase: (seedPhrase: string) => void;
@@ -19,6 +20,7 @@ interface AuthState {
   setLegalCategory: (legalCategory: string) => void;
   setMainActivity: (mainActivity: string) => void;
   setDenomination: (denomination: string) => void;
+  setIsPro: (isPro: boolean) => void;
   reset: () => void;
 }
 
@@ -32,7 +34,8 @@ export const useAuthStore = create<AuthState>()(
       siren: "",
       legalCategory: "",
       mainActivity: "",
-      denomination: ",",
+      denomination: "",
+      isPro: false,
 
       setEmail: (email) => set({ email }),
       setSeedPhrase: (seedPhrase) => set({ seedPhrase }),
@@ -42,6 +45,7 @@ export const useAuthStore = create<AuthState>()(
       setLegalCategory: (legalCategory) => set({ legalCategory }),
       setMainActivity: (mainActivity) => set({ mainActivity }),
       setDenomination: (denomination) => set({ denomination }),
+      setIsPro: (isPro) => set({ isPro }),
 
       reset: () =>
         set({
@@ -53,6 +57,7 @@ export const useAuthStore = create<AuthState>()(
           legalCategory: "",
           mainActivity: "",
           denomination: "",
+          isPro: false,
         }),
     }),
     {

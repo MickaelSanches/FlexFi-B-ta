@@ -27,9 +27,6 @@ export const useLoginViewModel = () => {
         setMainActivity(authData.mainActivity);
         setDenomination(authData.denomination);
       });
-
-      // Vérifie ici que tu es bien redirigé après la connexion
-      console.log("Redirection vers le dashboard");
     } catch (error) {
       console.error("Login failed:", error);
     }
