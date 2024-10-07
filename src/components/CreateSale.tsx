@@ -1,9 +1,9 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { useCrateSaleViewModel } from "@/viewmodels/useCreateSaleViewModel";
 import { useAuthStore } from "@/store/useAuthStore";
-import { Purchase } from "@/@Types/purchase";
 
-const CreateSale = (setPurchases: Dispatch<SetStateAction<Purchase[]>>) => {
+
+const CreateSale = () => {
   const [price, setPrice] = useState("");
   const [installments, setInstallments] = useState<number | null>(null);
   const [buyerPublicKey, setBuyerPublicKey] = useState("");
@@ -17,7 +17,6 @@ const CreateSale = (setPurchases: Dispatch<SetStateAction<Purchase[]>>) => {
       setIsModalOpen,
       setInstallments,
       setBuyerPublicKey,
-      setPurchases
     );
 
   const onSubmit = (e: React.FormEvent) => {
