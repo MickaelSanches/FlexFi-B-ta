@@ -24,7 +24,7 @@ const Login = () => {
           />
         </div>
         <div className="w-full md:w-1/2 p-6 md:p-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-200 mb-6 md:mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-200 mb-6 md:mb-12 font-display">
             Login
           </h2>
 

@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       {/* <ComingSoon /> */}
-      <main className="w-full">
+      <main className="font-sans w-full text-lg">
         <div
           className="bg-gray-900 md:bg-gray-950 flex flex-col md:flex-row justify-between items-center h-auto md:min-h-screen pt-16 pb-16 px-4 md:px-32 md:bg-cover md:bg-center"
           style={{

@@ -3,11 +3,11 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-gray-400 py-8 w-full border-t-8 border-[#00FEFB]">
+    <footer className="bg-black text-gray-400 py-8 w-full border-t-8 border-[#00FEFB] font-sans text-base sm:text-xl">
       <div className="  px-4 flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 w-full md:px-32">
         {/* FlexFi Section */}
         <div className="flex flex-col space-y-4 text-center md:text-left">
-          <h5 className="text-white font-semibold">FlexFi</h5>
+          <h5 className="text-white font-semibold font-display">FlexFi</h5>
           <ul className="space-y-2">
             <li>
               <a href="#" className="hover:underline">
@@ -39,7 +39,7 @@ const Footer = () => {
 
         {/* Resources Section */}
         <div className="flex flex-col space-y-4 text-center md:text-left">
-          <h5 className="text-white font-semibold">Resources</h5>
+          <h5 className="text-white font-semibold font-display">Resources</h5>
           <ul className="space-y-2">
             <li>
               <a href="#" className="hover:underline">
@@ -81,7 +81,7 @@ const Footer = () => {
 
         {/* Follow Us Section */}
         <div className="flex flex-col space-y-4 text-center md:text-right">
-          <h5 className="text-white font-semibold">Follow Us</h5>
+          <h5 className="text-white font-semibold font-display">Follow Us</h5>
           <p className="text-gray-400">
             Stay connected with FlexFi for the latest updates and news.
           </p>
