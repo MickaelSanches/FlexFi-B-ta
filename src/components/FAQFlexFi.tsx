@@ -55,7 +55,9 @@ export const FAQFlexFi = () => {
   return (
     <div className="bg-black py-12">
       <div className="container mx-auto px-4 md:px-32">
-        <h2 className="text-4xl font-extrabold text-white mb-4">FAQ</h2>
+        <h2 className="font-display text-4xl font-extrabold text-white mb-4">
+          FAQ
+        </h2>
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <div
@@ -64,7 +66,7 @@ export const FAQFlexFi = () => {
               onClick={() => toggle(index)}
             >
               <div className="flex justify-between items-center">
-                <h3 className="text-lg font-semibold text-white">
+                <h3 className="text-lg font-semibold text-white font-display">
                   {faq.question}
                 </h3>
                 <span className="text-gray-300">
@@ -72,7 +74,9 @@ export const FAQFlexFi = () => {
                 </span>
               </div>
               {open === index && (
-                <p className="mt-4 text-gray-300">{faq.answer}</p>
+                <p className="mt-4 text-gray-300 text-base sm:text-xl">
+                  {faq.answer}
+                </p>
               )}
             </div>
           ))}

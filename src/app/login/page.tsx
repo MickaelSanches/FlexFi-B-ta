@@ -24,7 +24,7 @@ const Login = () => {
           />
         </div>
         <div className="w-full md:w-1/2 p-6 md:p-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-200 mb-6 md:mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-200 mb-6 md:mb-12 font-display">
             Login
           </h2>
 
@@ -72,7 +72,7 @@ const Login = () => {
           </form>
 
           {/* Divider and Google Sign-In */}
-          <div className="relative mt-6 mb-6">
+          {/* <div className="relative mt-6 mb-6">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-700"></div>
             </div>
@@ -94,7 +94,7 @@ const Login = () => {
               />
               Continue with Google
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

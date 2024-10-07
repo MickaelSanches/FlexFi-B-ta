@@ -12,15 +12,17 @@ export const BusinessSolution = () => {
 
       {/* Right section - Information */}
       <div className="text-white lg:w-1/2">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-8 lg:mb-12">
+        <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-8 lg:mb-12">
           Adaptable Payments
           <br /> for Every Channel
         </h2>
         <ul className="space-y-6 flex flex-col gap-1 lg:mb-12">
           <li className="flex items-start">
             <div>
-              <h3 className="text-base sm:text-lg font-semibold">E-commerce</h3>
-              <p className="text-gray-200 text-sm sm:text-base">
+              <h3 className="font-display sm:text-lg font-semibold">
+                E-commerce
+              </h3>
+              <p className="text-gray-200 text-base sm:text-xl">
                 Fast online payment: your customers complete transactions in
                 less than 10 seconds.
               </p>
@@ -28,10 +30,10 @@ export const BusinessSolution = () => {
           </li>
           <li className="flex items-start">
             <div>
-              <h3 className="text-base sm:text-lg font-semibold">
+              <h3 className="font-display text-base sm:text-lg font-semibold">
                 Point of Sale
               </h3>
-              <p className="text-gray-200 text-sm sm:text-base">
+              <p className="text-gray-200 text-base sm:text-xl">
                 Effortless payments via payment link or terminal, directly at
                 your point of sale.
               </p>
@@ -39,10 +41,10 @@ export const BusinessSolution = () => {
           </li>
           <li className="flex items-start">
             <div>
-              <h3 className="text-base sm:text-lg font-semibold">
+              <h3 className="font-display text-base sm:text-lg font-semibold">
                 Remote Sales
               </h3>
-              <p className="text-gray-200 text-sm sm:text-base">
+              <p className="text-gray-200 text-base sm:text-xl">
                 Your customers receive a payment link via email or SMS,
                 anywhere, anytime.
               </p>

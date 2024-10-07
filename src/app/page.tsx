@@ -12,12 +12,12 @@ export default function Home() {
   return (
     <>
       {/* <ComingSoon /> */}
-      <main className="w-full">
+      <main className="font-sans w-full text-lg">
         <div
-          className="bg-gray-950 flex flex-col md:flex-row justify-between items-center h-auto md:min-h-screen pt-16 pb-16 px-4 md:px-32 bg-cover bg-center"
+          className="bg-gray-900 md:bg-gray-950 flex flex-col md:flex-row justify-between items-center h-auto md:min-h-screen pt-16 pb-16 px-4 md:px-32 md:bg-cover md:bg-center"
           style={{
             backgroundImage: "url('/images/flexfi-crypto-payment.webp')",
-            backgroundSize: "cover", // Pour assurer que l'image couvre toute la surface de la div
+            backgroundSize: "cover", // Pour s'assurer que l'image couvre toute la surface de la div
           }}
         >
           {/* Presentation component on top for smaller screens */}
