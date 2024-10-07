@@ -1,20 +1,7 @@
 import React from "react";
 import { TransactionItem } from "./TransactionItem";
 import { useAuthStore } from "@/store/useAuthStore";
-
-interface Transaction {
-  blockTime: number;
-  meta: {
-    preBalances: number[];
-    postBalances: number[];
-  };
-  transaction: {
-    message: {
-      accountKeys: string[];
-    };
-    signatures: string[];
-  };
-}
+import { Transaction } from "@/@Types/transaction";
 
 interface TransactionListProps {
   transactions: Transaction[];

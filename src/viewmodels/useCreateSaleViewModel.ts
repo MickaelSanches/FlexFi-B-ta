@@ -1,11 +1,34 @@
 import { bnplRepository } from "@/repositories/bnplRepository";
 import { Dispatch, SetStateAction } from "react";
 
+interface Schedule {
+  id: number;
+  sale_id: number;
+  month_number: number;
+  payment_amount: string;
+  due_date: string;
+  paid: boolean;
+  payment_hash: string;
+  created_at: string;
+}
+
+interface Purchase {
+  id: number;
+  buyer_pubkey: string;
+  seller_pubkey: string;
+  amount: number;
+  months: number;
+  monthly_payment: string;
+  created_at: string;
+  schedule: Schedule[];
+}
+
 export const useCrateSaleViewModel = (
   setPrice: Dispatch<SetStateAction<string>>,
   setIsModalOpen: Dispatch<SetStateAction<boolean>>,
   setInstallments: Dispatch<SetStateAction<number | null>>,
-  setBuyerPublicKey: Dispatch<SetStateAction<string>>
+  setBuyerPublicKey: Dispatch<SetStateAction<string>>,
+  setPurchases: Dispatch<SetStateAction<Purchase[]>>
 ) => {
   const { createSale } = bnplRepository();
 
@@ -29,8 +52,14 @@ export const useCrateSaleViewModel = (
   ) => {
     e.preventDefault();
     try {
-      await createSale(sellerPubKey, buyerPubKey, amount, months);
+      const newSale = await createSale(
+        sellerPubKey,
+        buyerPubKey,
+        amount,
+        months
+      );
       closeModal();
+      setPurchases((prevPurchases) => [...prevPurchases, newSale]);
     } catch (error) {
       console.error("error create sale:", error);
     }

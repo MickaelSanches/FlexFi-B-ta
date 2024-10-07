@@ -9,28 +9,7 @@ import {
 } from "react-icons/fa";
 import { format } from "date-fns";
 import { enUS } from "date-fns/locale";
-
-interface Schedule {
-  id: number;
-  sale_id: number;
-  month_number: number;
-  payment_amount: string;
-  due_date: string;
-  paid: boolean;
-  payment_hash: string;
-  created_at: string;
-}
-
-interface Purchase {
-  id: number;
-  buyer_pubkey: string;
-  seller_pubkey: string;
-  amount: number;
-  months: number;
-  monthly_payment: string;
-  created_at: string; // Assurez-vous que la propriété created_at est présente ici
-  schedule: Schedule[];
-}
+import { Purchase } from "@/@Types/purchase";
 
 interface PurchasesItemProps {
   purchase: Purchase;

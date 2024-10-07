@@ -1,18 +1,5 @@
+import { Transaction } from "@/@Types/transaction";
 import React, { useState } from "react";
-
-interface Transaction {
-  blockTime: number | null; // Peut être null si la valeur est absente
-  meta: {
-    preBalances: number[];
-    postBalances: number[];
-  };
-  transaction: {
-    message: {
-      accountKeys: string[];
-    };
-    signatures: string[]; // La signature peut être vide ou absente
-  };
-}
 
 interface TransactionItemProps {
   transaction: Transaction;
