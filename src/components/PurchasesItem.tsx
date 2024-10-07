@@ -137,7 +137,7 @@ const PurchasesItem: React.FC<PurchasesItemProps> = ({
             );
             return (
               <button
-                onClick={() => openModal(item.id)}
+                onClick={() => (!siren ? openModal(item.id) : null)}
                 key={index}
                 className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 ease-in-out transform ${
                   item.paid
