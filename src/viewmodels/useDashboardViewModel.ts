@@ -1,4 +1,4 @@
-import { solanaWalletRepository } from "@/repositories/solanaWalletRepository";
+import { solanaWalletRepository } from "@/repositories/SolanaWalletRepository";
 import { useTransactionStore } from "@/store/useTransactionStore";
 import { useWalletStore } from "@/store/useWalletStore";
 
