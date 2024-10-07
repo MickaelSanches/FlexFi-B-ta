@@ -1,13 +1,20 @@
 import Link from "next/link";
 import { sessionRepository } from "@/repositories/sessionRepository";
 import { usePathname } from "next/navigation"; // Importer usePathname
+import { useAuthStore } from "@/store/useAuthStore";
 
 const Sidebar = () => {
   const { logout } = sessionRepository();
   const pathname = usePathname(); // Utiliser usePathname pour obtenir le chemin actuel
-
+  const { reset, setIsLogged } = useAuthStore();
   // Fonction pour vérifier si la route est active
   const isActive = (path: string) => pathname === path;
+
+  const handleLogout = () => {
+    logout();
+    reset();
+    setIsLogged(false); // Mettre à jour l'état local immédiatement
+  };
 
   return (
     <div className="flex flex-col w-64 h-screen bg-gray-900 text-white shadow-lg">
@@ -40,7 +47,7 @@ const Sidebar = () => {
           Wallet
         </Link>
         <button
-          onClick={logout}
+          onClick={handleLogout}
           className="bg-red-500 hover:bg-red-600 p-2 rounded text-white mt-auto"
         >
           Logout

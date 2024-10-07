@@ -6,7 +6,7 @@ import { useAuthStore } from "@/store/useAuthStore";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isLogged, setIsLogged } = useAuthStore();
+  const { isLogged, setIsLogged, reset } = useAuthStore();
 
   const { logout } = sessionRepository();
 
@@ -17,6 +17,7 @@ const Header = () => {
   // Gérer la déconnexion et réagir immédiatement sans rafraîchir
   const handleLogout = () => {
     logout();
+    reset();
     setIsLogged(false); // Mettre à jour l'état local immédiatement
   };
 

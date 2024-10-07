@@ -297,10 +297,6 @@ export const sessionRepository = () => {
   };
 
   const logout = () => {
-    // Clear the JWT token and any other user-related data from sessionStorage
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("solanaPublicKey");
-
     // Redirect the user to the login page
     router.push("/");
   };
