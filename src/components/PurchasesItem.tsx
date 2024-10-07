@@ -64,66 +64,59 @@ const PurchasesItem: React.FC<PurchasesItemProps> = ({
     <div
       className={`${
         allPaid ? "bg-green-600" : "bg-gray-900"
-      } text-white p-4 sm:p-6 md:p-8 rounded-lg shadow-lg transition-all duration-300 ease-in-out`}
+      } text-white p-6 sm:p-8 rounded-lg shadow-lg transition-all duration-300 ease-in-out space-y-6`}
     >
       {/* Disposition verticale pour mobile, horizontale pour plus grand */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0 mb-4">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 md:space-y-0">
         {/* Informations utilisateur */}
-        <div className="flex items-center space-x-2">
-          <FaUser className="text-indigo-400" />
-          {siren ? (
-            <span
-              className="text-lg sm:text-xl font-semibold cursor-pointer"
-              onClick={() => setShowFullPubKey(!showFullPubKey)} // Afficher ou masquer la pubKey entière
-            >
-              {showFullPubKey
+        <div className="flex items-center space-x-3">
+          <FaUser className="text-indigo-400 text-xl" />
+          <span
+            className="text-lg sm:text-xl font-semibold cursor-pointer"
+            onClick={() => setShowFullPubKey(!showFullPubKey)} // Afficher ou masquer la pubKey entière
+          >
+            {showFullPubKey
+              ? siren
                 ? purchase.buyer_pubkey
-                : `${purchase.buyer_pubkey.slice(0, 8)}...`}
-            </span>
-          ) : (
-            <span
-              className="text-lg sm:text-xl font-semibold cursor-pointer"
-              onClick={() => setShowFullPubKey(!showFullPubKey)} // Afficher ou masquer la pubKey entière
-            >
-              {showFullPubKey
-                ? purchase.seller_pubkey
-                : `${purchase.seller_pubkey.slice(0, 8)}...`}
-            </span>
-          )}
+                : purchase.seller_pubkey
+              : siren
+              ? `${purchase.buyer_pubkey.slice(0, 8)}...`
+              : `${purchase.seller_pubkey.slice(0, 8)}...`}
+          </span>
         </div>
 
         {/* Paiement mensuel */}
-        <div className="flex items-center space-x-2">
-          <span className="text-lg sm:text-xl">
+        <div className="flex items-center space-x-3">
+          <span className="text-lg sm:text-xl font-medium">
             {purchase.monthly_payment} SOL/month
           </span>
         </div>
 
         {/* Durée de paiement */}
-        <div className="flex items-center space-x-2">
-          <FaCalendarAlt className="text-yellow-400" />
-          <span className="text-lg sm:text-xl">
+        <div className="flex items-center space-x-3">
+          <FaCalendarAlt className="text-yellow-400 text-xl" />
+          <span className="text-lg sm:text-xl font-medium">
             {paidMonths}/{purchase.months} months
           </span>
         </div>
 
         {/* Prix total */}
-        <div className="flex items-center space-x-2">
-          <FaShoppingCart className="text-pink-400" />
+        <div className="flex items-center space-x-3">
+          <FaShoppingCart className="text-pink-400 text-xl" />
           <span className="text-lg sm:text-xl font-semibold">
-            Total price: {purchase.amount} SOL
+            {purchase.amount} SOL
           </span>
         </div>
       </div>
 
       {/* Date de création */}
-      <div className="text-sm sm:text-base text-gray-200 mb-4">
+      <div className="text-sm sm:text-base text-gray-400">
         Sale created on: {formattedCreatedDate}
       </div>
 
       {/* Section pour afficher le statut des paiements */}
       {!allPaid && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {purchase.schedule.map((item, index) => {
             const formattedDueDate = format(
               new Date(item.due_date),
@@ -136,18 +129,18 @@ const PurchasesItem: React.FC<PurchasesItemProps> = ({
               <button
                 onClick={() => (!siren ? openModal(item.id) : null)}
                 key={index}
-                className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 ease-in-out transform ${
+                className={`flex items-center space-x-3 p-4 rounded-lg transition-all duration-300 ease-in-out transform ${
                   item.paid
-                    ? "bg-green-600 hover:bg-green-500"
+                    ? "bg-green-500 hover:bg-green-400"
                     : "bg-gray-800 hover:bg-gray-700"
                 }`}
               >
                 {item.paid ? (
-                  <FaCheckCircle className="text-white text-lg sm:text-xl transition-colors duration-300 ease-in-out" />
+                  <FaCheckCircle className="text-white text-xl transition-colors duration-300 ease-in-out" />
                 ) : (
-                  <FaTimesCircle className="text-red-500 text-lg sm:text-xl transition-colors duration-300 ease-in-out" />
+                  <FaTimesCircle className="text-red-500 text-xl transition-colors duration-300 ease-in-out" />
                 )}
-                <span className="text-sm sm:text-base font-medium flex items-center gap-2">
+                <span className="text-sm sm:text-base font-medium">
                   {item.paid
                     ? "Paid"
                     : `Due on ${formattedDueDate} - Month ${item.month_number}: ${item.payment_amount} SOL`}
@@ -161,7 +154,7 @@ const PurchasesItem: React.FC<PurchasesItemProps> = ({
       {/* Modale de confirmation */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white rounded-lg p-6 w-full sm:w-96">
+          <div className="bg-white rounded-lg p-8 w-full sm:w-96">
             <h2 className="text-xl font-semibold mb-4">
               Confirmation de paiement
             </h2>
