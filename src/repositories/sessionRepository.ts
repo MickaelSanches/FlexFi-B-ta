@@ -40,7 +40,20 @@ export const sessionRepository = () => {
   };
 
   // Connexion
-  const login = async (email: string, password: string) => {
+  const login = async (
+    email: string,
+    password: string,
+    setAuthData: (data: {
+      email: string;
+      publicKey: string;
+      seedPhrase: string;
+      isLogged: boolean;
+      siren: string;
+      legalCategory: string;
+      mainActivity: string;
+      denomination: string;
+    }) => void
+  ) => {
     try {
       const response = await handleApiCall(`${URL_API}/login`, "POST", {
         email,
@@ -50,30 +63,49 @@ export const sessionRepository = () => {
       const token = response.token;
 
       if (token) {
-        console.log("__________________________");
-
-        // Stocker le token dans sessionStorage
-        sessionStorage.setItem("token", token);
-
         // Décoder le token pour extraire les informations
         const decodedToken: any = jwtDecode(token);
 
-        const publicKey = decodedToken.user.public_key;
-        sessionStorage.setItem("solanaPublicKey", publicKey);
+        // Passer les données déduites à la fonction passée en paramètre
+        setAuthData({
+          email: decodedToken.user.email,
+          publicKey: decodedToken.user.public_key,
+          seedPhrase: decodedToken.user.seed_phrase,
+          isLogged: true,
+          siren: decodedToken.user.siren,
+          legalCategory: decodedToken.user.categorie_juridique,
+          mainActivity: decodedToken.user.activite_principale,
+          denomination: decodedToken.user.denomination,
+        });
 
-        const email = decodedToken.user.email;
-        sessionStorage.setItem("email", email);
-
-        const seedPhrase = decodedToken.user.seed_phrase;
-        sessionStorage.setItem("seedPhrase", seedPhrase);
-
+        // Redirection après connexion réussie
         router.push("/dashboard");
+        console.log("Redirection vers le dashboard après connexion réussie");
         return true;
       } else {
         throw new Error("Token not found in response");
       }
     } catch (error: any) {
-      console.error(error.message);
+      console.error("Login error:", error);
+      throw error;
+    }
+  };
+
+  const loginForSeedPhrase = async (email: string, password: string) => {
+    try {
+      const response = await handleApiCall(`${URL_API}/login`, "POST", {
+        email,
+        password,
+      });
+
+      if (response) {
+        return response;
+      } else {
+        throw new Error("Token not found in response");
+      }
+    } catch (error: any) {
+      console.error("Login error:", error);
+      throw error;
     }
   };
 
@@ -200,6 +232,12 @@ export const sessionRepository = () => {
     email: string,
     password: string,
     confirmPassword: string,
+    siren: string,
+    mainActivity: string,
+    companyName: string,
+    creationDate: string,
+    legalCategory: string,
+    isPro: boolean,
     setCurrentStep: React.Dispatch<React.SetStateAction<number>>,
     setSeedPhrase: React.Dispatch<React.SetStateAction<string>>,
     setPublicKey: React.Dispatch<React.SetStateAction<string>>,
@@ -220,16 +258,35 @@ export const sessionRepository = () => {
     }
 
     try {
-      const userCreat = await handleApiCall(`${URL_API}/register`, "POST", {
-        email,
-        password,
-      });
+      let userCreat;
 
-      // Récupérer la seed phrase et la clé publique du wallet Solana
+      if (isPro) {
+        // Inscription pour un utilisateur professionnel
+        userCreat = await handleApiCall(
+          `${URL_API}/register-professional`,
+          "POST",
+          {
+            email,
+            password,
+            siren,
+            mainActivity,
+            companyName,
+            creationDate,
+            legalCategory,
+          }
+        );
+      } else {
+        // Inscription pour un utilisateur standard
+        userCreat = await handleApiCall(`${URL_API}/register`, "POST", {
+          email,
+          password,
+        });
+      }
+
       setSeedPhrase(userCreat.seed_phrase as string);
       setPublicKey(userCreat.public_key as string);
 
-      setCurrentStep(4); // Redirection vers l'étape finale
+      setCurrentStep(5); // Passer à l'étape finale
     } catch (error: unknown) {
       if (error instanceof Error && error.message) {
         setError(error.message);
@@ -240,10 +297,6 @@ export const sessionRepository = () => {
   };
 
   const logout = () => {
-    // Clear the JWT token and any other user-related data from sessionStorage
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("solanaPublicKey");
-
     // Redirect the user to the login page
     router.push("/");
   };
@@ -253,6 +306,7 @@ export const sessionRepository = () => {
     handleSubmitEmail, // Action pour l'inscription (étape 1)
     handleSubmitCode, // Action pour l'inscription (étape 2)
     handleSubmitPassword, // Action pour l'inscription (étape 3)
+    loginForSeedPhrase,
     logout,
   };
 };

@@ -1,11 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { sessionRepository } from "@/repositories/sessionRepository";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLogged, setIsLogged] = useState(false);
+  const { isLogged, setIsLogged, reset } = useAuthStore();
 
   const { logout } = sessionRepository();
 
@@ -13,37 +14,15 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
-  // Vérifier le token et actualiser l'état
-  useEffect(() => {
-    const checkToken = () => {
-      const token = sessionStorage.getItem("token");
-      setIsLogged(!!token);
-    };
-
-    // Vérification initiale
-    checkToken();
-
-    // Ajouter un écouteur pour détecter les changements dans le sessionStorage
-    const handleStorageChange = () => {
-      checkToken();
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-
-    // Nettoyer l'écouteur lors du démontage
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, [isLogged]);
-
   // Gérer la déconnexion et réagir immédiatement sans rafraîchir
   const handleLogout = () => {
     logout();
+    reset();
     setIsLogged(false); // Mettre à jour l'état local immédiatement
   };
 
   return (
-    <header className="w-full flex items-center justify-between bg-black bg-opacity-90 p-4 md:px-32 sticky top-0 py-2 transition-colors duration-300 z-50">
+    <header className="font-sans w-full flex items-center justify-between bg-black bg-opacity-90 p-4 md:px-32 sticky top-0 py-2 transition-colors duration-300 z-50 text-base sm:text-xl">
       <nav className="md:flex space-x-4 flex items-center">
         <Link href="/" className="flex items-center">
           <img

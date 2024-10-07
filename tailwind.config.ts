@@ -8,13 +8,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      fontFamily: {
+        // Ajoute la police Days One pour les gros titres
+        sans: ["Darker Grotesque", "sans-serif"], // pour les petits caractères
+        display: ["Days One", "sans-serif"], // pour les gros caractères
       },
     },
   },
   plugins: [],
 };
+
 export default config;

@@ -1,18 +1,5 @@
+import { Transaction } from "@/@Types/transaction";
 import React, { useState } from "react";
-
-interface Transaction {
-  blockTime: number | null; // Peut être null si la valeur est absente
-  meta: {
-    preBalances: number[];
-    postBalances: number[];
-  };
-  transaction: {
-    message: {
-      accountKeys: string[];
-    };
-    signatures: string[]; // La signature peut être vide ou absente
-  };
-}
 
 interface TransactionItemProps {
   transaction: Transaction;
@@ -36,7 +23,10 @@ export const TransactionItem: React.FC<TransactionItemProps> = ({
     if (preBalances.length > 0 && postBalances.length > 0) {
       const amountInLamports = Math.abs(preBalances[0] - postBalances[0]);
       const lamportsToSOL = 1_000_000_000;
-      return amountInLamports / lamportsToSOL;
+      const rawAmount = amountInLamports / lamportsToSOL;
+
+      // Multiplier par 10^5, enlever les parties après 5 décimales, et diviser de nouveau
+      return Math.floor(rawAmount * 100000) / 100000;
     }
     return null;
   };

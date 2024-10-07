@@ -1,19 +1,7 @@
 import React from "react";
 import { TransactionItem } from "./TransactionItem";
-
-interface Transaction {
-  blockTime: number;
-  meta: {
-    preBalances: number[];
-    postBalances: number[];
-  };
-  transaction: {
-    message: {
-      accountKeys: string[];
-    };
-    signatures: string[];
-  };
-}
+import { useAuthStore } from "@/store/useAuthStore";
+import { Transaction } from "@/@Types/transaction";
 
 interface TransactionListProps {
   transactions: Transaction[];
@@ -22,7 +10,7 @@ interface TransactionListProps {
 export const TransactionList: React.FC<TransactionListProps> = ({
   transactions,
 }) => {
-  const solanaPublicKey = sessionStorage.getItem("solanaPublicKey");
+  const { publicKey } = useAuthStore();
   return (
     <div className="bg-gradient-to-tr from-gray-800 via-gray-900 to-black border border-gray-700 shadow-xl rounded-3xl p-8">
       <h3 className="text-3xl font-extrabold text-white mb-6">
@@ -34,7 +22,7 @@ export const TransactionList: React.FC<TransactionListProps> = ({
             <TransactionItem
               key={index}
               transaction={tx}
-              userAddress={solanaPublicKey}
+              userAddress={publicKey}
             />
           ))
         ) : (

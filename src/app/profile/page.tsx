@@ -1,32 +1,30 @@
 "use client";
 
 import DashboardLayout from "@/app/dashboard/layout";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { sessionRepository } from "@/repositories/sessionRepository";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const Profile = () => {
-  const { login } = sessionRepository();
-  const [email, setEmail] = useState<string | null>(null);
-  const [publicKey, setPublicKey] = useState("");
-  const [seedPhrase, setSeedPhrase] = useState("");
+  const { loginForSeedPhrase } = sessionRepository();
   const [showSeedPhrase, setShowSeedPhrase] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    const storedEmail = sessionStorage.getItem("email");
-    const storedPublicKey = sessionStorage.getItem("solanaPublicKey");
-    const storedSeedPhrase = sessionStorage.getItem("seedPhrase");
-
-    if (storedEmail) setEmail(storedEmail);
-    if (storedPublicKey) setPublicKey(storedPublicKey);
-    if (storedSeedPhrase) setSeedPhrase(storedSeedPhrase);
-  }, []);
+  const {
+    email,
+    publicKey,
+    seedPhrase,
+    siren,
+    legalCategory,
+    mainActivity,
+    denomination,
+  } = useAuthStore();
 
   const handleShowPrivateKey = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const isLoged = await login(email!, password);
+      const isLoged = await loginForSeedPhrase(email!, password);
       if (isLoged) {
         setShowSeedPhrase(true);
         setError("");
@@ -49,6 +47,38 @@ const Profile = () => {
             {email || "Not Available"}
           </p>
         </div>
+
+        {siren && (
+          <>
+            <div className="mb-6">
+              <p className="text-sm text-gray-300 uppercase">Company name</p>
+              <p className="text-2xl font-bold text-white">
+                {denomination || "Not Available"}
+              </p>
+            </div>
+
+            <div className="mb-6">
+              <p className="text-sm text-gray-300 uppercase">Siren</p>
+              <p className="text-2xl font-bold text-white">
+                {siren || "Not Available"}
+              </p>
+            </div>
+
+            <div className="mb-6">
+              <p className="text-sm text-gray-300 uppercase">Legal Category</p>
+              <p className="text-2xl font-bold text-white">
+                {legalCategory || "Not Available"}
+              </p>
+            </div>
+
+            <div className="mb-6">
+              <p className="text-sm text-gray-300 uppercase">Main activity</p>
+              <p className="text-2xl font-bold text-white">
+                {mainActivity || "Not Available"}
+              </p>
+            </div>
+          </>
+        )}
 
         <div className="mb-6">
           <p className="text-sm text-gray-300 uppercase">Public Key</p>

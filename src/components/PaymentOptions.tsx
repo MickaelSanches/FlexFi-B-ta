@@ -12,10 +12,10 @@ export const PaymentOptions = () => {
     <section className="relative bg-black h-3/5 flex flex-col lg:flex-row items-center justify-between px-4 md:px-12 lg:px-32 py-12 pb-0 pt-0">
       <div className="text-start w-full lg:w-2/5 mb-12 lg:mb-0">
         {/* Title Section */}
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4 lg:mb-12">
+        <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-white mb-4 lg:mb-12">
           Flexible Crypto Payment Options
         </h2>
-        <p className="text-md sm:text-lg  mb-8">
+        <p className="text-base sm:text-xl  mb-8">
           Simplify sales with FlexFi. Allow your customers to pay in multiple
           installments using their favorite cryptocurrency.
         </p>
@@ -46,7 +46,12 @@ export const PaymentOptions = () => {
 
           <button
             className={`px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 bg-white border border-gray-300 text-gray-900`}
-            onClick={() => document.getElementById("my_modal_3").showModal()}
+            onClick={() => {
+              const modal = document.getElementById("my_modal_3");
+              if (modal) {
+                (modal as HTMLDialogElement).showModal(); // TypeScript a besoin de savoir que c'est un élément de type <dialog>
+              }
+            }}
           >
             Simulation
           </button>
