@@ -37,12 +37,14 @@ const Purchases: React.FC = () => {
 
   return (
     <DashboardLayout>
-      <h1 className="text-4xl font-bold text-gradient mb-8">My purchases</h1>
+      <h1 className="text-2xl sm:text-4xl font-bold text-gradient mb-8 text-center sm:text-left">
+        My purchases
+      </h1>
 
       {siren && <CreateSale />}
 
       {/* Menu déroulant pour le tri */}
-      <div className="mb-4 w-52">
+      <div className="mb-4 w-full sm:w-52">
         <label className="block text-gray-200 mb-2">Sort by:</label>
         <select
           className="mt-1 block w-full px-3 py-2 bg-gray-800 text-white rounded-lg"
@@ -73,7 +75,10 @@ const Purchases: React.FC = () => {
       {/* Liste des achats filtrés */}
       <div className="space-y-4">
         {filteredPurchases.map((purchase, index) => (
-          <div key={index} className="flex justify-between items-center">
+          <div
+            key={index}
+            className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0"
+          >
             <PurchasesItem
               purchase={purchase}
               onPaymentButtonClick={onPaymentButtonClick}
