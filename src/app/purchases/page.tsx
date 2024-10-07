@@ -24,6 +24,7 @@ interface Purchase {
   amount: number;
   months: number;
   monthly_payment: string;
+  created_at: string; // Assurez-vous que la propriété created_at est présente ici
   schedule: Schedule[];
 }
 
@@ -46,14 +47,8 @@ const Purchases: React.FC = () => {
         {purchases.map((purchase, index) => (
           <div key={index} className="flex justify-between items-center">
             <PurchasesItem
-              seller={purchase.seller_pubkey}
-              buyer={purchase.buyer_pubkey}
-              monthlyAmount={purchase.monthly_payment}
-              duration={purchase.months}
-              totalPrice={purchase.amount}
-              schedule={purchase.schedule}
+              purchase={purchase}
               onPaymentButtonClick={onPaymentButtonClick}
-              id={purchase.id}
             />
           </div>
         ))}

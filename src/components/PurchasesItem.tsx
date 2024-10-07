@@ -7,34 +7,39 @@ import {
   FaCheckCircle,
   FaTimesCircle,
 } from "react-icons/fa";
+import { format } from "date-fns";
+import { enUS } from "date-fns/locale";
 
 interface Schedule {
   id: number;
+  sale_id: number;
   month_number: number;
   payment_amount: string;
+  due_date: string;
   paid: boolean;
+  payment_hash: string;
+  created_at: string;
+}
+
+interface Purchase {
+  id: number;
+  buyer_pubkey: string;
+  seller_pubkey: string;
+  amount: number;
+  months: number;
+  monthly_payment: string;
+  created_at: string; // Assurez-vous que la propriété created_at est présente ici
+  schedule: Schedule[];
 }
 
 interface PurchasesItemProps {
-  id: number;
-  seller: string;
-  buyer: string;
-  monthlyAmount: string;
-  duration: number;
-  totalPrice: number;
-  schedule: Schedule[];
+  purchase: Purchase;
   onPaymentButtonClick: (saleId: number, scheduleId: number) => Promise<void>;
 }
 
 const PurchasesItem: React.FC<PurchasesItemProps> = ({
-  seller,
-  buyer,
-  monthlyAmount,
-  duration,
-  totalPrice,
-  schedule,
+  purchase,
   onPaymentButtonClick,
-  id,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedScheduleId, setSelectedScheduleId] = useState<number | null>(
@@ -58,13 +63,22 @@ const PurchasesItem: React.FC<PurchasesItemProps> = ({
   // Confirmer le paiement
   const confirmPayment = async () => {
     if (selectedScheduleId !== null) {
-      await onPaymentButtonClick(id, selectedScheduleId);
+      await onPaymentButtonClick(purchase.id, selectedScheduleId);
       closeModal(); // Fermer la modale après paiement
     }
   };
 
-  const paidMonths = schedule.filter((s) => s.paid).length;
-  const allPaid = paidMonths === duration; // Vérifier si toutes les mensualités ont été payées
+  const paidMonths = purchase.schedule.filter((s) => s.paid).length;
+  const allPaid = paidMonths === purchase.months; // Vérifier si toutes les mensualités ont été payées
+
+  // Formater la date de création
+  const formattedCreatedDate = format(
+    new Date(purchase.created_at),
+    "dd MMM yyyy",
+    {
+      locale: enUS,
+    }
+  );
 
   return (
     <div
@@ -76,56 +90,75 @@ const PurchasesItem: React.FC<PurchasesItemProps> = ({
         <div className="flex items-center space-x-2">
           <FaUser className="text-indigo-400" />
           {siren ? (
-            <span className="text-xl font-semibold">{buyer}</span>
+            <span className="text-xl font-semibold">
+              {purchase.buyer_pubkey}
+            </span>
           ) : (
-            <span className="text-xl font-semibold">{seller}</span>
+            <span className="text-xl font-semibold">
+              {purchase.seller_pubkey}
+            </span>
           )}
         </div>
 
         <div className="flex items-center space-x-2">
-          <span className="text-xl">{monthlyAmount} SOL/month</span>
+          <span className="text-xl">{purchase.monthly_payment} SOL/month</span>
         </div>
 
         <div className="flex items-center space-x-2">
           <FaCalendarAlt className="text-yellow-400" />
           <span className="text-xl">
-            {paidMonths}/{duration} months
+            {paidMonths}/{purchase.months} months
           </span>
         </div>
 
         <div className="flex items-center space-x-2">
           <FaShoppingCart className="text-pink-400" />
           <span className="text-xl font-semibold">
-            Total price: {totalPrice} SOL
+            Total price: {purchase.amount} SOL
           </span>
         </div>
+      </div>
+
+      {/* Afficher la date de création ici */}
+      <div className="text-sm text-gray-200 mb-4">
+        Sale created on: {formattedCreatedDate}
       </div>
 
       {/* Section pour afficher le statut des paiements, masqué si tout est payé */}
       {!allPaid && (
         <div className="grid grid-cols-2 gap-4">
-          {schedule.map((item, index) => (
-            <button
-              onClick={() => openModal(item.id)}
-              key={index}
-              className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 ease-in-out transform ${
-                item.paid
-                  ? "bg-green-600 hover:bg-green-500"
-                  : "bg-gray-800 hover:bg-gray-700"
-              }`}
-            >
-              {item.paid ? (
-                <FaCheckCircle className="text-white text-xl transition-colors duration-300 ease-in-out" />
-              ) : (
-                <FaTimesCircle className="text-red-500 text-xl transition-colors duration-300 ease-in-out" />
-              )}
-              {!item.paid && (
-                <span className="text-lg font-medium flex items-center gap-2">
-                  Payer {item.month_number}: {item.payment_amount}
-                </span>
-              )}
-            </button>
-          ))}
+          {purchase.schedule.map((item, index) => {
+            const formattedDueDate = format(
+              new Date(item.due_date),
+              "dd MMM yyyy",
+              {
+                locale: enUS,
+              }
+            );
+            return (
+              <button
+                onClick={() => openModal(item.id)}
+                key={index}
+                className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 ease-in-out transform ${
+                  item.paid
+                    ? "bg-green-600 hover:bg-green-500"
+                    : "bg-gray-800 hover:bg-gray-700"
+                }`}
+              >
+                {item.paid ? (
+                  <FaCheckCircle className="text-white text-xl transition-colors duration-300 ease-in-out" />
+                ) : (
+                  <FaTimesCircle className="text-red-500 text-xl transition-colors duration-300 ease-in-out" />
+                )}
+                {!item.paid && (
+                  <span className="text-lg font-medium flex items-center gap-2">
+                    Due on {formattedDueDate} - Month {item.month_number}:{" "}
+                    {item.payment_amount} SOL
+                  </span>
+                )}
+              </button>
+            );
+          })}
         </div>
       )}
 
@@ -137,7 +170,7 @@ const PurchasesItem: React.FC<PurchasesItemProps> = ({
               Confirmation de paiement
             </h2>
             <p className="text-gray-700 mb-6">
-              Are you sure you want to pay this installment ?
+              Are you sure you want to pay this installment?
             </p>
             <div className="flex justify-end space-x-4">
               <button
