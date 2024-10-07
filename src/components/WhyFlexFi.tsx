@@ -2,16 +2,7 @@ import { GetStartedButton } from "./GetStartedButton";
 
 export const WhyFlexFi = () => {
   return (
-    <section
-      className="bg-black py-12 px-4 md:px-32 h-full"
-      style={{
-        backgroundImage:
-          "url('/images/flexfi-crypto-payment-user-advantages.webp')",
-        backgroundSize: "contain",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "right",
-      }}
-    >
+    <section className="bg-black py-12 px-4 md:px-32 h-full lg:bg-[url('/images/flexfi-crypto-payment-user-advantages.webp')] lg:bg-contain lg:bg-no-repeat lg:bg-right">
       <div className="container text-center">
         {/* Title Section */}
         <h2 className="text-4xl font-extrabold text-white mb-16 w-full lg:w-1/2 text-left lg:pl-12 mt-20">
