@@ -35,13 +35,13 @@ const Header = () => {
           href="/"
           className="hidden md:flex cursor-pointer hover:text-[#00FEFB]"
         >
-          Solutions
+          For shoppers
         </Link>
         <Link
           href="/"
           className="hidden md:flex cursor-pointer hover:text-[#00FEFB]"
         >
-          Ressources
+          For businesses
         </Link>
       </nav>
 

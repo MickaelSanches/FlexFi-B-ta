@@ -15,7 +15,7 @@ const Presentation = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-start">
           <Link
             href="/register"
-            className="flex bg-white text-black font-bold px-3 sm:px-3 py-3 rounded-2xl hover:scale-110 ease-out duration-300"
+            className="flex items-center bg-white text-black font-bold px-3 sm:px-3 py-3 rounded-2xl hover:scale-110 ease-out duration-300"
           >
             <p className="mr-4 font-bold font-display">Get Started</p>
             <IoIosArrowForward size={22} />

@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -11,22 +12,7 @@ const Footer = () => {
           <ul className="space-y-2">
             <li>
               <a href="#" className="hover:underline">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline">
-                Features
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline">
-                Services
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline">
-                Contact
+                Team
               </a>
             </li>
             <li>
@@ -43,27 +29,17 @@ const Footer = () => {
           <ul className="space-y-2">
             <li>
               <a href="#" className="hover:underline">
-                Documentation
+                Whitepaper
               </a>
             </li>
-            <li>
+            {/* <li>
               <a href="#" className="hover:underline">
                 API Reference
               </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline">
-                Community
-              </a>
-            </li>
+            </li> */}
             <li>
               <a href="#" className="hover:underline">
                 Blog
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline">
-                FAQ
               </a>
             </li>
           </ul>
@@ -80,11 +56,15 @@ const Footer = () => {
         </div>
 
         {/* Follow Us Section */}
-        <div className="flex flex-col space-y-4 text-center md:text-right">
+        <div className="flex flex-col items-center space-y-4 text-center md:text-right">
           <h5 className="text-white font-semibold font-display">Follow Us</h5>
-          <p className="text-gray-400">
-            Stay connected with FlexFi for the latest updates and news.
-          </p>
+          <Link href={"https://x.com/FlexFi_"} className="text-gray-400">
+            <img
+              src="/logo/logo-x.webp"
+              alt="logo x"
+              className="w-10 rounded-full h-auto"
+            />
+          </Link>
           <div className="flex justify-center md:justify-end space-x-4">
             <a href="#" className="text-gray-400 hover:text-white">
               <i className="fab fa-instagram"></i>
@@ -106,9 +86,6 @@ const Footer = () => {
             © 2024 FlexFi. All rights reserved
           </p>
           <div className="space-x-4">
-            <a href="#" className="text-sm text-gray-400 hover:underline">
-              Contact
-            </a>
             <a href="#" className="text-sm text-gray-400 hover:underline">
               Terms
             </a>
