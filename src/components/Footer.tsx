@@ -87,9 +87,6 @@ const Footer = () => {
           </p>
           <div className="space-x-4">
             <a href="#" className="text-sm text-gray-400 hover:underline">
-              Contact
-            </a>
-            <a href="#" className="text-sm text-gray-400 hover:underline">
               Terms
             </a>
             <a href="#" className="text-sm text-gray-400 hover:underline">
