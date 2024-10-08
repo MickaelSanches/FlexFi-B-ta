@@ -1,11 +1,14 @@
 import { useState } from "react";
 import FlexFiPaymentSimulator from "./FlexFiPaymentSimulator";
+import { usePageStore } from "@/store/usePageStore";
 
 export const PaymentOptions = () => {
   // State pour suivre l'option active
   const [activeOption, setActiveOption] = useState<"6x12x" | "staking">(
     "6x12x"
   );
+
+  const { isShopper } = usePageStore();
 
   return (
     <section className="relative bg-black h-3/5 flex flex-col lg:flex-row items-center justify-between px-4 md:px-12 lg:px-32 py-12 pb-0 pt-0">
@@ -15,8 +18,11 @@ export const PaymentOptions = () => {
           Flexible Crypto Payment Options
         </h2>
         <p className="text-base sm:text-xl  mb-8">
-          Simplify sales with FlexFi. Allow your customers to pay in multiple
-          installments using their favorite cryptocurrency.
+          {!isShopper
+            ? `Simplify sales with FlexFi. Allow your customers to pay in multiple
+          installments using their favorite cryptocurrency.`
+            : `Simplify your purchase with FlexFi. 
+Pay in multiple installments using your favorite crypto.`}
         </p>
 
         {/* Payment Buttons */}

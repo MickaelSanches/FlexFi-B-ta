@@ -1,6 +1,8 @@
+import { usePageStore } from "@/store/usePageStore";
 import { GetStartedButton } from "./GetStartedButton";
 
 export const BusinessSolution = () => {
+  const { isShopper } = usePageStore();
   return (
     <div className=" bg-black p-6 sm:p-8 md:px-32 rounded-lg shadow-2xl flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0 lg:space-x-16">
       {/* Left section - Phone and Desktop view */}
@@ -20,33 +22,41 @@ export const BusinessSolution = () => {
           <li className="flex items-start">
             <div>
               <h3 className="font-display sm:text-lg font-semibold">
-                E-commerce
+                {!isShopper ? "E-commerce" : "Simple and Fast : E-commerce"}
               </h3>
               <p className="text-gray-200 text-base sm:text-xl">
-                Fast online payment: your customers complete transactions in
-                less than 10 seconds.
+                {!isShopper
+                  ? `Fast online payment: your customers complete transactions in
+                less than 10 seconds.`
+                  : "Pay for your online purchases with FlexFi in just a few clicks. Choose your payment plan and split your costs, all in under 10 seconds."}
               </p>
             </div>
           </li>
           <li className="flex items-start">
             <div>
               <h3 className="font-display text-base sm:text-lg font-semibold">
-                Point of Sale
+                {!isShopper ? "Point of Sale" : "In-Store: Effortless Payment"}
               </h3>
               <p className="text-gray-200 text-base sm:text-xl">
-                Effortless payments via payment link or terminal, directly at
-                your point of sale.
+                {!isShopper
+                  ? `Effortless payments via payment link or terminal, directly at
+                your point of sale.`
+                  : "Use FlexFi in-store via a payment terminal or a secure payment link. Split your payment easily, with no paperwork needed."}
               </p>
             </div>
           </li>
           <li className="flex items-start">
             <div>
               <h3 className="font-display text-base sm:text-lg font-semibold">
-                Remote Sales
+                {!isShopper
+                  ? "Remote Sales"
+                  : "Remote Purchases: Convenient and Flexible"}
               </h3>
               <p className="text-gray-200 text-base sm:text-xl">
-                Your customers receive a payment link via email or SMS,
-                anywhere, anytime.
+                {!isShopper
+                  ? `Your customers receive a payment link via email or SMS,
+                anywhere, anytime.`
+                  : `Whether you’re buying over the phone or placing a remote order, FlexFi lets you pay through a link sent via email or SMS. Flexibility at your fingertips, wherever you are.`}
               </p>
             </div>
           </li>

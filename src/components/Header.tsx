@@ -3,10 +3,13 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { sessionRepository } from "@/repositories/sessionRepository";
 import { useAuthStore } from "@/store/useAuthStore";
+import { usePageStore } from "@/store/usePageStore";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { isLogged, setIsLogged, reset } = useAuthStore();
+
+  const { isShopper, setIsShopper } = usePageStore();
 
   const { logout } = sessionRepository();
 
@@ -31,18 +34,26 @@ const Header = () => {
             className="h-10 w-auto"
           />
         </Link>
-        <Link
-          href="/"
-          className="hidden md:flex cursor-pointer hover:text-[#00FEFB]"
-        >
-          For shoppers
-        </Link>
-        <Link
-          href="/"
-          className="hidden md:flex cursor-pointer hover:text-[#00FEFB]"
+        <button
+          className={
+            !isShopper
+              ? "hidden md:flex cursor-pointer hover:text-[#00FEFB] border-b border-[#00FEFB]"
+              : "hidden md:flex cursor-pointer hover:text-[#00FEFB]"
+          }
+          onClick={() => setIsShopper(false)}
         >
           For businesses
-        </Link>
+        </button>
+        <button
+          className={
+            isShopper
+              ? "hidden md:flex cursor-pointer hover:text-[#00FEFB] border-b border-[#00FEFB]"
+              : "hidden md:flex cursor-pointer hover:text-[#00FEFB]"
+          }
+          onClick={() => setIsShopper(true)}
+        >
+          For shoppers
+        </button>
       </nav>
 
       <div className="flex items-center space-x-4">
