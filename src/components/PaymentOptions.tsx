@@ -1,16 +1,15 @@
 import { useState } from "react";
 import FlexFiPaymentSimulator from "./FlexFiPaymentSimulator";
-import { GetStartedButton } from "./GetStartedButton";
 
 export const PaymentOptions = () => {
   // State pour suivre l'option active
-  const [activeOption, setActiveOption] = useState<
-    "3x6x" | "10x12x" | "staking"
-  >("3x6x");
+  const [activeOption, setActiveOption] = useState<"6x12x" | "staking">(
+    "6x12x"
+  );
 
   return (
     <section className="relative bg-black h-3/5 flex flex-col lg:flex-row items-center justify-between px-4 md:px-12 lg:px-32 py-12 pb-0 pt-0">
-      <div className="text-start w-full lg:w-2/5 mb-12 lg:mb-0">
+      <div className="flex flex-col items-center justify-center text-start w-full lg:w-2/5 mb-12 lg:mb-0">
         {/* Title Section */}
         <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-white mb-4 lg:mb-12">
           Flexible Crypto Payment Options
@@ -21,22 +20,22 @@ export const PaymentOptions = () => {
         </p>
 
         {/* Payment Buttons */}
-        <div className="flex flex-wrap flex-col md:flex-row sm:justify-start md:justify-between lg:space-x-4 mb-8 gap-3">
+        <div className="flex flex-wrap flex-col md:flex-row justify-start md:justify-center lg:space-x-4 mb-8 gap-3">
           <button
-            className={`px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 ${
-              activeOption === "3x6x"
-                ? "bg-[#0C8CF3] text-white"
+            className={`px-2 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 ${
+              activeOption === "6x12x"
+                ? "bg-gradient-to-r from-[#00FEFB] to-[#60259E] text-white"
                 : "bg-white border border-gray-300 text-gray-900"
             }`}
-            onClick={() => setActiveOption("3x6x")}
+            onClick={() => setActiveOption("6x12x")}
           >
-            Pay in 3x or 6x
+            Pay in 6x or 12x
           </button>
 
           <button
             className={`px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 ${
               activeOption === "staking"
-                ? "bg-[#0C8CF3] text-white"
+                ? "bg-gradient-to-r from-[#00FEFB] to-[#60259E] text-white"
                 : "bg-white border border-gray-300 text-gray-900"
             }`}
             onClick={() => setActiveOption("staking")}
@@ -70,7 +69,7 @@ export const PaymentOptions = () => {
 
         {/* Payment Info Section */}
         <div className="gap-8 flex flex-col lg:flex-row justify-start">
-          {activeOption === "3x6x" && (
+          {activeOption === "6x12x" && (
             <div className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-md flex items-center space-x-4 lg:space-x-6">
               <img
                 src="/images/Pay-in-crypto-FlexFi.webp"
@@ -78,31 +77,12 @@ export const PaymentOptions = () => {
                 className="w-16 h-16 sm:w-24 sm:h-24"
               />
               <div className="text-left">
-                <h3 className="text-lg sm:text-xl font-semibold">
-                  Pay in Crypto (3x or 6x)
+                <h3 className="text-lg font-display sm:text-xl font-semibold">
+                  Pay in Crypto (6x or 12x)
                 </h3>
                 <p>
                   Split your payments over several months with the power of
                   crypto. Secure, fast, and accessible to all.
-                </p>
-              </div>
-            </div>
-          )}
-
-          {activeOption === "10x12x" && (
-            <div className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-md flex items-center space-x-4 lg:space-x-6">
-              <img
-                src="/images/Pay-in-crypto-FlexFi.webp"
-                alt="Crypto Payment"
-                className="w-16 h-16 sm:w-24 sm:h-24 "
-              />
-              <div className="text-left">
-                <h3 className="text-lg sm:text-xl font-semibold">
-                  Pay in Crypto (10x or 12x)
-                </h3>
-                <p>
-                  Enjoy flexible installment options and spread your payments
-                  across up to 12 months.
                 </p>
               </div>
             </div>
@@ -116,7 +96,7 @@ export const PaymentOptions = () => {
                 className="w-16 h-16 sm:w-24 sm:h-24 "
               />
               <div className="text-left">
-                <h3 className="text-lg sm:text-xl font-semibold">
+                <h3 className="text-lg font-display sm:text-xl font-semibold">
                   Earn Staking Rewards
                 </h3>
                 <p>Stake your USDC to earn rewards and unlock the features</p>
@@ -124,9 +104,6 @@ export const PaymentOptions = () => {
             </div>
           )}
         </div>
-
-        {/* Call to Action */}
-        <GetStartedButton />
       </div>
 
       {/* FlexFi Payment Simulator */}
