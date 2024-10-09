@@ -114,7 +114,7 @@ export const FAQFlexFi = () => {
         <h2 className="font-display text-4xl font-extrabold text-white mb-4">
           FAQ
         </h2>
-        <div className="space-y-4">
+        <div className="space-y-4 ">
           {!isShopper
             ? faqs.map((faq, index) => (
                 <div
