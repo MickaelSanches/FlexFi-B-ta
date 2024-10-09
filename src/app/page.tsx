@@ -6,7 +6,6 @@ import { PaymentOptions } from "@/components/PaymentOptions";
 import { PoweredByBanner } from "@/components/PoweredByBanner";
 import { WhyFlexFi } from "@/components/WhyFlexFi";
 import { FAQFlexFi } from "@/components/FAQFlexFi";
-// import ComingSoon from "@/components/ComingSoon";
 
 export default function Home() {
   return (

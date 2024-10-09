@@ -1,6 +1,8 @@
+import { usePageStore } from "@/store/usePageStore";
 import { GetStartedButton } from "./GetStartedButton";
 
 export const WhyFlexFi = () => {
+  const { isShopper } = usePageStore();
   return (
     <section className="bg-black font-sans py-12 px-4 md:px-32 h-full lg:bg-[url('/images/flexfi-crypto-payment-user-advantages.webp')] lg:bg-contain lg:bg-no-repeat lg:bg-right">
       <div className="container text-center">
@@ -15,31 +17,43 @@ export const WhyFlexFi = () => {
             <ul className="space-y-6 mb-16">
               <li>
                 <h3 className="text-2xl text-white font-bold font-display">
-                  Built for Flexibility
+                  {!isShopper
+                    ? `Built for Flexibility`
+                    : `Pay at Your Own Pace`}
                 </h3>
                 <p className="text-base sm:text-xl font-sans mb-8">
-                  Focus on your business, not the payments. FlexFi offers
+                  {!isShopper
+                    ? `Focus on your business, not the payments. FlexFi offers
                   seamless crypto payment solutions that adapt to your needs,
-                  effortlessly.
+                  effortlessly.`
+                    : `FlexFi allows you to stake your funds to unlock the BNPL feature while earning a return. Our BNPL solution offers multi-payment options at a competitive cost, with no hidden fees or surprise penalties.`}
                 </p>
               </li>
               <li>
                 <h3 className="text-2xl font-bold text-white font-display">
-                  Ethical and Transparent Payments
+                  {!isShopper
+                    ? `Ethical and Transparent Payments`
+                    : `Total Transparency`}
                 </h3>
                 <p className="text-base sm:text-xl font-sans mb-8">
-                  No hidden fees, no penalties. FlexFi empowers users to adjust
+                  {!isShopper
+                    ? `No hidden fees, no penalties. FlexFi empowers users to adjust
                   payment schedules as needed, ensuring fairness and full
-                  transparency.
+                  transparency.`
+                    : `FlexFi allows you to stake your funds to unlock the BNPL feature while earning a return. Our BNPL solution offers multi-payment options at a competitive cost, with no hidden fees or surprise penalties.`}
                 </p>
               </li>
               <li>
                 <h3 className="text-2xl font-bold text-white font-display">
-                  Global Crypto Payment Plans
+                  {!isShopper
+                    ? `Global Crypto Payment Plans`
+                    : `Suited to Your Lifestyle`}
                 </h3>
                 <p className="text-base sm:text-xl font-sans mb-8">
-                  FlexFi provides secure, fast, and adaptable crypto payments to
-                  meet the needs of a global audience.
+                  {!isShopper
+                    ? `FlexFi provides secure, fast, and adaptable crypto payments to
+                  meet the needs of a global audience.`
+                    : `Get what you need immediately—FlexFi offers quick approval for a smooth and hassle-free shopping experience.`}
                 </p>
               </li>
             </ul>
