@@ -37,8 +37,8 @@ const Header = () => {
         <button
           className={
             !isShopper
-              ? "hidden md:flex cursor-pointer hover:text-[#00FEFB] border-b border-[#00FEFB]"
-              : "hidden md:flex cursor-pointer hover:text-[#00FEFB]"
+              ? "cursor-pointer hover:text-[#00FEFB] border-b border-[#00FEFB]"
+              : "cursor-pointer hover:text-[#00FEFB]"
           }
           onClick={() => setIsShopper(false)}
         >
@@ -47,8 +47,8 @@ const Header = () => {
         <button
           className={
             isShopper
-              ? "hidden md:flex cursor-pointer hover:text-[#00FEFB] border-b border-[#00FEFB]"
-              : "hidden md:flex cursor-pointer hover:text-[#00FEFB]"
+              ? "cursor-pointer hover:text-[#00FEFB] border-b border-[#00FEFB]"
+              : "cursor-pointer hover:text-[#00FEFB]"
           }
           onClick={() => setIsShopper(true)}
         >
@@ -60,13 +60,13 @@ const Header = () => {
         {!isLogged ? (
           <div className="flex items-center space-x-4">
             <Link
-              className="cursor-pointer hover:scale-110 ease-out duration-300"
+              className="hidden md:flex cursor-pointer hover:scale-110 ease-out duration-300"
               href="/login"
             >
               Log in
             </Link>
             <Link
-              className="border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 py-1 cursor-pointer"
+              className="hidden md:flex border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 py-1 cursor-pointer"
               href="/register"
             >
               Sign up
@@ -122,12 +122,6 @@ const Header = () => {
 
       {isOpen && (
         <nav className="md:hidden bg-white border-t border-gray-300 flex flex-col items-center">
-          <a className="block text-gray-700 px-4 py-2 hover:bg-gray-100 cursor-pointer">
-            Solutions
-          </a>
-          <a className="block text-gray-700 px-4 py-2 hover:bg-gray-100 cursor-pointer">
-            Ressources
-          </a>
           <Link
             className="block text-gray-700 px-4 py-2 hover:bg-gray-100"
             href="/signup"
