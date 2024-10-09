@@ -66,7 +66,7 @@ const Header = () => {
               Log in
             </Link>
             <Link
-              className="hidden md:flex border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 py-1 cursor-pointer"
+              className="hidden md:flex border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 pt-1 pb-2 cursor-pointer"
               href="/register"
             >
               Sign up
