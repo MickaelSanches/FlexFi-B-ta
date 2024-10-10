@@ -20,10 +20,6 @@ const Register = () => {
   const [isPro, setIsPro] = useState(false);
 
   const [siren, setSiren] = useState("");
-  const [legalCategory, setLegalCategory] = useState("");
-  const [mainActivity, setMainActivity] = useState("");
-  const [companyName, setCompanyName] = useState("");
-  const [creationDate, setCreationDate] = useState("");
 
   const { submitEmail, submitCode, submitPassword, submitProfessionalInfo } =
     useRegisterViewModel();
@@ -180,10 +176,6 @@ const Register = () => {
                   password,
                   confirmPassword,
                   siren,
-                  mainActivity,
-                  companyName,
-                  creationDate,
-                  legalCategory,
                   isPro,
                   setError,
                   setCurrentStep,
@@ -253,76 +245,8 @@ const Register = () => {
                 />
               </div>
 
-              <div className="mb-4">
-                <label
-                  className="block text-gray-200 font-bold mb-2"
-                  htmlFor="categorie_juridique"
-                >
-                  Catégorie Juridique
-                </label>
-                <input
-                  type="text"
-                  id="categorie_juridique"
-                  value={legalCategory}
-                  onChange={(e) => setLegalCategory(e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-800 text-gray-200 border rounded-lg"
-                  required
-                />
-              </div>
-
-              <div className="mb-4">
-                <label
-                  className="block text-gray-200 font-bold mb-2"
-                  htmlFor="activite_principale"
-                >
-                  Activité Principale
-                </label>
-                <input
-                  type="text"
-                  id="activite_principale"
-                  value={mainActivity}
-                  onChange={(e) => setMainActivity(e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-800 text-gray-200 border rounded-lg"
-                  required
-                />
-              </div>
-
-              <div className="mb-4">
-                <label
-                  className="block text-gray-200 font-bold mb-2"
-                  htmlFor="denomination"
-                >
-                  Dénomination
-                </label>
-                <input
-                  type="text"
-                  id="denomination"
-                  value={companyName}
-                  onChange={(e) => setCompanyName(e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-800 text-gray-200 border rounded-lg"
-                  required
-                />
-              </div>
-
-              <div className="mb-4">
-                <label
-                  className="block text-gray-200 font-bold mb-2"
-                  htmlFor="date_creation"
-                >
-                  Date de Création
-                </label>
-                <input
-                  type="date"
-                  id="date_creation"
-                  value={creationDate}
-                  onChange={(e) => setCreationDate(e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-800 text-gray-200 border rounded-lg"
-                  required
-                />
-              </div>
-
               <button className="w-full bg-blue-500 text-white font-bold py-3 rounded-lg">
-                Submit Professional Info
+                Continue to Final Step
               </button>
             </form>
           )}

@@ -24,7 +24,6 @@ export const useLoginViewModel = () => {
         setSiren(authData.siren);
         setLegalCategory(authData.legalCategory);
         setMainActivity(authData.mainActivity);
-        setMainActivity(authData.mainActivity);
         setDenomination(authData.denomination);
       });
     } catch (error) {

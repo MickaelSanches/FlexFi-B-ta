@@ -31,7 +31,7 @@ export const PoweredByBanner = () => {
           <img
             src="/logo/flexicon.webp"
             alt="logo FlexFi"
-            className="h-28 h-auto md:h-32 object-contain neon-glow"
+            className="h-28 md:h-32 object-contain neon-glow"
           />
 
           {/* Partners Section */}

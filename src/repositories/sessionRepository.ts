@@ -233,10 +233,6 @@ export const sessionRepository = () => {
     password: string,
     confirmPassword: string,
     siren: string,
-    mainActivity: string,
-    companyName: string,
-    creationDate: string,
-    legalCategory: string,
     isPro: boolean,
     setCurrentStep: React.Dispatch<React.SetStateAction<number>>,
     setSeedPhrase: React.Dispatch<React.SetStateAction<string>>,
@@ -269,10 +265,6 @@ export const sessionRepository = () => {
             email,
             password,
             siren,
-            mainActivity,
-            companyName,
-            creationDate,
-            legalCategory,
           }
         );
       } else {
