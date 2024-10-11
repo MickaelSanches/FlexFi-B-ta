@@ -11,9 +11,9 @@ const Footer = () => {
           <h5 className="text-white font-semibold font-display">FlexFi</h5>
           <ul className="space-y-2">
             <li>
-              <a href="#" className="hover:underline">
+              <Link href="/team" className="hover:underline">
                 Team
-              </a>
+              </Link>
             </li>
             <li>
               <a href="#" className="hover:underline">
