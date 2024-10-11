@@ -8,7 +8,7 @@ const Terms = () => {
       <p className="text-2xl pt-2 font-display border-b border-[#00FEFB] mb-20">
         Terms of Use
       </p>
-      <h3 className="font-display text-4xl mb-6">Terms of Use</h3>
+      <h3 className="font-display text-6xl mb-6">Terms of Use</h3>
       <p className="mb-5 font-sans text-lg"> Last update {updateDate}</p>
       <p className="mb-8 font-sans text-lg">
         {" "}
@@ -79,14 +79,6 @@ const Terms = () => {
             FlexFi may suspend or terminate your account at any time if you
             violate these terms. You may also terminate your account at any time
             by contacting our customer service.
-          </p>
-        </li>
-        <li className="mb-8">
-          <h4 className="mb-4 font-display text-xl">1. Acceptance of Terms</h4>
-          <p className="font-sans text-lg">
-            By accessing FlexFi, you agree to be bound by these terms of use and
-            all applicable laws and regulations. If you do not agree with these
-            terms, you must not use the platform.
           </p>
         </li>
         <li className="mb-8">

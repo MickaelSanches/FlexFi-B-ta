@@ -92,9 +92,12 @@ const Footer = () => {
             >
               Terms
             </Link>
-            <a href="#" className="text-sm text-gray-400 hover:underline">
+            <Link
+              href="/privacy"
+              className="text-sm text-gray-400 hover:underline"
+            >
               Privacy
-            </a>
+            </Link>
           </div>
         </div>
       </div>
