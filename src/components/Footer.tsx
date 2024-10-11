@@ -86,9 +86,12 @@ const Footer = () => {
             © 2024 FlexFi. All rights reserved
           </p>
           <div className="space-x-4">
-            <a href="#" className="text-sm text-gray-400 hover:underline">
+            <Link
+              href="/terms"
+              className="text-sm text-gray-400 hover:underline"
+            >
               Terms
-            </a>
+            </Link>
             <a href="#" className="text-sm text-gray-400 hover:underline">
               Privacy
             </a>
