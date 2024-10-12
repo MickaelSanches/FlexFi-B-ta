@@ -4,6 +4,7 @@ import Link from "next/link";
 import { sessionRepository } from "@/repositories/sessionRepository";
 import { useAuthStore } from "@/store/useAuthStore";
 import { usePageStore } from "@/store/usePageStore";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +13,19 @@ const Header = () => {
   const { isShopper, setIsShopper } = usePageStore();
 
   const { logout } = sessionRepository();
+
+  const router = useRouter();
+  const scrollToFAQ = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    await router.push("/");
+
+    setTimeout(() => {
+      const faqSection = document.getElementById("faq-section");
+      if (faqSection) {
+        faqSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 500);
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -94,12 +108,12 @@ const Header = () => {
         )}
 
         <div className="hidden md:flex border-l border-gray-300 h-6"></div>
-        <Link
+        <button
           className="hidden md:flex cursor-pointer hover:scale-110 ease-out duration-300"
-          href="/help"
+          onClick={scrollToFAQ}
         >
           Help
-        </Link>
+        </button>
       </div>
 
       <div className="md:hidden">

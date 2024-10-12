@@ -109,7 +109,7 @@ export const FAQFlexFi = () => {
   ];
 
   return (
-    <div className="bg-black py-12">
+    <div id="faq-section" className="bg-black py-12">
       <div className="container mx-auto px-4 md:px-32">
         <h2 className="font-display text-4xl font-extrabold text-white mb-4">
           FAQ
