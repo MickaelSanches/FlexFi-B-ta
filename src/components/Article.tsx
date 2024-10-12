@@ -6,7 +6,7 @@ interface ArticleCompProps {
 
 const ArticleComp = ({ article }: ArticleCompProps) => {
   return (
-    <div className="flex flex-col bg-black rounded-lg shadow-lg max-w-full md:max-w-md cursor-pointer mr-0 md:mr-10 mb-10">
+    <div className="flex flex-col bg-black rounded-lg shadow-lg max-w-full md:max-w-md cursor-pointer mr-0 md:mr-10 mb-10 hover:scale-105 transition ease-in-out delay-75">
       {/* Image section */}
       <img
         className="w-full rounded-lg mb-4"
