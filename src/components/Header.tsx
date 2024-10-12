@@ -34,26 +34,30 @@ const Header = () => {
             className="h-10 w-auto"
           />
         </Link>
-        <button
-          className={
-            !isShopper
-              ? "cursor-pointer hover:text-[#00FEFB] border-b border-[#00FEFB]"
-              : "cursor-pointer hover:text-[#00FEFB]"
-          }
-          onClick={() => setIsShopper(false)}
-        >
-          For businesses
-        </button>
-        <button
-          className={
-            isShopper
-              ? "cursor-pointer hover:text-[#00FEFB] border-b border-[#00FEFB]"
-              : "cursor-pointer hover:text-[#00FEFB]"
-          }
-          onClick={() => setIsShopper(true)}
-        >
-          For shoppers
-        </button>
+        <Link href="/">
+          <button
+            className={
+              !isShopper
+                ? "cursor-pointer hover:text-[#00FEFB] border-b border-[#00FEFB]"
+                : "cursor-pointer hover:text-[#00FEFB]"
+            }
+            onClick={() => setIsShopper(false)}
+          >
+            For businesses
+          </button>
+        </Link>
+        <Link href="/">
+          <button
+            className={
+              isShopper
+                ? "cursor-pointer hover:text-[#00FEFB] border-b border-[#00FEFB]"
+                : "cursor-pointer hover:text-[#00FEFB]"
+            }
+            onClick={() => setIsShopper(true)}
+          >
+            For shoppers
+          </button>
+        </Link>
       </nav>
 
       <div className="flex items-center space-x-4">
