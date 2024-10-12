@@ -2,13 +2,10 @@ import React from "react";
 
 const Team = () => {
   return (
-    <>
+    <div className="relative bg-black h-auto flex flex-col items-start justify-between px-4 md:px-12 lg:px-32 mb-20">
       <img src="/images/Team-BNPL-FlexFi.webp" alt="brain image" />
-      <h2 className="font-display absolute right-52 text-9xl bottom-60">
-        Team
-      </h2>
-      <div className="relative bg-black h-3/5 flex flex-col items-start justify-between px-4 md:px-12 lg:px-32">
-        <h3 className="font-display mt-20 mb-10 text-6xl">Team</h3>
+      <div className="relative bg-black h-3/5 flex flex-col items-start justify-between">
+        <h2 className="font-display mt-20 mb-10 text-6xl">Team</h2>
         <p className="font-display mb-10">
           “A new way to approach payments, <br /> free from the traditional
           constraints of the banking system”.
@@ -37,7 +34,7 @@ const Team = () => {
         src="/images/Team-FlexFi.webp"
         alt="team"
       />
-    </>
+    </div>
   );
 };
 
