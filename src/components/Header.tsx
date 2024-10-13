@@ -15,6 +15,7 @@ const Header = () => {
   const { logout } = sessionRepository();
 
   const router = useRouter();
+
   const scrollToFAQ = async (e: React.MouseEvent) => {
     e.preventDefault();
     await router.push("/");
@@ -93,7 +94,7 @@ const Header = () => {
         ) : (
           <div className="flex gap-2">
             <Link
-              className="border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 py-1 cursor-pointer"
+              className="hidden md:flex border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 py-1 cursor-pointer"
               href="/dashboard"
             >
               Dashboard
@@ -139,26 +140,78 @@ const Header = () => {
       </div>
 
       {isOpen && (
-        <nav className="md:hidden bg-white border-t border-gray-300 flex flex-col items-center">
-          <Link
-            className="block text-gray-700 px-4 py-2 hover:bg-gray-100"
-            href="/signup"
+        <div className="fixed inset-0 bg-gradient-to-r from-black via-gray-900 to-black bg-opacity-95 flex flex-col justify-center items-center z-50 transition-opacity duration-300">
+          <nav className="flex flex-col items-center space-y-8">
+            {!isLogged ? (
+              <>
+                <Link
+                  href="/register"
+                  className="text-white text-4xl font-bold hover:text-[#00FEFB] transition duration-500 transform hover:scale-110"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Sign up
+                </Link>
+                <Link
+                  href="/login"
+                  className="text-white text-4xl font-bold hover:text-[#00FEFB] transition duration-500 transform hover:scale-110"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Log in
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/dashboard"
+                  className="text-white text-4xl font-bold hover:text-[#00FEFB] transition duration-500 transform hover:scale-110"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Dashboard
+                </Link>
+                <button
+                  className="text-white text-4xl font-bold hover:text-[#00FEFB] transition duration-500 transform hover:scale-110"
+                  onClick={() => {
+                    handleLogout();
+                    setIsOpen(false);
+                  }}
+                >
+                  Logout
+                </button>
+              </>
+            )}
+
+            <button
+              className="text-white text-4xl font-bold hover:text-[#00FEFB] transition duration-500 transform hover:scale-110"
+              onClick={(e) => {
+                scrollToFAQ(e);
+                setIsOpen(false);
+              }}
+            >
+              Help
+            </button>
+          </nav>
+
+          {/* Bouton pour fermer le menu */}
+          <button
+            onClick={toggleMenu}
+            className="absolute top-6 right-6 text-white hover:text-red-400 transition duration-300 focus:outline-none"
           >
-            Sign up
-          </Link>
-          <Link
-            className="block text-gray-700 px-4 py-2 hover:bg-gray-100"
-            href="/login"
-          >
-            Log in
-          </Link>
-          <Link
-            className="block text-gray-700 px-4 py-2 hover:bg-gray-100"
-            href="/help"
-          >
-            Help
-          </Link>
-        </nav>
+            <svg
+              className="w-10 h-10"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
+          </button>
+        </div>
       )}
     </header>
   );
