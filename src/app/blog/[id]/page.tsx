@@ -22,7 +22,7 @@ const ArticleDetail = () => {
         alt={article.title}
         className="w-full h-auto rounded-lg mb-8"
       />
-      <h1 className="font-display text-4xl mb-6 text-white w-3/6">
+      <h1 className="md:text-4xl font-display text-3xl mb-6 text-white ">
         {article.title}
       </h1>
 
