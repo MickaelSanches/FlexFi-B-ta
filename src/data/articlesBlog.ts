@@ -6,12 +6,8 @@ export const articlesBlog: Article[] = [
     date: "13 October 2024",
     urlImageMini: "/images/Mini-web3-bnpl-FlexFi.webp",
     mainUrlImage: "/images/articles/Article-web3-FlexFi.webp",
-    titleMini:
-      "How Web3 is Revolutionizing Buy Now, Pay Later: The Future of...",
     title:
       "How Web3 is Revolutionizing Buy Now, Pay Later: The Future of Transactions without Banks",
-    resum:
-      "In a world where technology evolves at a rapid pace, **Web3** is emerging as a true revolution in the realm of financial transactions. At the heart of...",
     introduction: `In a world where technology evolves at a rapid pace, Web3 is emerging as a true revolution in the realm of financial transactions. At the heart of this transformation is a key innovation: <strong>Buy Now, Pay Later with cryptocurrencies</strong> (BNPL). This technology is redefining how consumers and merchants interact, without the need for traditional banking intermediaries. <br/><br/> 
 Let’s explore how Web3 is revolutionizing BNPL and what it means for the future of payments.`,
     contentSections: [
@@ -62,13 +58,9 @@ In the near future, <strong>global transactions</strong> could become as simple 
     date: "13 October 2024",
     urlImageMini: "/images/Mini-Smartcontracts-FlexFi.webp",
     mainUrlImage: "/images/articles/smartContract.png",
-    titleMini:
-      "Smart Contracts and Transaction Security in BNPL: Why FlexFi is...",
 
     title:
       "Smart Contracts and Transaction Security in BNPL: Why FlexFi is a Game Changer",
-    resum:
-      "With the rise of cryptocurrencies and blockchain technologies, the term <strong>smart contracts</strong> frequently comes up when discussing transaction security and...",
     introduction: `With the rise of cryptocurrencies and blockchain technologies, the term <strong>smart contracts</strong> frequently comes up when discussing transaction security and transparency. In the context of <strong>Buy Now, Pay Later</strong> (BNPL), these smart contracts are reshaping how payments are handled, making the process safer and more efficient for both consumers and merchants.<br/> <br/>
 
 In this article, we will explore how smart contracts revolutionize the security of BNPL transactions and why <strong>FlexFi</strong> stands out as a leader in this field.`,

@@ -27,14 +27,15 @@ const ArticleComp = ({ article }: ArticleCompProps) => {
       </div>
 
       {/* Article title */}
-      <h3 className="font-display text-white text-2xl mb-2">
-        {article.titleMini}
+      <h3 className="font-display text-white text-2xl mb-2 line-clamp-3">
+        {article.title}
       </h3>
 
       {/* Article summary */}
-      <p className="font-sans text-white text-sm leading-relaxed">
-        {article.resum}
-      </p>
+      <p
+        className="font-sans text-white text-sm leading-relaxed line-clamp-3"
+        dangerouslySetInnerHTML={{ __html: article.introduction }}
+      ></p>
     </div>
   );
 };
