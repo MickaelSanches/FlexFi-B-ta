@@ -50,7 +50,7 @@ const Header = () => {
           />
         </Link>
 
-        <style jsx>{`
+        <style>{`
           .neon-effect {
             filter: drop-shadow(0 0 8px #00fefb) brightness(1.2);
             transition: transform 0.3s ease, filter 0.3s ease;
