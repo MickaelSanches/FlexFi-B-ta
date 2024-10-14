@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useCrateSaleViewModel } from "@/viewmodels/useCreateSaleViewModel";
 import { useAuthStore } from "@/store/useAuthStore";
 
-
 const CreateSale = () => {
   const [price, setPrice] = useState("");
   const [installments, setInstallments] = useState<number | null>(null);
@@ -16,7 +15,7 @@ const CreateSale = () => {
       setPrice,
       setIsModalOpen,
       setInstallments,
-      setBuyerPublicKey,
+      setBuyerPublicKey
     );
 
   const onSubmit = (e: React.FormEvent) => {
@@ -42,7 +41,7 @@ const CreateSale = () => {
       {/* Modale */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-gray-950 rounded-lg p-6 w-96 shadow-lg">
+          <div className="bg-gray-900 border border-[#00FEFB] rounded-lg p-6 w-96 shadow-lg">
             <h2 className="text-xl font-semibold mb-4">Create a New Sale</h2>
             <form onSubmit={onSubmit}>
               <div className="mb-4">
