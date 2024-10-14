@@ -46,9 +46,48 @@ const Header = () => {
           <img
             src="/logo/flexfi-logo.png"
             alt="FlexFi Logo"
-            className="h-10 w-auto"
+            className="h-10 w-auto neon-effect"
           />
         </Link>
+
+        <style jsx>{`
+          .neon-effect {
+            filter: drop-shadow(0 0 8px #00fefb) brightness(1.2);
+            transition: transform 0.3s ease, filter 0.3s ease;
+          }
+
+          .neon-effect:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 12px #00fefb) brightness(1.5);
+          }
+
+          .neon-text {
+            position: relative;
+          }
+
+          .neon-text::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 9999px;
+            background: linear-gradient(
+              90deg,
+              rgba(0, 254, 251, 0.3),
+              rgba(0, 30, 44, 0.3)
+            );
+            filter: blur(6px);
+            z-index: -1;
+          }
+
+          .shadow-glow {
+            box-shadow: 0 0 15px rgba(0, 254, 251, 0.6),
+              0 0 30px rgba(0, 254, 251, 0.3);
+          }
+        `}</style>
+
         <Link href="/">
           <button
             className={
@@ -73,6 +112,9 @@ const Header = () => {
             For shoppers
           </button>
         </Link>
+        <span className="ml-2 text-xs md:text-sm bg-[#00FEFB] bg-opacity-30 text-[#00FEFB] border border-[#00FEFB] px-3 py-1 rounded-full font-sans neon-text shadow-glow">
+          BETA
+        </span>
       </nav>
 
       <div className="flex items-center space-x-4">
