@@ -13,7 +13,7 @@ const Purchases: React.FC = () => {
   const [filteredPurchases, setFilteredPurchases] = useState<Purchase[]>([]);
   const { onInit, filterPurchases, onPaymentButtonClick } =
     useMyPurchasesViewModel(setPurchases, setFilteredPurchases);
-  const { siren } = useAuthStore();
+  const { siren, isLogged } = useAuthStore();
 
   // État pour le tri
   const [sortOrder, setSortOrder] = useState<
@@ -27,8 +27,10 @@ const Purchases: React.FC = () => {
   >("all");
 
   useEffect(() => {
-    onInit();
-  }, []);
+    if (isLogged) {
+      onInit();
+    }
+  }, [isLogged]);
 
   useEffect(() => {
     const filtered = filterPurchases(purchases, sortOrder);
