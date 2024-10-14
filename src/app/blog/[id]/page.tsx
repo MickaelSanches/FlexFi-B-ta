@@ -22,13 +22,13 @@ const ArticleDetail = () => {
         alt={article.title}
         className="w-full h-auto rounded-lg mb-8"
       />
-      <h1 className="md:text-4xl font-display text-3xl mb-6 text-white ">
+      <h1 className="md:text-4xl text-3xl font-display mb-6 text-white">
         {article.title}
       </h1>
 
       {/* Introduction */}
       <p
-        className="font-sans text-lg text-white mb-8"
+        className="font-sans text-lg text-white leading-relaxed mb-10"
         dangerouslySetInnerHTML={{ __html: article.introduction }}
       ></p>
 
@@ -38,7 +38,7 @@ const ArticleDetail = () => {
           key={index}
           className={`mb-8 ${
             index === 0
-              ? "flex flex-col lg:flex-row justify-between items-start"
+              ? "flex flex-col xl:flex-row justify-between items-start"
               : ""
           }`}
         >
@@ -49,10 +49,8 @@ const ArticleDetail = () => {
 
             {/* Contenu HTML rendu */}
             <p
-              className={`${
-                index === 0
-                  ? "font-sans text-lg leading-relaxed text-white w-10/12 text-justify"
-                  : "font-sans text-lg leading-relaxed text-white"
+              className={`font-sans text-lg leading-relaxed text-white ${
+                index === 0 ? "w-10/12 text-justify" : ""
               }`}
               dangerouslySetInnerHTML={{ __html: section.content }}
             ></p>
@@ -63,18 +61,14 @@ const ArticleDetail = () => {
             <div
               className={`${
                 index === 0
-                  ? "lg:w-1/3 lg:ml-6 mb-10"
+                  ? "lg:size-3/6 lg:ml-6 mb-10"
                   : "w-full flex justify-center mb-10"
               }`}
             >
               <img
                 src={section.imageUrl}
                 alt={section.title}
-                className={`${
-                  index === 0
-                    ? "w-full h-auto rounded-lg"
-                    : "w-full md:w-3/4 lg:w-2/3 h-auto rounded-lg mt-4"
-                }`}
+                className="w-full h-auto rounded-lg"
               />
             </div>
           )}
@@ -83,7 +77,7 @@ const ArticleDetail = () => {
 
       {/* Conclusion */}
       <section>
-        <h2 className="text-2xl font-display mt-10 mb-4 text-white">
+        <h2 className="text-2xl font-display font-semibold mb-4 text-white">
           {article.id == "2"
             ? "Conclusion: The Future of BNPL Transactions with Smart Contracts"
             : "Conclusion"}

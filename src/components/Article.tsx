@@ -21,11 +21,15 @@ const ArticleComp = ({ article }: ArticleCompProps) => {
           src="/logo/flexicon.webp"
           alt="logo flexfi"
         />
-        <p className="text-teal-400 text-xs">flex-fi.io / xx Month 2024</p>
+        <p className="text-teal-400 text-lg font-sans">
+          flex-fi.io / {article.date}
+        </p>
       </div>
 
       {/* Article title */}
-      <h3 className="font-display text-white text-2xl mb-2">{article.title}</h3>
+      <h3 className="font-display text-white text-2xl mb-2">
+        {article.titleMini}
+      </h3>
 
       {/* Article summary */}
       <p className="font-sans text-white text-sm leading-relaxed">

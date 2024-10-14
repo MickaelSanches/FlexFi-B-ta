@@ -15,10 +15,6 @@ const Blog = () => {
           alt="brain image"
           className="w-full"
         />
-        {/* Titre "Blog" positionné relativement à l'image */}
-        <h2 className="text-black font-display absolute right-10 lg:right-52 text-6xl lg:text-9xl bottom-40 lg:bottom-60">
-          Blog
-        </h2>
       </div>
 
       {/* Contenu du blog */}

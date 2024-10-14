@@ -6,8 +6,10 @@ export interface ContentSection {
 
 export interface Article {
   id: string;
+  date: string;
   urlImageMini: string; // Image principale de l'article
   mainUrlImage: string;
+  titleMini: string;
   title: string; // Titre de l'article
   resum: string; // Résumé court pour la page de blog
   introduction: string;

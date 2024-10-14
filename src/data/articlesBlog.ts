@@ -3,12 +3,15 @@ import { Article } from "@/@Types/article";
 export const articlesBlog: Article[] = [
   {
     id: "1",
+    date: "13 October 2024",
     urlImageMini: "/images/Mini-web3-bnpl-FlexFi.webp",
     mainUrlImage: "/images/articles/Article-web3-FlexFi.webp",
+    titleMini:
+      "How Web3 is Revolutionizing Buy Now, Pay Later: The Future of...",
     title:
       "How Web3 is Revolutionizing Buy Now, Pay Later: The Future of Transactions without Banks",
     resum:
-      "In a world where technology evolves at a rapid pace, Web3 is emerging as a true revolution in the realm of financial transactions. At the heart of this transformation is a key innovation: Buy Now, Pay Later (BNPL) without traditional banks...",
+      "In a world where technology evolves at a rapid pace, **Web3** is emerging as a true revolution in the realm of financial transactions. At the heart of...",
     introduction: `In a world where technology evolves at a rapid pace, Web3 is emerging as a true revolution in the realm of financial transactions. At the heart of this transformation is a key innovation: <strong>Buy Now, Pay Later with cryptocurrencies</strong> (BNPL). This technology is redefining how consumers and merchants interact, without the need for traditional banking intermediaries. <br/><br/> 
 Let’s explore how Web3 is revolutionizing BNPL and what it means for the future of payments.`,
     contentSections: [
@@ -56,39 +59,43 @@ In the near future, <strong>global transactions</strong> could become as simple 
   },
   {
     id: "2",
+    date: "13 October 2024",
     urlImageMini: "/images/Mini-Smartcontracts-FlexFi.webp",
     mainUrlImage: "/images/articles/smartContract.png",
+    titleMini:
+      "Smart Contracts and Transaction Security in BNPL: Why FlexFi is...",
+
     title:
       "Smart Contracts and Transaction Security in BNPL: Why FlexFi is a Game Changer",
     resum:
-      "With the rise of cryptocurrencies and blockchain technologies, the term smart contracts frequently comes up when discussing transaction security and transparency. In the world of BNPL (Buy Now, Pay Later), smart contracts can strengthen the systems that provide fast and more efficient BNPL for both consumers and vendors...",
-    introduction: `With the rise of cryptocurrencies and blockchain technologies, the term **smart contracts** frequently comes up when discussing transaction security and transparency. In the context of **Buy Now, Pay Later** (BNPL), these smart contracts are reshaping how payments are handled, making the process safer and more efficient for both consumers and merchants.<br/> <br/>
+      "With the rise of cryptocurrencies and blockchain technologies, the term <strong>smart contracts</strong> frequently comes up when discussing transaction security and...",
+    introduction: `With the rise of cryptocurrencies and blockchain technologies, the term <strong>smart contracts</strong> frequently comes up when discussing transaction security and transparency. In the context of <strong>Buy Now, Pay Later</strong> (BNPL), these smart contracts are reshaping how payments are handled, making the process safer and more efficient for both consumers and merchants.<br/> <br/>
 
-In this article, we will explore how smart contracts revolutionize the security of BNPL transactions and why **FlexFi** stands out as a leader in this field.`,
+In this article, we will explore how smart contracts revolutionize the security of BNPL transactions and why <strong>FlexFi</strong> stands out as a leader in this field.`,
     contentSections: [
       {
         title: "What is a Smart Contract?",
-        content: `A **smart contract** is a self-executing program that runs automatically when predefined conditions are met. Unlike traditional contracts, which require intermediaries (such as banks or lawyers) to enforce them, smart contracts operate autonomously on the **blockchain**. <br/> <br/>
+        content: `A <strong>smart contract</strong> is a self-executing program that runs automatically when predefined conditions are met. Unlike traditional contracts, which require intermediaries (such as banks or lawyers) to enforce them, smart contracts operate autonomously on the <strong>blockchain</strong>. <br/> <br/>
 
 One of the great advantages of smart contracts is that they are: <br/>
-- **Transparent**: All parties can view the terms of the contract and see when and how it will be executed. <br/>
-- **Automatic**: Once the conditions are met, execution occurs without human intervention. <br/>
-- **Secure**: The information and funds are protected by blockchain technology, making them virtually impossible to alter or hack.`,
+- <strong>Transparent</strong>: All parties can view the terms of the contract and see when and how it will be executed. <br/>
+- <strong>Automatic</strong>: Once the conditions are met, execution occurs without human intervention. <br/>
+- <strong>Secure</strong>: The information and funds are protected by blockchain technology, making them virtually impossible to alter or hack.`,
         imageUrl:
           "/images/articles/Transparent-automatic-secure-smartcontracts-FlexFi.webp",
       },
       {
         title: "Why Security is Crucial in BNPL Transactions",
-        content: `**BNPL** allows consumers to purchase products and pay for them in installments, usually over a few months. While convenient, this model carries risks for both consumers and merchants: <br/>
-- **For consumers**: Hidden fees, high interest rates, or even fraud can create financial difficulties. <br/>
-- **For merchants**: The risk of non-payment by customers or delays in receiving funds can impact cash flow. <br/> <br/>
+        content: `<strong>BNPL</strong> allows consumers to purchase products and pay for them in installments, usually over a few months. While convenient, this model carries risks for both consumers and merchants: <br/>
+- <strong>For consumers</strong>: Hidden fees, high interest rates, or even fraud can create financial difficulties. <br/>
+- <strong>For merchants</strong>: The risk of non-payment by customers or delays in receiving funds can impact cash flow. <br/> <br/>
 
-In traditional BNPL systems, there is always a **reliance on banking institutions** to validate and process these transactions. This adds extra costs, delays, and sometimes a lack of transparency in the terms of the agreement.`,
+In traditional BNPL systems, there is always a <strong>reliance on banking institutions</strong> to validate and process these transactions. This adds extra costs, delays, and sometimes a lack of transparency in the terms of the agreement.`,
         imageUrl: "/images/articles/Smartcontracts-Security-FlexFi.webp",
       },
       {
         title: "How Smart Contracts Secure BNPL Transactions",
-        content: `**Smart contracts** offer an innovative and reliable solution to these problems. Here's how: <br/> <br/>
+        content: `<strong>Smart contracts</strong> offer an innovative and reliable solution to these problems. Here's how: <br/> <br/>
 
 Full Transparency <br/>
 All the terms and conditions of the transactions are embedded in the smart contract and are accessible at any time by the involved parties. This leaves no room for hidden fees or unexpected changes to the agreement. <br/> <br/>
@@ -97,33 +104,33 @@ Automatic Execution <br/>
 Once the customer agrees to pay in installments through a smart contract, the terms are automatically applied without any further intervention. For example, payments are made on the scheduled dates, and the merchant receives their money quickly and securely. <br/> <br/>
 
 Fund Security <br/>
-Smart contracts ensure that funds are protected throughout the process. If a consumer misses a payment, the staked funds can be used to cover the unpaid amount, **reducing the risk of loss** for the merchant. <br/> <br/>
+Smart contracts ensure that funds are protected throughout the process. If a consumer misses a payment, the staked funds can be used to cover the unpaid amount, <strong>reducing the risk of loss</strong> for the merchant. <br/> <br/>
 
 Immutability of Transactions <br/>
 Once a transaction is recorded on the blockchain via a smart contract, it cannot be altered. This guarantees both parties that the terms of the agreement are upheld and that no one can tamper with them.`,
       },
       {
         title: "FlexFi's Scoring System Securing BNPL with Intelligence",
-        content: `At **FlexFi**, we go a step further by combining the efficiency of smart contracts with an advanced **scoring system** to further secure BNPL transactions. This system evaluates the reliability of users based on their payment history. <br/> <br/>
+        content: `At <strong>FlexFi</strong>, we go a step further by combining the efficiency of smart contracts with an advanced <strong>scoring system</strong> to further secure BNPL transactions. This system evaluates the reliability of users based on their payment history. <br/> <br/>
 
 #### How the scoring system works: <br/>
-- **Each user starts with a base score** (for example, 50/100). <br/>
-- **On-time payments** increase the user's score, while late or missed payments reduce it. <br/>
-- **A high score** allows users to unlock additional benefits, such as partner coupons or greater flexibility in payment options. <br/>
-- **Staked funds** act as a guarantee: if a payment is missed, the smart contract automatically deducts the staked funds to cover the owed amount, ensuring maximum security for merchants. <br/> <br/>
+- <strong>Each user starts with a base score</strong> (for example, 50/100). <br/>
+- <strong>On-time payments</strong> increase the user's score, while late or missed payments reduce it. <br/>
+- <strong>A high score</strong> allows users to unlock additional benefits, such as partner coupons or greater flexibility in payment options. <br/>
+- <strong>Staked funds</strong> act as a guarantee: if a payment is missed, the smart contract automatically deducts the staked funds to cover the owed amount, ensuring maximum security for merchants. <br/> <br/>
 
-Through this approach, FlexFi ensures that **merchants receive their payments** on time, while offering consumers the flexibility they need. All of this is executed transparently and securely through smart contracts.`,
+Through this approach, FlexFi ensures that <strong>merchants receive their payments</strong> on time, while offering consumers the flexibility they need. All of this is executed transparently and securely through smart contracts.`,
         imageUrl: "/images/articles/Security-Smartcontracts-FlexFi.webp",
       },
       {
         title: "Why FlexFi is a Game Changer in BNPL with Smart Contracts",
-        content: `FlexFi is more than just a BNPL service. We leverage the power of **smart contracts** to provide maximum security and transparency for all transactions. Here’s why we stand out: <br/>
-- **Ease of use**: Users don’t need in-depth knowledge of cryptocurrencies or blockchain to benefit from our service. Everything is seamlessly integrated for an optimal user experience. <br/>
-- **Protection for both parties**: Smart contracts protect consumers from hidden fees and merchants from non-payment. <br/>
-- **Future innovations**: FlexFi continues to develop new features to enhance transaction security and offer even more flexibility to users.`,
+        content: `FlexFi is more than just a BNPL service. We leverage the power of <strong>smart contracts</strong> to provide maximum security and transparency for all transactions. Here’s why we stand out: <br/>
+- <strong>Ease of use</strong>: Users don’t need in-depth knowledge of cryptocurrencies or blockchain to benefit from our service. Everything is seamlessly integrated for an optimal user experience. <br/>
+- <strong>Protection for both parties</strong>: Smart contracts protect consumers from hidden fees and merchants from non-payment. <br/>
+- <strong>Future innovations</strong>: FlexFi continues to develop new features to enhance transaction security and offer even more flexibility to users.`,
       },
     ],
-    conclusion: `The future of BNPL payments lies in **blockchain** and **smart contracts**. With FlexFi, we offer a BNPL solution that is safer, more transparent, and more flexible than ever before. By adopting these technologies, we are paving the way for decentralized and autonomous transactions, where security and trust are built directly into the code. <br/> <br/>
+    conclusion: `The future of BNPL payments lies in <strong>blockchain</strong> and <strong>smart contracts</strong>. With FlexFi, we offer a BNPL solution that is safer, more transparent, and more flexible than ever before. By adopting these technologies, we are paving the way for decentralized and autonomous transactions, where security and trust are built directly into the code. <br/> <br/>
 
 Whether you’re a merchant looking to reduce risk and simplify your payments, or a consumer seeking flexibility without hidden fees, FlexFi is here for you. Through the integration of smart contracts, we are redefining the future of financial transactions.`,
   },
