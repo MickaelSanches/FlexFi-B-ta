@@ -153,12 +153,12 @@ const PurchasesItem: React.FC<PurchasesItemProps> = ({
 
       {/* Modale de confirmation */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white rounded-lg p-8 w-full sm:w-96">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-gray-900 border border-[#00FEFB] rounded-lg p-6 w-96 shadow-lg">
             <h2 className="text-xl font-semibold mb-4">
               Confirmation de paiement
             </h2>
-            <p className="text-gray-700 mb-6">
+            <p className="text-gray-300 mb-6">
               Are you sure you want to pay this installment?
             </p>
             <div className="flex justify-end space-x-4">
