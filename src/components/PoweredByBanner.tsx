@@ -6,12 +6,12 @@ export const PoweredByBanner = () => {
   ];
 
   return (
-    <div className="bg-slate-950 py-4 overflow-hidden">
-      <div className="container mx-auto text-center marquee">
+    <div className="bg-slate-950 py-4 overflow-hidden flex justify-center items-center">
+      <div className="container mx-auto text-center ">
         {/* Section with Powered by and Partners on the same line */}
-        <div className="flex flex-col md:flex-row justify-center gap-10 items-center md:space-x-16 space-y-10 md:space-y-0">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-10 md:space-x-16 space-y-10 md:space-y-0">
           {/* Powered by Section */}
-          <div>
+          <div className="flex flex-col items-center">
             <h2 className="text-2xl md:text-2xl font-extrabold text-white mb-1 mt-5">
               Powered by
             </h2>
@@ -28,14 +28,16 @@ export const PoweredByBanner = () => {
           </div>
 
           {/* Central logo */}
-          <img
-            src="/logo/flexicon.webp"
-            alt="logo FlexFi"
-            className="h-28 md:h-32 object-contain neon-glow"
-          />
+          <div className="flex justify-center items-center">
+            <img
+              src="/logo/flexicon.webp"
+              alt="logo FlexFi"
+              className="h-28 md:h-32 object-contain neon-glow"
+            />
+          </div>
 
           {/* Partners Section */}
-          <div className="flex-col justify-center items-center">
+          <div className="flex flex-col items-center">
             <h2 className="text-2xl md:text-2xl font-extrabold text-white mt-6 mb-5 md:mb-0">
               Partner
             </h2>
@@ -62,26 +64,7 @@ export const PoweredByBanner = () => {
           display: flex;
           animation: scroll 15s linear infinite;
         }
-        @keyframes scroll {
-          0% { transform: translateX(100%); }
-          100% { transform: translateX(-100%); }
-        }
-        /* Responsive styles pour les petits écrans */
-        @media (max-width: 768px) {
-          .marquee {
-            animation: none;
-            flex-direction: column;
-          }
-          .marquee > div {
-            flex-direction: column;
-            align-items: center;
-          }
-          .marquee img {
-            width: 80%;
-            max-width: 200px;
-            margin-bottom: 10px;
-          }
-        }
+        
       `}</style>
     </div>
   );

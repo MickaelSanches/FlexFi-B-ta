@@ -1,5 +1,5 @@
 import { usePageStore } from "@/store/usePageStore";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface FAQItem {
   question: string;
@@ -14,6 +14,33 @@ export const FAQFlexFi = () => {
   };
 
   const { isShopper } = usePageStore();
+
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true); // L'élément est visible, activer l'animation
+          }
+        });
+      },
+      { threshold: 0.1 } // 10% visible avant de déclencher
+    );
+
+    const currentSection = sectionRef.current;
+    if (currentSection) {
+      observer.observe(currentSection);
+    }
+
+    return () => {
+      if (currentSection) {
+        observer.unobserve(currentSection);
+      }
+    };
+  }, []);
 
   const faqs: FAQItem[] = [
     {
@@ -109,12 +136,24 @@ export const FAQFlexFi = () => {
   ];
 
   return (
-    <div id="faq-section" className="bg-black py-12">
+    <section ref={sectionRef} id="faq-section" className="bg-black py-12">
       <div className="container mx-auto px-4 md:px-32">
-        <h2 className="font-display text-4xl font-extrabold text-white mb-4">
+        <h2
+          className={`font-display text-4xl font-extrabold text-white mb-4 ${
+            isVisible
+              ? "motion-preset-slide-right motion-delay-[400ms]"
+              : "opacity-0 translate-y-10"
+          }`}
+        >
           FAQ
         </h2>
-        <div className="space-y-4 ">
+        <div
+          className={`space-y-4  ${
+            isVisible
+              ? "motion-preset-slide-right motion-delay-[500ms]"
+              : "opacity-0 translate-y-10"
+          }`}
+        >
           {!isShopper
             ? faqs.map((faq, index) => (
                 <div
@@ -160,6 +199,6 @@ export const FAQFlexFi = () => {
               ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };

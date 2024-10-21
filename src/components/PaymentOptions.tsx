@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import FlexFiPaymentSimulator from "./FlexFiPaymentSimulator";
 import { usePageStore } from "@/store/usePageStore";
 
@@ -8,16 +8,58 @@ export const PaymentOptions = () => {
     "6x12x"
   );
 
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true); // L'élément est visible, activer l'animation
+          }
+        });
+      },
+      { threshold: 0.1 } // 10% visible avant de déclencher
+    );
+
+    const currentSection = sectionRef.current;
+    if (currentSection) {
+      observer.observe(currentSection);
+    }
+
+    return () => {
+      if (currentSection) {
+        observer.unobserve(currentSection);
+      }
+    };
+  }, []);
+
   const { isShopper } = usePageStore();
 
   return (
-    <section className="relative bg-black h-3/5 flex flex-col lg:flex-row items-center justify-between px-4 md:px-12 lg:px-32 py-12 pb-0 pt-0">
+    <section
+      ref={sectionRef}
+      className="relative bg-black h-3/5 flex flex-col lg:flex-row items-center justify-between px-4 md:px-12 lg:px-32 py-12 pb-0 pt-0"
+    >
       <div className="flex flex-col items-center justify-center text-start w-full lg:w-2/5 mb-12 lg:mb-0">
         {/* Title Section */}
-        <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-white mb-4 lg:mb-12">
+        <h2
+          className={`font-display text-3xl sm:text-4xl font-extrabold text-white mb-4 lg:mb-12 ${
+            isVisible
+              ? "motion-preset-slide-right motion-delay-[400ms]"
+              : "opacity-0 translate-y-10"
+          }`}
+        >
           Flexible Crypto Payment Options
         </h2>
-        <p className="text-base sm:text-xl  mb-8">
+        <p
+          className={`text-base sm:text-xl  mb-8 ${
+            isVisible
+              ? "motion-preset-slide-right motion-delay-[500ms]"
+              : "opacity-0 translate-y-10"
+          }`}
+        >
           {!isShopper
             ? `Simplify sales with FlexFi. Allow your customers to pay in multiple
           installments using their favorite cryptocurrency.`
@@ -32,6 +74,10 @@ Pay in multiple installments using your favorite crypto.`}
               activeOption === "6x12x"
                 ? "bg-gradient-to-r from-[#00FEFB] to-[#60259E] text-white"
                 : "bg-white border border-gray-300 text-gray-900"
+            } ${
+              isVisible
+                ? "motion-preset-slide-right motion-delay-[600ms]"
+                : "opacity-0 translate-y-10"
             }`}
             onClick={() => setActiveOption("6x12x")}
           >
@@ -43,6 +89,10 @@ Pay in multiple installments using your favorite crypto.`}
               activeOption === "staking"
                 ? "bg-gradient-to-r from-[#00FEFB] to-[#60259E] text-white"
                 : "bg-white border border-gray-300 text-gray-900"
+            } ${
+              isVisible
+                ? "motion-preset-slide-right motion-delay-[650ms]"
+                : "opacity-0 translate-y-10"
             }`}
             onClick={() => setActiveOption("staking")}
           >
@@ -50,7 +100,11 @@ Pay in multiple installments using your favorite crypto.`}
           </button>
 
           <button
-            className={`px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 bg-white border border-gray-300 text-gray-900`}
+            className={`px-4 py-2 sm:px-6 sm:py-3 font-semibold rounded-lg hover:scale-110 ease-out duration-300 bg-white border border-gray-300 text-gray-900 ${
+              isVisible
+                ? "motion-preset-slide-right motion-delay-[700ms]"
+                : "opacity-0 translate-y-10"
+            }`}
             onClick={() => {
               const modal = document.getElementById("my_modal_3");
               if (modal) {
@@ -74,7 +128,13 @@ Pay in multiple installments using your favorite crypto.`}
         </div>
 
         {/* Payment Info Section */}
-        <div className="gap-8 flex flex-col lg:flex-row justify-start">
+        <div
+          className={`gap-8 flex flex-col lg:flex-row justify-start ${
+            isVisible
+              ? "motion-preset-slide-right motion-delay-[800ms]"
+              : "opacity-0 translate-y-10"
+          }`}
+        >
           {activeOption === "6x12x" && (
             <div className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-md flex items-center space-x-4 lg:space-x-6">
               <img

@@ -40,9 +40,12 @@ const Header = () => {
   };
 
   return (
-    <header className="font-sans w-full flex items-center justify-between bg-black bg-opacity-90 p-4 md:px-32 sticky top-0 py-2 transition-colors duration-300 z-50 text-base sm:text-xl">
+    <header className="font-sans w-full flex items-center justify-between bg-black bg-opacity-90 p-4 md:px-32 sticky top-0 py-2 transition-colors duration-300 z-50 text-base sm:text-xl motion-preset-slide-down">
       <nav className="md:flex space-x-4 flex items-center">
-        <Link href="/" className="flex items-center">
+        <Link
+          href="/"
+          className="flex items-center motion-preset-rebound-down motion-delay-[400ms]"
+        >
           <img
             src="/logo/flexfi-logo.png"
             alt="FlexFi Logo"
@@ -50,50 +53,12 @@ const Header = () => {
           />
         </Link>
 
-        <style>{`
-          .neon-effect {
-            filter: drop-shadow(0 0 8px #00fefb) brightness(1.2);
-            transition: transform 0.3s ease, filter 0.3s ease;
-          }
-
-          .neon-effect:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 12px #00fefb) brightness(1.5);
-          }
-
-          .neon-text {
-            position: relative;
-          }
-
-          .neon-text::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 9999px;
-            background: linear-gradient(
-              90deg,
-              rgba(0, 254, 251, 0.3),
-              rgba(0, 30, 44, 0.3)
-            );
-            filter: blur(6px);
-            z-index: -1;
-          }
-
-          .shadow-glow {
-            box-shadow: 0 0 15px rgba(0, 254, 251, 0.6),
-              0 0 30px rgba(0, 254, 251, 0.3);
-          }
-        `}</style>
-
         <Link href="/">
           <button
             className={
               !isShopper
-                ? "cursor-pointer hover:text-[#00FEFB] border-b border-[#00FEFB]"
-                : "cursor-pointer hover:text-[#00FEFB]"
+                ? "cursor-pointer hover:text-[#00FEFB] border-b border-[#00FEFB] motion-preset-rebound-down motion-delay-[450ms]"
+                : "cursor-pointer hover:text-[#00FEFB] motion-preset-rebound-down motion-delay-[450ms]"
             }
             onClick={() => setIsShopper(false)}
           >
@@ -104,15 +69,15 @@ const Header = () => {
           <button
             className={
               isShopper
-                ? "cursor-pointer hover:text-[#00FEFB] border-b border-[#00FEFB]"
-                : "cursor-pointer hover:text-[#00FEFB]"
+                ? "cursor-pointer hover:text-[#00FEFB] border-b border-[#00FEFB] motion-preset-rebound-down motion-delay-[500ms]"
+                : "cursor-pointer hover:text-[#00FEFB] motion-preset-rebound-down motion-delay-[500ms]"
             }
             onClick={() => setIsShopper(true)}
           >
             For shoppers
           </button>
         </Link>
-        <span className="ml-2 text-xs md:text-sm bg-[#00FEFB] bg-opacity-30 text-[#00FEFB] border border-[#00FEFB] px-3 py-1 rounded-full font-sans neon-text shadow-glow">
+        <span className="ml-2 text-xs md:text-sm bg-[#00FEFB] bg-opacity-30 text-[#00FEFB] border border-[#00FEFB] px-3 py-1 rounded-full font-sans neon-text shadow-glow motion-preset-rebound-down motion-delay-[550ms]">
           BETA
         </span>
       </nav>
@@ -121,13 +86,13 @@ const Header = () => {
         {!isLogged ? (
           <div className="flex items-center space-x-4">
             <Link
-              className="hidden md:flex cursor-pointer hover:scale-110 ease-out duration-300"
+              className="hidden md:flex cursor-pointer hover:scale-110 ease-out duration-300 motion-preset-rebound-down motion-delay-[600ms]"
               href="/login"
             >
               Log in
             </Link>
             <Link
-              className="hidden md:flex border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 pt-1 pb-2 cursor-pointer"
+              className="hidden md:flex border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 pt-1 pb-2 cursor-pointer motion-preset-rebound-down motion-delay-[650ms]"
               href="/register"
             >
               Sign up
@@ -152,7 +117,7 @@ const Header = () => {
 
         <div className="hidden md:flex border-l border-gray-300 h-6"></div>
         <button
-          className="hidden md:flex cursor-pointer hover:scale-110 ease-out duration-300"
+          className="hidden md:flex cursor-pointer hover:scale-110 ease-out duration-300 motion-preset-rebound-down motion-delay-600ms]"
           onClick={scrollToFAQ}
         >
           Help
