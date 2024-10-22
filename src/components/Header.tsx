@@ -40,7 +40,7 @@ const Header = () => {
   };
 
   return (
-    <header className="font-sans w-full flex items-center justify-between bg-black bg-opacity-90 p-4 md:px-32 sticky top-0 py-2 transition-colors duration-300 z-50 text-base sm:text-xl motion-preset-slide-down">
+    <header className="font-sans w-full flex items-center justify-between bg-black bg-opacity-90 p-4 md:px-32 sticky top-0 py-2 transition-colors duration-300 z-50 text-base sm:text-xl">
       <nav className="md:flex space-x-4 flex items-center">
         <Link
           href="/"
@@ -77,7 +77,7 @@ const Header = () => {
             For shoppers
           </button>
         </Link>
-        <span className="ml-2 text-xs md:text-sm bg-[#00FEFB] bg-opacity-30 text-[#00FEFB] border border-[#00FEFB] px-3 py-1 rounded-full font-sans neon-text shadow-glow motion-preset-rebound-down motion-delay-[550ms]">
+        <span className="ml-2 text-xs md:text-sm bg-[#00FEFB] bg-opacity-30 text-white border border-[#00FEFB] px-3 py-1 rounded-full font-sans neon-effect motion-preset-rebound-down motion-delay-[550ms]">
           BETA
         </span>
       </nav>

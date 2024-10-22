@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.neon-effect {
+  color: #930404;
+  text-shadow: 0 0 5px #fe0000, 0 0 10px #fe0000, 0 0 20px #fe0000;
+}

@@ -64,6 +64,17 @@ export const PoweredByBanner = () => {
           display: flex;
           animation: scroll 15s linear infinite;
         }
+        .neon-effect {
+  color: #00FEFB;
+  text-shadow:
+    0 0 5px #00FEFB,
+    0 0 15px #00FEFB,
+    0 0 20px #00FEFB,
+    0 0 40px #00FEFB,
+    0 0 60px #00FEFB,
+    0 0 900px #00FEFB;
+}
+
         
       `}</style>
     </div>
