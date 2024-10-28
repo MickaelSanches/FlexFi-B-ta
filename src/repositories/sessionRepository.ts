@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 
 export const sessionRepository = () => {
   const router = useRouter();
-  const URL_API = "http://localhost:3000/auth";
+  const URL_API = "https://flexfiback.onrender.com/auth";
 
   interface LoginResponse {
     token?: string;
