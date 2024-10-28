@@ -11,7 +11,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        // Ajoute la police Days One pour les gros titres
+        // Ajoute  la police Days One pour les gros titres
         sans: ["Darker Grotesque", "sans-serif"], // pour les petits caractères
         display: ["Days One", "sans-serif"], // pour les gros caractères
       },
