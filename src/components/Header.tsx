@@ -78,7 +78,7 @@ const Header = () => {
           </button>
         </Link>
         <span className="ml-2 text-xs md:text-sm bg-[#00FEFB] bg-opacity-30 text-white border border-[#00FEFB] px-3 py-1 rounded-full font-sans neon-effect motion-preset-rebound-down motion-delay-[550ms]">
-          BETA
+          BETA DevNet
         </span>
       </nav>
 

@@ -28,7 +28,11 @@ const Register = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-black p-8">
-      <div className="flex flex-col md:flex-row w-full max-w-5xl bg-gray-900 border border-gray-800 rounded-lg shadow-lg overflow-hidden mt-8 md:mt-0 relative">
+      <div className="relative flex flex-col md:flex-row w-full max-w-5xl bg-gray-900 border border-gray-800 rounded-lg shadow-lg overflow-hidden mt-8 md:mt-0">
+        <div className="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold tracking-wide shadow-md z-50">
+          DevNet
+        </div>
+
         <div className="flex items-center justify-start w-full md:w-1/2 p-0">
           <img
             src="/images/Sign-up-FlexFi.webp"
@@ -151,7 +155,14 @@ const Register = () => {
           {currentStep === 2 && (
             <form
               onSubmit={(e) =>
-                submitCode(e, email, confirmationCode, setError, setCurrentStep, setIsLoading)
+                submitCode(
+                  e,
+                  email,
+                  confirmationCode,
+                  setError,
+                  setCurrentStep,
+                  setIsLoading
+                )
               }
             >
               <div className="mb-4">
