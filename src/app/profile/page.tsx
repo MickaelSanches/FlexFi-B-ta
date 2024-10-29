@@ -21,7 +21,7 @@ const Profile = () => {
     denomination,
   } = useAuthStore();
 
-  const handleShowPrivateKey = async (e) => {
+  const handleShowPrivateKey = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const isLoged = await loginForSeedPhrase(email!, password);
