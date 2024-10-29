@@ -106,12 +106,6 @@ const Header = () => {
             >
               Dashboard
             </Link>
-            <button
-              className="underline underline-offset-8 hover:scale-110 ease-out duration-300 rounded-full px-4 py-1 cursor-pointer"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
           </div>
         )}
 

@@ -22,7 +22,7 @@ const Sidebar = () => {
     <>
       {/* Bouton pour ouvrir le menu en haut */}
       <button
-        className="fixed top-12 left-0 z-50 p-2 m-2 text-white bg-gray-900 rounded-md md:hidden {classname} border"
+        className="fixed top-12 left-0 z-50 p-2 m-2 text-white bg-gray-900 bg-opacity-80 rounded-md md:hidden {classname} border"
         onClick={() => setIsOpen(!isOpen)}
       >
         {/* Icône burger */}
