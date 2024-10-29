@@ -14,7 +14,11 @@ export const useLoginViewModel = () => {
     setDenomination,
   } = useAuthStore();
 
-  const handleSubmit = async (email: string, password: string) => {
+  const handleSubmit = async (
+    email: string,
+    password: string,
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+  ) => {
     try {
       await login(email, password, (authData) => {
         setEmail(authData.email);
@@ -27,8 +31,10 @@ export const useLoginViewModel = () => {
         setDenomination(authData.denomination);
       });
     } catch (error) {
+      setIsLoading(false);
       console.error("Login failed:", error);
     }
+    setIsLoading(false);
   };
 
   return { handleSubmit };

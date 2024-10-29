@@ -9,11 +9,19 @@ export const useRegisterViewModel = () => {
     email: string,
     acceptPrivacy: boolean,
     setError: React.Dispatch<React.SetStateAction<string>>,
-    setCurrentStep: React.Dispatch<React.SetStateAction<number>>
+    setCurrentStep: React.Dispatch<React.SetStateAction<number>>,
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
     e.preventDefault();
+    setIsLoading(true);
     setError("");
-    handleSubmitEmail(email, acceptPrivacy, setCurrentStep, setError);
+    handleSubmitEmail(
+      email,
+      acceptPrivacy,
+      setCurrentStep,
+      setError,
+      setIsLoading
+    );
   };
 
   const submitCode = (
@@ -21,12 +29,14 @@ export const useRegisterViewModel = () => {
     email: string,
     confirmationCode: string,
     setError: React.Dispatch<React.SetStateAction<string>>,
-    setCurrentStep: React.Dispatch<React.SetStateAction<number>>
+    setCurrentStep: React.Dispatch<React.SetStateAction<number>>,
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
   ) => {
     e.preventDefault();
     setError("");
+    setIsLoading(true)
 
-    handleSubmitCode(email, confirmationCode, setCurrentStep, setError);
+    handleSubmitCode(email, confirmationCode, setCurrentStep, setError, setIsLoading);
   };
 
   const submitPassword = (

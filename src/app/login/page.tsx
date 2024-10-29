@@ -7,10 +7,13 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const { handleSubmit } = useLoginViewModel();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   // Fonction pour gérer la soumission du formulaire
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Empêche le rechargement de la page
-    handleSubmit(email, password); // Appelle handleSubmit avec les valeurs appropriées
+    setIsLoading(true);
+    handleSubmit(email, password, setIsLoading); // Appelle handleSubmit avec les valeurs appropriées
   };
 
   return (
@@ -66,7 +69,7 @@ const Login = () => {
                 type="submit"
                 className="w-full bg-blue-500 text-white font-bold py-2 md:py-3 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
               >
-                Login
+                {isLoading ? "Loading..." : "login"}
               </button>
             </div>
           </form>

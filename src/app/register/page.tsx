@@ -21,6 +21,8 @@ const Register = () => {
 
   const [siren, setSiren] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const { submitEmail, submitCode, submitPassword, submitProfessionalInfo } =
     useRegisterViewModel();
 
@@ -83,7 +85,14 @@ const Register = () => {
           {currentStep === 1 && (
             <form
               onSubmit={(e) =>
-                submitEmail(e, email, acceptPrivacy, setError, setCurrentStep)
+                submitEmail(
+                  e,
+                  email,
+                  acceptPrivacy,
+                  setError,
+                  setCurrentStep,
+                  setIsLoading
+                )
               }
             >
               <div className="mb-4">
@@ -134,7 +143,7 @@ const Register = () => {
               </div>
 
               <button className="w-full bg-blue-500 text-white font-bold py-3 rounded-lg">
-                Send Confirmation Code
+                {isLoading ? "Loading..." : "Send Confirmation Code"}
               </button>
             </form>
           )}
@@ -142,7 +151,7 @@ const Register = () => {
           {currentStep === 2 && (
             <form
               onSubmit={(e) =>
-                submitCode(e, email, confirmationCode, setError, setCurrentStep)
+                submitCode(e, email, confirmationCode, setError, setCurrentStep, setIsLoading)
               }
             >
               <div className="mb-4">
@@ -162,7 +171,7 @@ const Register = () => {
                 />
               </div>
               <button className="w-full bg-blue-500 text-white font-bold py-3 rounded-lg">
-                Verify Code
+                {isLoading ? "Loading..." : "Verify Code"}
               </button>
             </form>
           )}

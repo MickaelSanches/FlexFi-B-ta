@@ -137,11 +137,13 @@ export const sessionRepository = () => {
     email: string,
     acceptPrivacy: boolean,
     setCurrentStep: React.Dispatch<React.SetStateAction<number>>,
-    setError: React.Dispatch<React.SetStateAction<string>>
+    setError: React.Dispatch<React.SetStateAction<string>>,
+    setIsloading: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
     // Vérifier si l'utilisateur a accepté la politique de confidentialité
     if (!acceptPrivacy) {
       setError("You must accept the privacy policy to register.");
+      setIsloading(false);
       return;
     }
 
@@ -155,6 +157,7 @@ export const sessionRepository = () => {
 
       if (!response || !response.ok) {
         const errorData = await response?.json();
+        setIsloading(false);
         // Si l'email est déjà enregistré (erreur 400), afficher l'erreur et stopper le processus
         if (
           response?.status === 400 &&
@@ -173,6 +176,7 @@ export const sessionRepository = () => {
       }
 
       // Si tout se passe bien, passer à l'étape suivante
+      setIsloading(false);
       setCurrentStep(2);
     } catch (error: any) {
       // Si une erreur est capturée, ne pas changer d'étape et afficher l'erreur
@@ -186,7 +190,8 @@ export const sessionRepository = () => {
     email: string,
     confirmationCode: string,
     setCurrentStep: React.Dispatch<React.SetStateAction<number>>,
-    setError: React.Dispatch<React.SetStateAction<string>> // Ajout de setError pour afficher l'erreur
+    setError: React.Dispatch<React.SetStateAction<string>>, // Ajout de setError pour afficher l'erreur
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
     try {
       const response = await fetch(`${URL_API}/verify-email`, {
@@ -199,7 +204,7 @@ export const sessionRepository = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
-
+        setIsLoading(false);
         // Si le code est invalide ou expiré (erreur 400)
         if (
           response.status === 400 &&
@@ -219,6 +224,7 @@ export const sessionRepository = () => {
       }
 
       // Si tout se passe bien, passer à l'étape suivante
+      setIsLoading(false);
       setCurrentStep(3);
     } catch (error: any) {
       // En cas d'erreur inattendue, afficher un message générique
