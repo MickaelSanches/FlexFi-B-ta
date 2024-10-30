@@ -80,7 +80,6 @@ export const sessionRepository = () => {
 
         // Redirection après connexion réussie
         router.push("/dashboard");
-        console.log("Redirection vers le dashboard après connexion réussie");
         return true;
       } else {
         throw new Error("Token not found in response");
@@ -126,10 +125,8 @@ export const sessionRepository = () => {
 
       return response; // Retourne la réponse complète pour la gérer ensuite
     } catch (error: any) {
-      console.error("Erreur lors de l'envoi de l'email :", error.message);
-      setError(
-        error.message || "Erreur lors de l'envoi de l'email de confirmation."
-      );
+      console.error("Error sending confirmation email :", error.message);
+      setError(error.message || "Error sending confirmation email.");
     }
   };
 
@@ -171,7 +168,7 @@ export const sessionRepository = () => {
         }
 
         // Pour toute autre erreur
-        setError(errorData?.error || "Une erreur inattendue est survenue.");
+        setError(errorData?.error || "An unexpected error occurred.");
         return;
       }
 
@@ -180,7 +177,7 @@ export const sessionRepository = () => {
       setCurrentStep(2);
     } catch (error: any) {
       // Si une erreur est capturée, ne pas changer d'étape et afficher l'erreur
-      setError(error.message || "Une erreur inattendue est survenue.");
+      setError(error.message || "An unexpected error occurred.");
       console.error("Erreur capturée dans handleSubmitEmail:", error);
     }
   };
@@ -248,13 +245,13 @@ export const sessionRepository = () => {
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,128}$/;
 
     if (password !== confirmPassword) {
-      setError("Les mots de passe ne correspondent pas.");
+      setError("Passwords do not match.");
       return;
     }
 
     if (!passwordRegex.test(password)) {
       setError(
-        "Le mot de passe doit comporter entre 8 et 128 caractères, inclure au moins un chiffre et une majuscule."
+        "Password must be at least 12 characters long and include at least one uppercase letter, one digit, and one special character."
       );
       return;
     }
@@ -289,7 +286,7 @@ export const sessionRepository = () => {
       if (error instanceof Error && error.message) {
         setError(error.message);
       } else {
-        setError("Erreur lors de la création du compte. Veuillez réessayer.");
+        setError("Error creating account. Please try again.");
       }
     }
   };
