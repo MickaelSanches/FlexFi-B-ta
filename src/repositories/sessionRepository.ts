@@ -242,7 +242,8 @@ export const sessionRepository = () => {
     setPublicKey: React.Dispatch<React.SetStateAction<string>>,
     setError: React.Dispatch<React.SetStateAction<string>>
   ) => {
-    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,128}$/;
+    const passwordRegex =
+      /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?])[A-Za-z\d!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?]{12,}$/;
 
     if (password !== confirmPassword) {
       setError("Passwords do not match.");
