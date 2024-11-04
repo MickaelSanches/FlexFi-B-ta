@@ -1,9 +1,11 @@
 import { usePageStore } from "@/store/usePageStore";
+import { useLanguageStore } from "@/store/useLanguageStore";
 import { GetStartedButton } from "./GetStartedButton";
 import { useEffect, useRef, useState } from "react";
 
 export const WhyFlexFi = () => {
   const { isShopper } = usePageStore();
+  const { isEnglish } = useLanguageStore();
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
@@ -12,11 +14,11 @@ export const WhyFlexFi = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setIsVisible(true); // L'élément est visible, activer l'animation
+            setIsVisible(true);
           }
         });
       },
-      { threshold: 0.1 } // 10% visible avant de déclencher
+      { threshold: 0.1 }
     );
 
     const currentSection = sectionRef.current;
@@ -30,7 +32,7 @@ export const WhyFlexFi = () => {
       }
     };
   }, []);
-  
+
   return (
     <section
       ref={sectionRef}
@@ -45,7 +47,7 @@ export const WhyFlexFi = () => {
               : "opacity-0 translate-y-10"
           }`}
         >
-          Why Choose FlexFi?
+          {isEnglish ? "Why Choose FlexFi?" : "¿Por Qué Elegir FlexFi?"}
         </h2>
 
         <div className="flex flex-col lg:flex-row items-center justify-between mb-20">
@@ -61,15 +63,21 @@ export const WhyFlexFi = () => {
               >
                 <h3 className="text-2xl text-white font-bold font-display">
                   {!isShopper
-                    ? `Built for Flexibility`
-                    : `Pay at Your Own Pace`}
+                    ? isEnglish
+                      ? "Built for Flexibility"
+                      : "Diseñado para la Flexibilidad"
+                    : isEnglish
+                    ? "Pay at Your Own Pace"
+                    : "Paga a Tu Propio Ritmo"}
                 </h3>
                 <p className="text-base sm:text-xl font-sans mb-8">
                   {!isShopper
-                    ? `Focus on your business, not the payments. FlexFi offers
-                  seamless crypto payment solutions that adapt to your needs,
-                  effortlessly.`
-                    : `FlexFi allows you to stake your funds to unlock the BNPL feature while earning a return. Our BNPL solution offers multi-payment options at a competitive cost, with no hidden fees or surprise penalties.`}
+                    ? isEnglish
+                      ? "Focus on your business, not the payments. FlexFi offers seamless crypto payment solutions that adapt to your needs, effortlessly."
+                      : "Concéntrese en su negocio, no en los pagos. FlexFi ofrece soluciones de pago cripto sin esfuerzo que se adaptan a sus necesidades."
+                    : isEnglish
+                    ? "FlexFi allows you to stake your funds to unlock the BNPL feature while earning a return. Our BNPL solution offers multi-payment options at a competitive cost, with no hidden fees or surprise penalties."
+                    : "FlexFi te permite hacer staking de tus fondos para desbloquear la función BNPL y ganar un retorno. Nuestra solución BNPL ofrece opciones de pago múltiple sin comisiones ocultas ni penalizaciones sorpresa."}
                 </p>
               </li>
               <li
@@ -81,15 +89,21 @@ export const WhyFlexFi = () => {
               >
                 <h3 className="text-2xl font-bold text-white font-display">
                   {!isShopper
-                    ? `Ethical and Transparent Payments`
-                    : `Total Transparency`}
+                    ? isEnglish
+                      ? "Ethical and Transparent Payments"
+                      : "Pagos Éticos y Transparentes"
+                    : isEnglish
+                    ? "Total Transparency"
+                    : "Transparencia Total"}
                 </h3>
                 <p className="text-base sm:text-xl font-sans mb-8">
                   {!isShopper
-                    ? `No hidden fees, no penalties. FlexFi empowers users to adjust
-                  payment schedules as needed, ensuring fairness and full
-                  transparency.`
-                    : `FlexFi allows you to stake your funds to unlock the BNPL feature while earning a return. Our BNPL solution offers multi-payment options at a competitive cost, with no hidden fees or surprise penalties.`}
+                    ? isEnglish
+                      ? "No hidden fees, no penalties. FlexFi empowers users to adjust payment schedules as needed, ensuring fairness and full transparency."
+                      : "Sin comisiones ocultas, sin penalizaciones. FlexFi permite a los usuarios ajustar los plazos de pago según sea necesario, asegurando equidad y transparencia total."
+                    : isEnglish
+                    ? "FlexFi allows you to stake your funds to unlock the BNPL feature while earning a return. Our BNPL solution offers multi-payment options at a competitive cost, with no hidden fees or surprise penalties."
+                    : "FlexFi te permite hacer staking de tus fondos para desbloquear la función BNPL y ganar un retorno. Nuestra solución BNPL ofrece opciones de pago múltiple sin comisiones ocultas ni penalizaciones sorpresa."}
                 </p>
               </li>
               <li
@@ -101,14 +115,21 @@ export const WhyFlexFi = () => {
               >
                 <h3 className="text-2xl font-bold text-white font-display">
                   {!isShopper
-                    ? `Global Crypto Payment Plans`
-                    : `Suited to Your Lifestyle`}
+                    ? isEnglish
+                      ? "Global Crypto Payment Plans"
+                      : "Planes de Pago Cripto Globales"
+                    : isEnglish
+                    ? "Suited to Your Lifestyle"
+                    : "Adaptado a Tu Estilo de Vida"}
                 </h3>
                 <p className="text-base sm:text-xl font-sans mb-8">
                   {!isShopper
-                    ? `FlexFi provides secure, fast, and adaptable crypto payments to
-                  meet the needs of a global audience.`
-                    : `Get what you need immediately—FlexFi offers quick approval for a smooth and hassle-free shopping experience.`}
+                    ? isEnglish
+                      ? "FlexFi provides secure, fast, and adaptable crypto payments to meet the needs of a global audience."
+                      : "FlexFi ofrece pagos cripto seguros, rápidos y adaptables para satisfacer las necesidades de una audiencia global."
+                    : isEnglish
+                    ? "Get what you need immediately—FlexFi offers quick approval for a smooth and hassle-free shopping experience."
+                    : "Obtén lo que necesitas de inmediato: FlexFi ofrece una aprobación rápida para una experiencia de compra sin complicaciones."}
                 </p>
               </li>
             </ul>

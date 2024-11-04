@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useLanguageStore } from "@/store/useLanguageStore";
 
 const FlexFiPaymentSimulator: React.FC = () => {
+  const { isEnglish } = useLanguageStore();
   const [amount, setAmount] = useState<number>(100); // Valeur initiale
   const [months, setMonths] = useState<number>(6); // Valeur par défaut à 6 mois
 
@@ -32,16 +34,18 @@ const FlexFiPaymentSimulator: React.FC = () => {
   return (
     <div className="bg-zinc-900 p-6 rounded-lg shadow-lg max-w-md">
       <h2 className="font-display text-2xl font-extrabold bg-gradient-to-r from-[#00FEFB] via-[#85C8FF] to-[#0C8CF3] bg-clip-text text-transparent mb-4">
-        FlexFi Payment Simulator
+        {isEnglish ? "FlexFi Payment Simulator" : "Simulador de Pago FlexFi"}
       </h2>
 
       {/* Montant du paiement */}
       <div className="bg-gray-700 p-4 rounded-lg shadow-md mb-4">
         <h3 className="font-display text-[#85C8FF] font-semibold text-lg mb-2">
-          Payment Amount
+          {isEnglish ? "Payment Amount" : "Monto del Pago"}
         </h3>
         <p className="text-md text-gray-300 mb-2">
-          Simulate your fees with multi-installment payment options.
+          {isEnglish
+            ? "Simulate your fees with multi-installment payment options."
+            : "Simula tus tarifas con opciones de pago en cuotas."}
         </p>
         <input
           type="range"
@@ -63,7 +67,7 @@ const FlexFiPaymentSimulator: React.FC = () => {
       {/* Durée du paiement (6 ou 12 mois) */}
       <div className="mb-4">
         <h3 className="font-display text-[#85C8FF] font-semibold text-lg mb-2">
-          Payment Duration
+          {isEnglish ? "Payment Duration" : "Duración del Pago"}
         </h3>
         <div className="flex justify-center space-x-4 font-display">
           <button
@@ -72,7 +76,7 @@ const FlexFiPaymentSimulator: React.FC = () => {
               months === 6 ? "bg-[#0C8CF3]" : "bg-gray-600"
             } text-white rounded-lg`}
           >
-            6 months
+            {isEnglish ? "6 months" : "6 meses"}
           </button>
           <button
             onClick={() => setMonths(12)}
@@ -80,7 +84,7 @@ const FlexFiPaymentSimulator: React.FC = () => {
               months === 12 ? "bg-[#0C8CF3]" : "bg-gray-600"
             } text-white rounded-lg`}
           >
-            12 months
+            {isEnglish ? "12 months" : "12 meses"}
           </button>
         </div>
       </div>
@@ -88,25 +92,33 @@ const FlexFiPaymentSimulator: React.FC = () => {
       {/* Affichage des frais */}
       <div className="bg-gray-700 p-4 rounded-lg shadow-md mb-4">
         <h3 className="font-semibold text-lg mb-2 font-display text-[#85C8FF]">
-          Fees Breakdown
+          {isEnglish ? "Fees Breakdown" : "Desglose de Tarifas"}
         </h3>
 
         <div className="text-md flex justify-between items-center mb-2">
-          <span className="text-white">Total Cost (Client):</span>
+          <span className="text-white">
+            {isEnglish ? "Total Cost (Client):" : "Costo Total (Cliente):"}
+          </span>
           <span className="text-white text-lg font-display">
             ${totalCostShopper}
           </span>
         </div>
 
         <div className="flex justify-between items-center mb-2">
-          <span className="text-white ">Monthly Payment (Client):</span>
+          <span className="text-white ">
+            {isEnglish
+              ? "Monthly Payment (Client):"
+              : "Pago Mensual (Cliente):"}
+          </span>
           <span className="text-[#00FEFB] text-lg font-display">
-            ${monthlyPaymentShopper} / month
+            ${monthlyPaymentShopper} / {isEnglish ? "month" : "mes"}
           </span>
         </div>
 
         <div className="flex justify-between items-center">
-          <span className="text-white">Merchant Receives:</span>
+          <span className="text-white">
+            {isEnglish ? "Merchant Receives:" : "El Comerciante Recibe:"}
+          </span>
           <span className="text-white text-lg font-display">
             ${merchantReceives}
           </span>

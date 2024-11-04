@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import FlexFiPaymentSimulator from "./FlexFiPaymentSimulator";
 import { usePageStore } from "@/store/usePageStore";
+import { useLanguageStore } from "@/store/useLanguageStore";
 
 export const PaymentOptions = () => {
-  // State pour suivre l'option active
+  const { isShopper } = usePageStore();
+  const { isEnglish } = useLanguageStore();
+
   const [activeOption, setActiveOption] = useState<"6x12x" | "staking">(
     "6x12x"
   );
-
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
@@ -16,11 +18,11 @@ export const PaymentOptions = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setIsVisible(true); // L'élément est visible, activer l'animation
+            setIsVisible(true);
           }
         });
       },
-      { threshold: 0.1 } // 10% visible avant de déclencher
+      { threshold: 0.1 }
     );
 
     const currentSection = sectionRef.current;
@@ -34,8 +36,6 @@ export const PaymentOptions = () => {
       }
     };
   }, []);
-
-  const { isShopper } = usePageStore();
 
   return (
     <section
@@ -51,20 +51,24 @@ export const PaymentOptions = () => {
               : "opacity-0 translate-y-10"
           }`}
         >
-          Flexible Crypto Payment Options
+          {isEnglish
+            ? "Flexible Crypto Payment Options"
+            : "Opciones de Pago Cripto Flexibles"}
         </h2>
         <p
-          className={`text-base sm:text-xl  mb-8 ${
+          className={`text-base sm:text-xl mb-8 ${
             isVisible
               ? "motion-preset-slide-right motion-delay-[500ms]"
               : "opacity-0 translate-y-10"
           }`}
         >
           {!isShopper
-            ? `Simplify sales with FlexFi. Allow your customers to pay in multiple
-          installments using their favorite cryptocurrency.`
-            : `Simplify your purchase with FlexFi. 
-Pay in multiple installments using your favorite crypto.`}
+            ? isEnglish
+              ? `Simplify sales with FlexFi. Allow your customers to pay in multiple installments using their favorite cryptocurrency.`
+              : `Simplifique las ventas con FlexFi. Permita a sus clientes pagar en varias cuotas utilizando su criptomoneda favorita.`
+            : isEnglish
+            ? `Simplify your purchase with FlexFi. Pay in multiple installments using your favorite crypto.`
+            : `Simplifique su compra con FlexFi. Pague en varias cuotas utilizando su cripto favorita.`}
         </p>
 
         {/* Payment Buttons */}
@@ -81,7 +85,7 @@ Pay in multiple installments using your favorite crypto.`}
             }`}
             onClick={() => setActiveOption("6x12x")}
           >
-            Pay in 6x or 12x
+            {isEnglish ? "Pay in 6x or 12x" : "Pagar en 6x o 12x"}
           </button>
 
           <button
@@ -96,7 +100,7 @@ Pay in multiple installments using your favorite crypto.`}
             }`}
             onClick={() => setActiveOption("staking")}
           >
-            Staking Rewards
+            {isEnglish ? "Staking Rewards" : "Recompensas de Staking"}
           </button>
 
           <button
@@ -108,16 +112,15 @@ Pay in multiple installments using your favorite crypto.`}
             onClick={() => {
               const modal = document.getElementById("my_modal_3");
               if (modal) {
-                (modal as HTMLDialogElement).showModal(); // TypeScript a besoin de savoir que c'est un élément de type <dialog>
+                (modal as HTMLDialogElement).showModal();
               }
             }}
           >
-            Simulation
+            {isEnglish ? "Simulation" : "Simulación"}
           </button>
           <dialog id="my_modal_3" className="modal bg-zinc-900 rounded-2xl">
             <div className="modal-box">
               <form method="dialog">
-                {/* if there is a button in form, it will close the modal */}
                 <button className="btn btn-sm btn-circle text-white btn-ghost absolute right-2 top-2">
                   ✕
                 </button>
@@ -144,11 +147,14 @@ Pay in multiple installments using your favorite crypto.`}
               />
               <div className="text-left">
                 <h3 className="text-lg font-display sm:text-xl font-semibold">
-                  Pay in Crypto (6x or 12x)
+                  {isEnglish
+                    ? "Pay in Crypto (6x or 12x)"
+                    : "Paga en Cripto (6x o 12x)"}
                 </h3>
                 <p>
-                  Split your payments over several months with the power of
-                  crypto. Secure, fast, and accessible to all.
+                  {isEnglish
+                    ? "Split your payments over several months with the power of crypto. Secure, fast, and accessible to all."
+                    : "Divida sus pagos en varios meses con el poder de la cripto. Seguro, rápido y accesible para todos."}
                 </p>
               </div>
             </div>
@@ -163,24 +169,26 @@ Pay in multiple installments using your favorite crypto.`}
               />
               <div className="text-left">
                 <h3 className="text-lg font-display sm:text-xl font-semibold">
-                  Earn Staking Rewards
+                  {isEnglish
+                    ? "Earn Staking Rewards"
+                    : "Gana Recompensas de Staking"}
                 </h3>
-                <p>Stake your USDC to earn rewards and unlock the features</p>
+                <p>
+                  {isEnglish
+                    ? "Stake your USDC to earn rewards and unlock the features."
+                    : "Haga staking de su USDC para ganar recompensas y desbloquear funciones."}
+                </p>
               </div>
             </div>
           )}
         </div>
       </div>
 
-      {/* FlexFi Payment Simulator */}
-      {/* <FlexFiPaymentSimulator /> */}
       <img
         className="w-80 md:w-3/6 md:absolut md:right-0 bottom-0"
         src="/images/Flexible-crypto-payments-options.webp"
         alt="men"
       />
-
-      {/* You can open the modal using document.getElementById('ID').showModal() method */}
     </section>
   );
 };

@@ -1,4 +1,5 @@
 import { usePageStore } from "@/store/usePageStore";
+import { useLanguageStore } from "@/store/useLanguageStore";
 import { useEffect, useRef, useState } from "react";
 
 interface FAQItem {
@@ -7,133 +8,196 @@ interface FAQItem {
 }
 
 export const FAQFlexFi = () => {
+  const { isShopper } = usePageStore();
+  const { isEnglish } = useLanguageStore();
   const [open, setOpen] = useState<number | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
 
   const toggle = (index: number) => {
     setOpen(open === index ? null : index);
   };
 
-  const { isShopper } = usePageStore();
-
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true); // L'élément est visible, activer l'animation
-          }
+          if (entry.isIntersecting) setIsVisible(true);
         });
       },
-      { threshold: 0.1 } // 10% visible avant de déclencher
+      { threshold: 0.1 }
     );
 
-    const currentSection = sectionRef.current;
-    if (currentSection) {
-      observer.observe(currentSection);
-    }
-
-    return () => {
-      if (currentSection) {
-        observer.unobserve(currentSection);
-      }
-    };
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
   }, []);
 
-  const faqs: FAQItem[] = [
-    {
-      question: "How Does the Multi-Payment Option Work on FlexFi ?",
-      answer:
-        "With FlexFi, your customers can split their payment into 6 or 12 monthly installments using cryptocurrencies. When a customer selects FlexFi at checkout, they choose their payment plan. You receive the full payment immediately, and FlexFi handles the collection of the installments.",
-    },
-    {
-      question: "What Are the Fees for Using FlexFi ?",
-      answer:
-        "FlexFi offers a transparent fee structure. Merchants pay competitive transaction fees with no hidden costs: 0% on standard transactions and 2% for BNPL. Integration is free, making it a simple and affordable solution.",
-    },
-    {
-      question: "What Services Are Included with FlexFi ?",
-      answer: `FlexFi includes:
+  const faqs: FAQItem[] = isEnglish
+    ? [
+        {
+          question: "How Does the Multi-Payment Option Work on FlexFi?",
+          answer:
+            "With FlexFi, your customers can split their payment into 6 or 12 monthly installments using cryptocurrencies. You receive the full payment immediately, and FlexFi handles the collection of installments.",
+        },
+        {
+          question: "What Are the Fees for Using FlexFi?",
+          answer:
+            "FlexFi offers a transparent fee structure. Merchants pay competitive transaction fees with no hidden costs: 0% on standard transactions and 2% for BNPL. Integration is free.",
+        },
+        {
+          question: "What Services Are Included with FlexFi?",
+          answer: `FlexFi includes:
 - Buy Now, Pay Later (BNPL) with cryptocurrency.
 - Full support for integration.
 - Access to consumer data to better understand your customers.`,
-    },
-    {
-      question: "What Cryptocurrencies Are Accepted by FlexFi ?",
-      answer:
-        "FlexFi accepts major cryptocurrencies, including Bitcoin (BTC), Solana (SOL), and several stablecoins like USDC and PYUSD. This allows your customers to choose their preferred crypto, providing greater flexibility.",
-    },
-    {
-      question: "Is the Multi-Payment Feature Secure ?",
-      answer:
-        "Yes. FlexFi uses blockchain technology and advanced security protocols to ensure transactions are secure. This guarantees the security of payments, giving you complete peace of mind.",
-    },
-    {
-      question: "How Do I Integrate FlexFi in My Store ?",
-      answer:
-        "Integrating FlexFi is simple. For online stores, we offer plugins compatible with major e-commerce platforms. In physical stores, FlexFi works via payment terminals or payment links. Our team assists you at every step for a quick setup.",
-    },
-    {
-      question: "What Are the Conditions to Offer Multi-Installments ?",
-      answer:
-        "To offer the multi-payment option, customers must complete a simple KYC verification and stake a minimum of $30 in cryptocurrency. This ensures transaction security and allows customers to benefit from flexible payment plans with no hidden fees.",
-    },
-  ];
+        },
+        {
+          question: "What Cryptocurrencies Are Accepted by FlexFi?",
+          answer:
+            "FlexFi accepts major cryptocurrencies, including Bitcoin (BTC), Solana (SOL), and several stablecoins like USDC and PYUSD. This provides greater flexibility.",
+        },
+        {
+          question: "Is the Multi-Payment Feature Secure?",
+          answer:
+            "Yes. FlexFi uses blockchain technology and advanced security protocols to ensure secure transactions, giving you peace of mind.",
+        },
+        {
+          question: "How Do I Integrate FlexFi in My Store?",
+          answer:
+            "Integrating FlexFi is simple. For online stores, we offer plugins compatible with major e-commerce platforms. In physical stores, FlexFi works via payment terminals or payment links.",
+        },
+        {
+          question: "What Are the Conditions to Offer Multi-Installments?",
+          answer:
+            "To offer the multi-payment option, customers must complete a simple KYC verification and stake a minimum of $30 in cryptocurrency.",
+        },
+      ]
+    : [
+        {
+          question: "¿Cómo Funciona la Opción de Pago en Cuotas en FlexFi?",
+          answer:
+            "Con FlexFi, tus clientes pueden dividir su pago en 6 o 12 cuotas mensuales usando criptomonedas. Recibes el pago completo de inmediato, y FlexFi se encarga de la recolección de las cuotas.",
+        },
+        {
+          question: "¿Cuáles Son las Tarifas por Usar FlexFi?",
+          answer:
+            "FlexFi ofrece una estructura de tarifas transparente. Los comerciantes pagan tarifas de transacción competitivas sin costos ocultos: 0% en transacciones estándar y 2% para BNPL. La integración es gratuita.",
+        },
+        {
+          question: "¿Qué Servicios Están Incluidos con FlexFi?",
+          answer: `FlexFi incluye:
+- Compra ahora, paga después (BNPL) con criptomonedas.
+- Soporte completo para la integración.
+- Acceso a datos del consumidor para comprender mejor a sus clientes.`,
+        },
+        {
+          question: "¿Qué Criptomonedas Acepta FlexFi?",
+          answer:
+            "FlexFi acepta criptomonedas importantes, incluidas Bitcoin (BTC), Solana (SOL) y varias stablecoins como USDC y PYUSD. Esto proporciona una mayor flexibilidad.",
+        },
+        {
+          question: "¿Es Segura la Función de Pago en Cuotas?",
+          answer:
+            "Sí. FlexFi utiliza tecnología blockchain y protocolos de seguridad avanzados para garantizar transacciones seguras, brindándote tranquilidad.",
+        },
+        {
+          question: "¿Cómo Integro FlexFi en Mi Tienda?",
+          answer:
+            "Integrar FlexFi es simple. Para tiendas en línea, ofrecemos plugins compatibles con las principales plataformas de comercio electrónico. En tiendas físicas, FlexFi funciona a través de terminales de pago o enlaces de pago.",
+        },
+        {
+          question:
+            "¿Cuáles Son las Condiciones para Ofrecer el Pago en Cuotas?",
+          answer:
+            "Para ofrecer la opción de pago en cuotas, los clientes deben completar una verificación KYC simple y hacer un staking mínimo de $30 en criptomonedas.",
+        },
+      ];
 
-  const faqShoppers: FAQItem[] = [
-    {
-      question: "How do I sign up and get started with FlexFi ?",
-      answer:
-        "To use FlexFi, simply sign up with your email address and complete a quick KYC verification. Once completed, you'll receive your wallet's private key and can start making payments in installments.",
-    },
-    {
-      question: "How do I access BNPL with FlexFi ?",
-      answer:
-        "FlexFi makes your life easier: just stake $30 to instantly unlock all premium benefits. No hidden fees, no monthly subscription. Access BNPL, enjoy exclusive partner coupons, and earn a return on your staking. Premium access gives you advantages that maximize your purchasing power.",
-    },
-    {
-      question: "How does the multi-payment option work with FlexFi ?",
-      answer: `With FlexFi, pay for your purchases in 6 or 12 monthly installments directly in cryptocurrencies. The amount you stake determines how much you can spend with BNPL: staking $30 allows you to spend $30 with BNPL, while benefiting from competitive fees. Choose FlexFi at checkout, select your payment plan, and enjoy your purchase immediately. Simple, fast, and flexible.`,
-    },
-    {
-      question: "What are the fees for using FlexFi ?",
-      answer:
-        "No hidden fees, 0% penalties! FlexFi offers a transparent solution: 1% for standard payments and 12% for using the BNPL solution over 6 or 12 months. You can plan your payments with complete peace of mind, with no unpleasant surprises.",
-    },
-    {
-      question: "What services are included with FlexFi ?",
-      answer: `With FlexFi, you get:
-- BNPL (Buy Now, Pay Later): Split the cost of your purchase into multiple payments.
-- User Support: Comprehensive assistance for any questions regarding payments or using FlexFi.
-- Partner Coupons: Access exclusive coupons from our partners.`,
-    },
-    {
-      question: "Which cryptocurrencies can I use with FlexFi ?",
-      answer:
-        "FlexFi accepts a wide range of cryptocurrencies, including Bitcoin (BTC), Solana (SOL), and stablecoins like USDC and PYUSD. You can choose the cryptocurrency that suits you best for your payments.",
-    },
-    {
-      question: "What happens if I don't pay on time ?",
-      answer: `FlexFi has an automated system to ensure the security of your BNPL, while staying transparent and fair. Here's how it works:
-
-1. Commitment and Initial Staking: To unlock BNPL, you need to stake a minimum of $30, which gives you $30 of BNPL credit. Upon signing the contract, you commit to making your payments, which will be automatically deducted each month from your wallet.
-
-2. Automatic Payments: For example, if you make a $30 purchase over 6 installments, $5.30 will be deducted each month (including a 12% fee). The first payment must be made to activate BNPL. Make sure you have enough funds in your wallet on the purchase date.
-
-3. Notifications and Non-Payment Measures: If a payment fails, you will receive a notification to top up your wallet. You have 10 days to do so. If not completed, you start losing points in our trust scoring system.
-
-4. Scoring and Consequences:
-  - If you make all payments on time, you earn points, increasing your trust score and unlocking more features in the future.
-  - If, at the end of 6 months, the remaining balance is not paid, the smart contract will automatically deduct the outstanding amount from your staking funds, with no additional fees. However, this results in a loss of points in your trust score.
-  - If your score drops below 50/100, BNPL access is deactivated. To reactivate, you need to stake at least $30 again and use single payments to earn points. Once your score reaches 51/100, premium access is restored.`,
-    },
-    {
-      question: "Is the multi-payment feature secure ?",
-      answer: `Yes, your transactions are fully secure with blockchain technology and advanced security protocols used by FlexFi. All transactions are protected, providing you with peace of mind and maximum security.`,
-    },
-  ];
+  const faqShoppers: FAQItem[] = isEnglish
+    ? [
+        {
+          question: "How do I sign up and get started with FlexFi?",
+          answer:
+            "To use FlexFi, sign up with your email and complete a quick KYC verification. Once completed, you'll receive your wallet's private key.",
+        },
+        {
+          question: "How do I access BNPL with FlexFi?",
+          answer:
+            "Stake $30 to unlock all premium benefits. Access BNPL, enjoy exclusive partner coupons, and earn returns on your staking.",
+        },
+        {
+          question: "How does the multi-payment option work with FlexFi?",
+          answer:
+            "With FlexFi, pay for purchases in 6 or 12 monthly installments in cryptocurrencies. Stake $30 to access BNPL for a flexible, low-cost option.",
+        },
+        {
+          question: "What are the fees for using FlexFi?",
+          answer:
+            "No hidden fees, 0% penalties! FlexFi charges 1% for standard payments and 12% for BNPL over 6 or 12 months.",
+        },
+        {
+          question: "What services are included with FlexFi?",
+          answer: `With FlexFi, you get:
+- BNPL: Split the cost of your purchase into multiple payments.
+- User Support: Assistance for any payment-related queries.
+- Partner Coupons: Access exclusive partner discounts.`,
+        },
+        {
+          question: "Which cryptocurrencies can I use with FlexFi?",
+          answer:
+            "FlexFi accepts Bitcoin (BTC), Solana (SOL), and stablecoins like USDC and PYUSD for payment flexibility.",
+        },
+        {
+          question: "What happens if I don't pay on time?",
+          answer: `FlexFi provides a structured approach for missed payments:
+1. Commitment and Initial Staking: Unlock BNPL with a $30 stake, securing $30 in credit. Monthly payments auto-deduct from your wallet.
+2. Automatic Payments: Each month, the fee is deducted automatically. Keep enough funds in your wallet on payment dates.
+3. Notifications: If a payment fails, receive a reminder to fund your wallet within 10 days. Failure results in a lower trust score.
+4. Scoring and Consequences: On-time payments improve your trust score; non-payment results in score reduction, affecting future BNPL access.`,
+        },
+      ]
+    : [
+        {
+          question: "¿Cómo me registro y comienzo con FlexFi?",
+          answer:
+            "Para usar FlexFi, simplemente regístrate con tu correo electrónico y completa una verificación rápida de KYC. Una vez completado, recibirás la clave privada de tu billetera.",
+        },
+        {
+          question: "¿Cómo accedo a BNPL con FlexFi?",
+          answer:
+            "Haz staking de $30 para desbloquear todos los beneficios premium. Accede a BNPL, disfruta de cupones exclusivos de nuestros socios y gana rendimientos.",
+        },
+        {
+          question: "¿Cómo funciona la opción de pago en cuotas con FlexFi?",
+          answer:
+            "Con FlexFi, paga tus compras en 6 o 12 cuotas mensuales en criptomonedas. Haz staking de $30 para acceder a BNPL con una opción flexible y de bajo costo.",
+        },
+        {
+          question: "¿Cuáles son las tarifas por usar FlexFi?",
+          answer:
+            "¡Sin tarifas ocultas ni penalizaciones! FlexFi cobra 1% para pagos estándar y 12% para BNPL en 6 o 12 meses.",
+        },
+        {
+          question: "¿Qué servicios están incluidos con FlexFi?",
+          answer: `Con FlexFi, obtienes:
+- BNPL: Divide el costo de tu compra en varios pagos.
+- Soporte al Usuario: Asistencia para cualquier consulta relacionada con pagos.
+- Cupones de Socios: Accede a descuentos exclusivos de nuestros socios.`,
+        },
+        {
+          question: "¿Qué criptomonedas puedo usar con FlexFi?",
+          answer:
+            "FlexFi acepta Bitcoin (BTC), Solana (SOL) y stablecoins como USDC y PYUSD para flexibilidad en los pagos.",
+        },
+        {
+          question: "¿Qué pasa si no pago a tiempo?",
+          answer: `FlexFi proporciona un enfoque estructurado para pagos fallidos:
+1. Compromiso y Staking Inicial: Desbloquea BNPL con un staking de $30, asegurando $30 en crédito. Los pagos mensuales se deducen automáticamente de tu billetera.
+2. Pagos Automáticos: Cada mes, la tarifa se deduce automáticamente. Asegúrate de tener fondos suficientes en las fechas de pago.
+3. Notificaciones: Si un pago falla, recibirás un recordatorio para recargar tu billetera en 10 días. La falta de pago reduce tu puntaje de confianza.
+4. Puntuación y Consecuencias: Los pagos puntuales mejoran tu puntaje de confianza; el incumplimiento reduce el puntaje, afectando el acceso futuro a BNPL.`,
+        },
+      ];
 
   return (
     <section ref={sectionRef} id="faq-section" className="bg-black py-12">
@@ -148,55 +212,33 @@ export const FAQFlexFi = () => {
           FAQ
         </h2>
         <div
-          className={`space-y-4  ${
+          className={`space-y-4 ${
             isVisible
               ? "motion-preset-slide-right motion-delay-[500ms]"
               : "opacity-0 translate-y-10"
           }`}
         >
-          {!isShopper
-            ? faqs.map((faq, index) => (
-                <div
-                  key={index}
-                  className="border-b border-gray-300 py-4 cursor-pointer"
-                  onClick={() => toggle(index)}
-                >
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-lg font-semibold text-white font-display">
-                      {faq.question}
-                    </h3>
-                    <span className="text-gray-300">
-                      {open === index ? "-" : "+"}
-                    </span>
-                  </div>
-                  {open === index && (
-                    <p className="mt-4 text-gray-300 text-base sm:text-xl">
-                      {faq.answer}
-                    </p>
-                  )}
-                </div>
-              ))
-            : faqShoppers.map((faq, index) => (
-                <div
-                  key={index}
-                  className="border-b border-gray-300 py-4 cursor-pointer"
-                  onClick={() => toggle(index)}
-                >
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-lg font-semibold text-white font-display">
-                      {faq.question}
-                    </h3>
-                    <span className="text-gray-300">
-                      {open === index ? "-" : "+"}
-                    </span>
-                  </div>
-                  {open === index && (
-                    <p className="mt-4 text-gray-300 text-base sm:text-xl">
-                      {faq.answer}
-                    </p>
-                  )}
-                </div>
-              ))}
+          {(isShopper ? faqShoppers : faqs).map((faq, index) => (
+            <div
+              key={index}
+              className="border-b border-gray-300 py-4 cursor-pointer"
+              onClick={() => toggle(index)}
+            >
+              <div className="flex justify-between items-center">
+                <h3 className="text-lg font-semibold text-white font-display">
+                  {faq.question}
+                </h3>
+                <span className="text-gray-300">
+                  {open === index ? "-" : "+"}
+                </span>
+              </div>
+              {open === index && (
+                <p className="mt-4 text-gray-300 text-base sm:text-xl">
+                  {faq.answer}
+                </p>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -1,7 +1,9 @@
+import { useLanguageStore } from "@/store/useLanguageStore";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 
 export const GetStartedButton = () => {
+  const { isEnglish } = useLanguageStore();
   return (
     <Link href="/register">
       <div className="mt-8">
@@ -9,7 +11,9 @@ export const GetStartedButton = () => {
           <span className="absolute -top-2 -right-5  bg-gradient-to-r from-purple-500 to-blue-500 text-white px-2 py-1 rounded-full text-xs font-semibold tracking-wide shadow-md transform rotate-12">
             DevNet
           </span>
-          <p className="mr-4 font-display text-black">Get Started</p>
+          <p className="mr-4 font-display text-black">
+            {isEnglish ? "Get Started" : "Comenzar"}
+          </p>
           <IoIosArrowForward className="text-black" size={22} />
         </button>
       </div>

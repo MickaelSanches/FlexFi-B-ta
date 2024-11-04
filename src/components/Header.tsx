@@ -5,16 +5,15 @@ import { sessionRepository } from "@/repositories/sessionRepository";
 import { useAuthStore } from "@/store/useAuthStore";
 import { usePageStore } from "@/store/usePageStore";
 import { useRouter } from "next/navigation";
+import { useLanguageStore } from "@/store/useLanguageStore";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { isLogged, setIsLogged, reset } = useAuthStore();
-
   const { isShopper, setIsShopper } = usePageStore();
-
   const { logout } = sessionRepository();
-
   const router = useRouter();
+  const { isEnglish, setIsEnglish } = useLanguageStore();
 
   const scrollToFAQ = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -32,11 +31,14 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
-  // Gérer la déconnexion et réagir immédiatement sans rafraîchir
   const handleLogout = () => {
     logout();
     reset();
-    setIsLogged(false); // Mettre à jour l'état local immédiatement
+    setIsLogged(false);
+  };
+
+  const changeLanguage = () => {
+    setIsEnglish(!isEnglish);
   };
 
   return (
@@ -62,7 +64,10 @@ const Header = () => {
             }
             onClick={() => setIsShopper(false)}
           >
-            For businesses
+            <span className="hidden sm:inline">
+              {isEnglish ? "For" : "Para"}
+            </span>{" "}
+            {isEnglish ? "businesses" : "empresas"}
           </button>
         </Link>
         <Link href="/">
@@ -74,7 +79,10 @@ const Header = () => {
             }
             onClick={() => setIsShopper(true)}
           >
-            For shoppers
+            <span className="hidden sm:inline">
+              {isEnglish ? "For" : "Para"}
+            </span>{" "}
+            {isEnglish ? "shoppers" : "compradores"}
           </button>
         </Link>
         <span className="ml-2 text-xs md:text-sm bg-[#00FEFB] bg-opacity-30 text-white border border-[#00FEFB] px-3 py-1 rounded-full font-sans neon-effect motion-preset-rebound-down motion-delay-[550ms]">
@@ -89,13 +97,13 @@ const Header = () => {
               className="hidden md:flex cursor-pointer hover:scale-110 ease-out duration-300 motion-preset-rebound-down motion-delay-[600ms]"
               href="/login"
             >
-              Log in
+              {isEnglish ? "Log in" : "Iniciar sesión"}
             </Link>
             <Link
               className="hidden md:flex border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 pt-1 pb-2 cursor-pointer motion-preset-rebound-down motion-delay-[650ms]"
               href="/register"
             >
-              Sign up
+              {isEnglish ? "Sign up" : "Registrarse"}
             </Link>
           </div>
         ) : (
@@ -104,18 +112,33 @@ const Header = () => {
               className="hidden md:flex border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 py-1 cursor-pointer"
               href="/dashboard"
             >
-              Dashboard
+              {isEnglish ? "Dashboard" : "Panel"}
             </Link>
           </div>
         )}
 
-        <div className="hidden md:flex border-l border-gray-300 h-6"></div>
+        <div className="hidden md:flex border-l border-gray-300 h-6 ease-out duration-300 motion-preset-rebound-down motion-delay-[600ms]"></div>
         <button
-          className="hidden md:flex cursor-pointer hover:scale-110 ease-out duration-300 motion-preset-rebound-down motion-delay-600ms]"
+          className="hidden md:flex cursor-pointer hover:scale-110 ease-out duration-300 motion-preset-rebound-down motion-delay-[600ms]"
           onClick={scrollToFAQ}
         >
-          Help
+          {isEnglish ? "Help" : "Ayuda"}
         </button>
+        {isEnglish ? (
+          <img
+            className="hidden md:flex cursor-pointer h-6 w-6 ml-4 mr-2 ease-out duration-300 motion-preset-rebound-down motion-delay-[600ms]"
+            src="/images/flag/anglais-flag.png"
+            alt="english flag"
+            onClick={changeLanguage}
+          />
+        ) : (
+          <img
+            className="hidden md:flex cursor-pointer h-6 w-6 ml-4 mr-2 ease-out duration-300 motion-preset-rebound-down motion-delay-[600ms]"
+            src="/images/flag/spanish-flag.png"
+            alt="spanish flag"
+            onClick={changeLanguage}
+          />
+        )}
       </div>
 
       <div className="md:hidden">
@@ -150,14 +173,14 @@ const Header = () => {
                   className="text-white text-4xl font-bold hover:text-[#00FEFB] transition duration-500 transform hover:scale-110"
                   onClick={() => setIsOpen(false)}
                 >
-                  Sign up
+                  {isEnglish ? "Sign up" : "Registrarse"}
                 </Link>
                 <Link
                   href="/login"
                   className="text-white text-4xl font-bold hover:text-[#00FEFB] transition duration-500 transform hover:scale-110"
                   onClick={() => setIsOpen(false)}
                 >
-                  Log in
+                  {isEnglish ? "Log in" : "Iniciar sesión"}
                 </Link>
               </>
             ) : (
@@ -167,7 +190,7 @@ const Header = () => {
                   className="text-white text-4xl font-bold hover:text-[#00FEFB] transition duration-500 transform hover:scale-110"
                   onClick={() => setIsOpen(false)}
                 >
-                  Dashboard
+                  {isEnglish ? "Dashboard" : "Panel"}
                 </Link>
                 <button
                   className="text-white text-4xl font-bold hover:text-[#00FEFB] transition duration-500 transform hover:scale-110"
@@ -176,7 +199,7 @@ const Header = () => {
                     setIsOpen(false);
                   }}
                 >
-                  Logout
+                  {isEnglish ? "Logout" : "Cerrar sesión"}
                 </button>
               </>
             )}
@@ -188,11 +211,27 @@ const Header = () => {
                 setIsOpen(false);
               }}
             >
-              Help
+              {isEnglish ? "Help" : "Ayuda"}
             </button>
+
+            {isEnglish ? (
+              <img
+                className="h-6 w-6 ml-4 mr-2"
+                src="/images/flag/anglais-flag.png"
+                alt="english flag"
+                onClick={changeLanguage}
+              />
+            ) : (
+              <img
+                className="h-6 w-6 ml-4 mr-2"
+                src="/images/flag/spanish-flag.png"
+                alt="spanish flag"
+                onClick={changeLanguage}
+              />
+            )}
           </nav>
 
-          {/* Bouton pour fermer le menu */}
+          {/* Close Menu Button */}
           <button
             onClick={toggleMenu}
             className="absolute top-6 right-6 text-white hover:text-red-400 transition duration-300 focus:outline-none"

@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { usePageStore } from "@/store/usePageStore";
+import { useLanguageStore } from "@/store/useLanguageStore";
 import { GetStartedButton } from "./GetStartedButton";
 
 export const BusinessSolution = () => {
   const { isShopper } = usePageStore();
+  const { isEnglish } = useLanguageStore();
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
@@ -12,11 +14,11 @@ export const BusinessSolution = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setIsVisible(true); // L'élément est visible, activer l'animation
+            setIsVisible(true);
           }
         });
       },
-      { threshold: 0.1 } // 10% visible avant de déclencher
+      { threshold: 0.1 }
     );
 
     const currentSection = sectionRef.current;
@@ -54,8 +56,8 @@ export const BusinessSolution = () => {
             isVisible ? "motion-preset-slide-left" : "opacity-0 translate-y-10"
           }`}
         >
-          Adaptable Payments
-          <br /> for Every Channel
+          {isEnglish ? "Adaptable Payments" : "Pagos Adaptables"}
+          <br /> {isEnglish ? "for Every Channel" : "para Cada Canal"}
         </h2>
         <ul className="space-y-6 flex flex-col gap-1 lg:mb-12">
           <li
@@ -67,13 +69,22 @@ export const BusinessSolution = () => {
           >
             <div>
               <h3 className="font-display sm:text-lg font-semibold">
-                {!isShopper ? "E-commerce" : "Simple and Fast : E-commerce"}
+                {!isShopper
+                  ? isEnglish
+                    ? "E-commerce"
+                    : "Comercio Electrónico"
+                  : isEnglish
+                  ? "Simple and Fast: E-commerce"
+                  : "Sencillo y Rápido: Comercio Electrónico"}
               </h3>
               <p className="text-gray-200 text-base sm:text-xl">
                 {!isShopper
-                  ? `Fast online payment: your customers complete transactions in
-                less than 10 seconds.`
-                  : "Pay for your online purchases with FlexFi in just a few clicks. Choose your payment plan and split your costs, all in under 10 seconds."}
+                  ? isEnglish
+                    ? `Fast online payment: your customers complete transactions in less than 10 seconds.`
+                    : `Pago rápido en línea: sus clientes completan las transacciones en menos de 10 segundos.`
+                  : isEnglish
+                  ? "Pay for your online purchases with FlexFi in just a few clicks. Choose your payment plan and split your costs, all in under 10 seconds."
+                  : "Pague sus compras en línea con FlexFi en solo unos clics. Elija su plan de pago y divida sus costos, todo en menos de 10 segundos."}
               </p>
             </div>
           </li>
@@ -86,13 +97,22 @@ export const BusinessSolution = () => {
           >
             <div>
               <h3 className="font-display text-base sm:text-lg font-semibold">
-                {!isShopper ? "Point of Sale" : "In-Store: Effortless Payment"}
+                {!isShopper
+                  ? isEnglish
+                    ? "Point of Sale"
+                    : "Punto de Venta"
+                  : isEnglish
+                  ? "In-Store: Effortless Payment"
+                  : "En Tienda: Pago sin Esfuerzo"}
               </h3>
               <p className="text-gray-200 text-base sm:text-xl">
                 {!isShopper
-                  ? `Effortless payments via payment link or terminal, directly at
-                your point of sale.`
-                  : "Use FlexFi in-store via a payment terminal or a secure payment link. Split your payment easily, with no paperwork needed."}
+                  ? isEnglish
+                    ? `Effortless payments via payment link or terminal, directly at your point of sale.`
+                    : `Pagos sin esfuerzo a través de enlace o terminal, directamente en su punto de venta.`
+                  : isEnglish
+                  ? "Use FlexFi in-store via a payment terminal or a secure payment link. Split your payment easily, with no paperwork needed."
+                  : "Utilice FlexFi en tienda a través de un terminal de pago o un enlace seguro. Divida su pago fácilmente, sin necesidad de papeleo."}
               </p>
             </div>
           </li>
@@ -106,14 +126,21 @@ export const BusinessSolution = () => {
             <div>
               <h3 className="font-display text-base sm:text-lg font-semibold">
                 {!isShopper
-                  ? "Remote Sales"
-                  : "Remote Purchases: Convenient and Flexible"}
+                  ? isEnglish
+                    ? "Remote Sales"
+                    : "Ventas Remotas"
+                  : isEnglish
+                  ? "Remote Purchases: Convenient and Flexible"
+                  : "Compras Remotas: Convenientes y Flexibles"}
               </h3>
               <p className="text-gray-200 text-base sm:text-xl">
                 {!isShopper
-                  ? `Your customers receive a payment link via email or SMS,
-                anywhere, anytime.`
-                  : `Whether you’re buying over the phone or placing a remote order, FlexFi lets you pay through a link sent via email or SMS. Flexibility at your fingertips, wherever you are.`}
+                  ? isEnglish
+                    ? `Your customers receive a payment link via email or SMS, anywhere, anytime.`
+                    : `Sus clientes reciben un enlace de pago por correo electrónico o SMS, en cualquier momento y lugar.`
+                  : isEnglish
+                  ? "Whether you’re buying over the phone or placing a remote order, FlexFi lets you pay through a link sent via email or SMS. Flexibility at your fingertips, wherever you are."
+                  : "Ya sea que esté comprando por teléfono o realizando un pedido remoto, FlexFi le permite pagar a través de un enlace enviado por correo electrónico o SMS. Flexibilidad a su alcance, dondequiera que esté."}
               </p>
             </div>
           </li>
