@@ -12,8 +12,8 @@ const FlexFiPaymentSimulator: React.FC = () => {
       );
     }
 
-    // Calcul des frais pour le client (12%)
-    const shopperTotal = amount * 1.12;
+    // Calcul des frais pour le client (1.5%)
+    const shopperTotal = amount * 1.015;
     const monthlyPaymentShopper = shopperTotal / months;
 
     // Calcul des frais pour le commerçant (2%)
