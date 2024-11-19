@@ -200,10 +200,18 @@ export const FAQFlexFi = () => {
       ];
 
   return (
-    <section ref={sectionRef} id="faq-section" className="bg-black py-12">
+    <section
+      ref={sectionRef}
+      id="faq-section"
+      className="py-12 bg-cover bg-center text-black  flex items-end sm:mt-96 md:mt-0"
+      // style={{
+      //   backgroundImage:
+      //     "url('images/Background_buy_now_Payer_later_Flexfi.webp')",
+      // }}
+    >
       <div className="container mx-auto px-4 md:px-32">
         <h2
-          className={`font-display text-4xl font-extrabold text-white mb-4 ${
+          className={`font-display text-2xl md:text-6xl font-extrabold mb-4 ${
             isVisible
               ? "motion-preset-slide-right motion-delay-[400ms]"
               : "opacity-0 translate-y-10"
@@ -225,17 +233,15 @@ export const FAQFlexFi = () => {
               onClick={() => toggle(index)}
             >
               <div className="flex justify-between items-center">
-                <h3 className="text-lg font-semibold text-white font-display">
+                <h3 className="text-lg font-semibold font-display">
                   {faq.question}
                 </h3>
-                <span className="text-gray-300">
+                <span className="text-5xl w-9 h-9 flex items-center justify-center">
                   {open === index ? "-" : "+"}
                 </span>
               </div>
               {open === index && (
-                <p className="mt-4 text-gray-300 text-base sm:text-xl">
-                  {faq.answer}
-                </p>
+                <p className="mt-4  text-base sm:text-xl">{faq.answer}</p>
               )}
             </div>
           ))}

@@ -11,9 +11,17 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        // Ajoute  la police Days One pour les gros titres
-        sans: ["Darker Grotesque", "sans-serif"], // pour les petits caractères
-        display: ["Days One", "sans-serif"], // pour les gros caractères
+        sans: ["Darker Grotesque", "sans-serif"],
+        display: ["Days One", "sans-serif"],
+      },
+      animation: {
+        scroll: "scroll 10s linear infinite", // Animation pour le défilement
+      },
+      keyframes: {
+        scroll: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
       },
     },
   },

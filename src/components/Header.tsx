@@ -3,14 +3,12 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { sessionRepository } from "@/repositories/sessionRepository";
 import { useAuthStore } from "@/store/useAuthStore";
-import { usePageStore } from "@/store/usePageStore";
 import { useRouter } from "next/navigation";
 import { useLanguageStore } from "@/store/useLanguageStore";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { isLogged, setIsLogged, reset } = useAuthStore();
-  const { isShopper, setIsShopper } = usePageStore();
   const { logout } = sessionRepository();
   const router = useRouter();
   const { isEnglish, setIsEnglish } = useLanguageStore();
@@ -42,8 +40,8 @@ const Header = () => {
   };
 
   return (
-    <header className="font-sans w-full flex items-center justify-between bg-black bg-opacity-90 p-4 md:px-32 sticky top-0 py-2 transition-colors duration-300 z-50 text-base sm:text-xl">
-      <nav className="md:flex space-x-4 flex items-center">
+    <nav className="font-sans w-full flex items-center justify-between bg-opacity-90 p-4 md:px-32 py-2 transition-colors duration-300 z-50 text-base sm:text-xl">
+      <div className="md:flex space-x-4 flex items-center">
         <Link
           href="/"
           className="flex items-center motion-preset-rebound-down motion-delay-[400ms]"
@@ -51,56 +49,40 @@ const Header = () => {
           <img
             src="/logo/flexfi-logo.png"
             alt="FlexFi Logo"
-            className="h-10 w-auto neon-effect"
+            className="h-14 w-auto neon-effect"
           />
         </Link>
+      </div>
 
-        <Link href="/">
-          <button
-            className={
-              !isShopper
-                ? "cursor-pointer hover:text-[#00FEFB] border-b border-[#00FEFB] motion-preset-rebound-down motion-delay-[450ms]"
-                : "cursor-pointer hover:text-[#00FEFB] motion-preset-rebound-down motion-delay-[450ms]"
-            }
-            onClick={() => setIsShopper(false)}
-          >
-            <span className="hidden sm:inline">
-              {isEnglish ? "For" : "Para"}
-            </span>{" "}
-            {isEnglish ? "businesses" : "empresas"}
-          </button>
-        </Link>
-        <Link href="/">
-          <button
-            className={
-              isShopper
-                ? "cursor-pointer hover:text-[#00FEFB] border-b border-[#00FEFB] motion-preset-rebound-down motion-delay-[500ms]"
-                : "cursor-pointer hover:text-[#00FEFB] motion-preset-rebound-down motion-delay-[500ms]"
-            }
-            onClick={() => setIsShopper(true)}
-          >
-            <span className="hidden sm:inline">
-              {isEnglish ? "For" : "Para"}
-            </span>{" "}
-            {isEnglish ? "shoppers" : "compradores"}
-          </button>
-        </Link>
-        <span className="ml-2 text-xs md:text-sm bg-[#00FEFB] bg-opacity-30 text-white border border-[#00FEFB] px-3 py-1 rounded-full font-sans neon-effect motion-preset-rebound-down motion-delay-[550ms]">
-          BETA DevNet
+      <div>
+        <span className="ml-2 md:text-sm text-black font-display text-sm hover:scale-110 ease-out duration-300 rounded-full bg-[#00FEFB] px-8 pt-4 pb-4 cursor-pointer motion-preset-rebound-down motion-delay-[550ms]">
+          {isEnglish ? "Test Demo" : "Demostración"}
         </span>
-      </nav>
+      </div>
 
       <div className="flex items-center space-x-4">
         {!isLogged ? (
           <div className="flex items-center space-x-4">
+            <button
+              className="hidden md:flex font-display text-sm hover:scale-110 ease-out duration-300 rounded-full px-4 pt-1 pb-2 cursor-pointer motion-preset-rebound-down motion-delay-[650ms]"
+              onClick={scrollToFAQ}
+            >
+              {isEnglish ? "Simulator" : "Simulador"}
+            </button>
+            <button
+              className="hidden md:flex font-display text-sm hover:scale-110 ease-out duration-300 rounded-full px-4 pt-1 pb-2 cursor-pointer motion-preset-rebound-down motion-delay-[650ms]"
+              onClick={scrollToFAQ}
+            >
+              FAQ
+            </button>
             <Link
-              className="hidden md:flex cursor-pointer hover:scale-110 ease-out duration-300 motion-preset-rebound-down motion-delay-[600ms]"
+              className="hidden md:flex font-display text-sm hover:scale-110 bg-black ease-out duration-300 rounded-full px-4 pt-1 pb-2 cursor-pointer motion-preset-rebound-down motion-delay-[650ms]"
               href="/login"
             >
-              {isEnglish ? "Log in" : "Iniciar sesión"}
+              {isEnglish ? "Sign In" : "Iniciar sesión"}
             </Link>
             <Link
-              className="hidden md:flex border border-gray-300 hover:scale-110 ease-out duration-300 rounded-full px-4 pt-1 pb-2 cursor-pointer motion-preset-rebound-down motion-delay-[650ms]"
+              className="hidden md:flex text-black font-display text-sm hover:scale-110 ease-out duration-300 rounded-full bg-[#00FEFB] px-4 pt-1 pb-2 cursor-pointer motion-preset-rebound-down motion-delay-[650ms]"
               href="/register"
             >
               {isEnglish ? "Sign up" : "Registrarse"}
@@ -117,13 +99,6 @@ const Header = () => {
           </div>
         )}
 
-        <div className="hidden md:flex border-l border-gray-300 h-6 ease-out duration-300 motion-preset-rebound-down motion-delay-[600ms]"></div>
-        <button
-          className="hidden md:flex cursor-pointer hover:scale-110 ease-out duration-300 motion-preset-rebound-down motion-delay-[600ms]"
-          onClick={scrollToFAQ}
-        >
-          {isEnglish ? "Help" : "Ayuda"}
-        </button>
         {isEnglish ? (
           <img
             className="hidden md:flex cursor-pointer h-6 w-6 ml-4 mr-2 ease-out duration-300 motion-preset-rebound-down motion-delay-[600ms]"
@@ -180,7 +155,7 @@ const Header = () => {
                   className="text-white text-4xl font-bold hover:text-[#00FEFB] transition duration-500 transform hover:scale-110"
                   onClick={() => setIsOpen(false)}
                 >
-                  {isEnglish ? "Log in" : "Iniciar sesión"}
+                  {isEnglish ? "SignIn" : "Iniciar sesión"}
                 </Link>
               </>
             ) : (
@@ -253,7 +228,7 @@ const Header = () => {
           </button>
         </div>
       )}
-    </header>
+    </nav>
   );
 };
 
