@@ -21,7 +21,7 @@ const Presentation = () => {
             className="relative flex items-center bg-[#00FEFB] text-black font-bold px-6 py-4 rounded-full hover:scale-110 ease-out duration-300"
           >
             <p className="mr-4 font-display">
-              {isEnglish ? "Download the App" : "Descarga la aplicación"}
+              {isEnglish ? "Download App" : "Descarga aplicación"}
             </p>
             <IoIosArrowForward size={22} />
           </Link>

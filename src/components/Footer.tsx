@@ -9,11 +9,22 @@ const Footer = () => {
   const { isEnglish } = useLanguageStore();
 
   return (
-    <footer className="bg-black text-gray-400 py-8 w-full border-t-8 border-[#00FEFB] font-sans text-base sm:text-xl">
-      <div className="px-4 flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 w-full md:px-32">
+    <footer className="bg-[#fbfbfb] text-black py-8 w-full font-sans text-base p-12 md:p-32">
+      <div className="bg-[#D8E6ED] flex flex-col items-center md:flex-row justify-between md:items-start space-y-8 md:space-y-0 w-full rounded-3xl p-6 md:p-12">
+        {/* Logo Section */}
+        <div className="flex flex-col items-center md:items-start space-y-4">
+          <Image
+            src="/logo/flexicon.webp"
+            alt="FlexFi Logo"
+            width={256}
+            height={256}
+            className="w-20 h-auto md:w-32"
+          />
+        </div>
+
         {/* FlexFi Section */}
         <div className="flex flex-col space-y-4 text-center md:text-left">
-          <h5 className="text-white font-semibold font-display">FlexFi</h5>
+          <h5 className="font-semibold font-display">FlexFi</h5>
           <ul className="space-y-2">
             <li>
               <Link href="/team" className="hover:underline">
@@ -28,9 +39,28 @@ const Footer = () => {
           </ul>
         </div>
 
+        {/* Company Section */}
+        <div className="flex flex-col space-y-4 text-center md:text-left">
+          <h5 className="font-semibold font-display">
+            {isEnglish ? "Company" : "Compañía"}
+          </h5>
+          <ul className="space-y-2">
+            <li>
+              <Link href="/terms" className="hover:underline">
+                {isEnglish ? "Terms" : "Términos"}
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy" className="hover:underline">
+                {isEnglish ? "Privacy" : "Privacidad"}
+              </Link>
+            </li>
+          </ul>
+        </div>
+
         {/* Resources Section */}
         <div className="flex flex-col space-y-4 text-center md:text-left">
-          <h5 className="text-white font-semibold font-display">
+          <h5 className="font-semibold font-display">
             {isEnglish ? "Resources" : "Recursos"}
           </h5>
           <ul className="space-y-2">
@@ -51,65 +81,20 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Logo Section */}
-        <div className="flex flex-col items-center space-y-4">
-          <Image
-            src="/logo/flexicon.webp"
-            alt="FlexFi Logo"
-            width={64}
-            height={64}
-          />
-        </div>
-
         {/* Follow Us Section */}
-        <div className="flex flex-col items-center space-y-4 text-center md:text-right">
-          <h5 className="text-white font-semibold font-display">
-            {isEnglish ? "Follow Us" : "Síguenos"}
+        <div className="flex flex-col items-center md:items-end space-y-4 text-center md:text-right">
+          <h5 className="font-semibold font-display">
+            {isEnglish ? "Socials" : "Síguenos"}
           </h5>
-          <Link href={"https://x.com/FlexFi_"} className="text-gray-400">
-            <img
+          <Link className="mx-auto" href={"https://x.com/FlexFi_"}>
+            <Image
               src="/logo/logo-x.webp"
-              alt="logo x"
-              className="w-10 rounded-full h-auto"
+              alt="Logo X"
+              width={40}
+              height={40}
+              className="w-10 rounded-full mx-auto h-auto"
             />
           </Link>
-          <div className="flex justify-center md:justify-end space-x-4">
-            <a href="#" className="text-gray-400 hover:text-white">
-              <i className="fab fa-instagram"></i>
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white">
-              <i className="fab fa-twitter"></i>
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white">
-              <i className="fab fa-linkedin"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom Section */}
-      <div className="w-full mt-8 border-t border-gray-700 pt-4">
-        <div className="max-w-7xl mx-auto flex justify-between items-center pl-8 pr-8">
-          <p className="text-sm text-gray-400">
-            © 2024 FlexFi.{" "}
-            {isEnglish
-              ? "All rights reserved"
-              : "Todos los derechos reservados"}
-          </p>
-          <div className="space-x-4">
-            <Link
-              href="/terms"
-              className="text-sm text-gray-400 hover:underline"
-            >
-              {isEnglish ? "Terms" : "Términos"}
-            </Link>
-            <Link
-              href="/privacy"
-              className="text-sm text-gray-400 hover:underline"
-            >
-              {isEnglish ? "Privacy" : "Privacidad"}
-            </Link>
-          </div>
         </div>
       </div>
     </footer>
