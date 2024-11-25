@@ -128,7 +128,7 @@ const SimulatorPage = () => {
                     className="w-full text-center text-sm md:text-xl text-white bg-[#39576C] font-display outline-none"
                   />
                   <span className="text-blue-600 text-xl md:text-2xl font-bold ml-2">
-                    x
+                    $
                   </span>
                 </div>
               }
