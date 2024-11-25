@@ -7,6 +7,7 @@ import TokkenBanner from "@/components/TokkenBanner";
 import PurchasingPower from "@/components/PurchasingPower";
 import CreditCard from "@/components/CreditCard";
 import Slogan from "@/components/Slogan";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -50,6 +51,7 @@ export default function Home() {
           <FAQFlexFi />
         </div>
       </main>
+      <Footer />
     </>
   );
 }

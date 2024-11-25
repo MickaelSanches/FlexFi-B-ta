@@ -18,8 +18,8 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-black p-8">
-      <div className="relative flex flex-col md:flex-row w-full max-w-5xl bg-gray-900 border border-gray-800 rounded-lg shadow-lg overflow-hidden mt-8 md:mt-0">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#0C1735] to-white p-8">
+      <div className="relative flex flex-col md:flex-row w-full max-w-5xl bg-white border border-gray-300  rounded-lg shadow-lg overflow-hidden mt-8 md:mt-0">
         <div className="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold tracking-wide shadow-md z-10">
           DevNet
         </div>
@@ -32,14 +32,14 @@ const Login = () => {
           />
         </div>
         <div className="w-full md:w-1/2 p-6 md:p-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-200 mb-6 md:mb-12 font-display">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-black mb-6 md:mb-12 font-display">
             Login
           </h2>
 
           <form onSubmit={onSubmit}>
             <div className="mb-4 md:mb-6">
               <label
-                className="block text-gray-200 text-sm md:text-lg font-bold mb-2 md:mb-3"
+                className="block text-black text-sm md:text-lg font-bold mb-2 md:mb-3"
                 htmlFor="email"
               >
                 Email
@@ -49,13 +49,13 @@ const Login = () => {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-3 md:px-4 py-2 md:py-3 bg-gray-800 text-gray-200 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 md:px-4 py-2 md:py-3 bg-gray-200 text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
             <div className="mb-4 md:mb-6">
               <label
-                className="block text-gray-200 text-sm md:text-lg font-bold mb-2 md:mb-3"
+                className="block text-black text-sm md:text-lg font-bold mb-2 md:mb-3"
                 htmlFor="password"
               >
                 Password
@@ -65,14 +65,14 @@ const Login = () => {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-3 md:px-4 py-2 md:py-3 bg-gray-800 text-gray-200 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 md:px-4 py-2 md:py-3 bg-gray-200 text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
             <div className="flex items-center justify-between">
               <button
                 type="submit"
-                className="w-full bg-blue-500 text-white font-bold py-2 md:py-3 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                className="w-full bg-blue-500 text-blackfont-bold py-2 md:py-3 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
               >
                 {isLoading ? "Loading..." : "login"}
               </button>

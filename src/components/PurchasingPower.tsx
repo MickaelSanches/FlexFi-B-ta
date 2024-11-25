@@ -1,8 +1,10 @@
-"use clien";
+/* eslint-disable react/no-unknown-property */
+"use client";
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
+import FeatureSmartphoneCard from "./FeatureSmartphoneCard";
 
 const PurchasingPower = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -48,107 +50,62 @@ const PurchasingPower = () => {
           INCREASE YOUR <br /> PURCHASING POWER
         </h3>
 
-        {/* Responsive image */}
-        <div className="flex flex-col md:flex-row justify-center w-full ">
-          <div
-            className={`relative w-auto max-w-md h-[600px] mx-5 ${
-              isVisible
-                ? "motion-preset-slide-left motion-delay-[400ms]"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
-            {/* Image */}
-            <img
-              src="/images/smartphone1.webp"
-              alt="Smartphone Background"
-              className="w-full h-full object-cover rounded-[2rem]"
-            />
+        {/* Smartphone Feature */}
+        <div className="relative mb-12 flex flex-col md:flex-row justify-center w-full group">
+          {/* Pseudo-élément via style JSX */}
+          <style jsx>{`
+            .relative::before {
+              content: "";
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 50vw; /* Légèrement plus large pour un effet plus subtil */
+              height: 50vw;
+              border-radius: 50%;
+              background: radial-gradient(
+                circle,
+                rgba(0, 254, 251, 1) 0%,
+                /* Centre très intense */ rgba(0, 254, 251, 0.6) 20%,
+                /* Transition douce */ rgba(0, 254, 251, 0.2) 50%,
+                /* Atténuation progressive */ rgba(0, 254, 251, 0.05) 60%,
+                /* Bords très diffus */ transparent 70%
+                  /* Transparence complète */
+              );
+              z-index: 0;
+            }
+          `}</style>
 
-            {/* Contenu superposé */}
-            <div
-              className={`absolute font-sans inset-0 flex flex-col text-black items-center justify-center text-center p-6`}
-            >
-              {/* Titre */}
-              <h1 className="text-black font-display text-2xl font-bold">
-                STAKING
-              </h1>
-              {/* Sous-titre */}
-              <p className="text-black mt-4">
-                Optimize your assets and unlock <br /> access to Buy Now Pay
-                Later
-              </p>
-              {/* Badge APR */}
-              <div className="mt-6 font-display bg-[#39576C] text-white text-lg font-bold py-4 px-8  rounded-full">
-                8% APR
-              </div>
-              {/* Liste des points */}
-              <ul className="mt-6 space-y-2 text-left">
-                <li className="flex items-center">
-                  <span className="mr-2 text-lg">➤</span> Unlock access to BNPL
-                  with USDC
-                </li>
-                <li className="flex items-center">
-                  <span className="mr-2 text-lg">➤</span> Increase your spending
-                  capacity
-                </li>
-                <li className="flex items-center">
-                  <span className="mr-2 text-lg">➤</span> $1 staked = $1
-                  available for BNPL
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div
-            className={`relative w-auto max-w-md h-[600px] mx-5 ${
-              isVisible
-                ? "motion-preset-slide-left motion-delay-[400ms]"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
-            {/* Image */}
-            <img
-              src="/images/smartphone2.webp"
-              alt="Smartphone Background"
-              className="w-full h-full object-cover rounded-[2rem]"
-            />
-
-            {/* Contenu superposé */}
-            <div className="absolute inset-0 flex flex-col text-black items-center justify-center text-center p-6">
-              {/* Titre */}
-              <h1 className="text-black font-display text-2xl font-bold">
-                BNPL
-              </h1>
-              {/* Sous-titre */}
-              <p className="text-black mt-4">
-                Transform your crypto into instant <br /> purchasing power
-              </p>
-              {/* Badge APR */}
-              <div className="mt-6 font-display bg-[#39576C] text-[#00FEFB] text-lg font-bold py-4 px-8 rounded-full">
-                0% APR
-              </div>
-              {/* Liste des points */}
-              <ul className="mt-6 space-y-2 text-left">
-                <li className="flex items-center">
-                  <span className="mr-2 text-lg">➤</span> Fund your wallet to
-                  spend
-                </li>
-                <li className="flex items-center">
-                  <span className="mr-2 text-lg">➤</span> Split your payments
-                  from 3 to 12x
-                </li>
-                <li className="flex items-center">
-                  <span className="mr-2 text-lg">➤</span> Increase your
-                  purchasing power
-                </li>
-              </ul>
-            </div>
-          </div>
+          {/* Composants enfants */}
+          <FeatureSmartphoneCard
+            imageSrc="/images/smartphone1.webp"
+            title="STAKING"
+            subtitle="Optimize your assets and unlock access to Buy Now Pay Later"
+            apr="8% APR"
+            aprTextColor="#FFF"
+            points={[
+              "Unlock access to BNPL with USDC",
+              "Increase your spending capacity",
+              "$1 staked = $1 available for BNPL",
+            ]}
+          />
+          <FeatureSmartphoneCard
+            imageSrc="/images/smartphone2.webp"
+            title="BNPL"
+            subtitle="Transform your crypto into instant purchasing power"
+            apr="0% APR"
+            aprTextColor="#00FEFB"
+            points={[
+              "Fund your wallet to spend",
+              "Split your payments from 3 to 12x",
+              "Increase your purchasing power",
+            ]}
+          />
         </div>
 
         {/* Responsive button */}
         <Link
-          href="/register"
+          href="/simulator"
           className={`mt-12 relative flex items-center bg-[#00FEFB] text-black font-bold px-6 py-4 rounded-full hover:scale-110 ease-out duration-300 ${
             isVisible
               ? "motion-preset-rebound-down motion-delay-[600ms]"

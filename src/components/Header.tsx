@@ -63,12 +63,12 @@ const Header = () => {
       <div className="flex items-center space-x-4">
         {!isLogged ? (
           <div className="flex items-center space-x-4">
-            <button
+            <Link
               className="hidden md:flex font-display text-sm hover:scale-110 ease-out duration-300 rounded-full px-4 pt-1 pb-2 cursor-pointer motion-preset-rebound-down motion-delay-[650ms]"
-              onClick={scrollToFAQ}
+              href="/simulator"
             >
               {isEnglish ? "Simulator" : "Simulador"}
-            </button>
+            </Link>
             <button
               className="hidden md:flex font-display text-sm hover:scale-110 ease-out duration-300 rounded-full px-4 pt-1 pb-2 cursor-pointer motion-preset-rebound-down motion-delay-[650ms]"
               onClick={scrollToFAQ}
@@ -76,13 +76,13 @@ const Header = () => {
               FAQ
             </button>
             <Link
-              className="hidden md:flex font-display text-sm hover:scale-110 bg-black ease-out duration-300 rounded-full px-4 pt-1 pb-2 cursor-pointer motion-preset-rebound-down motion-delay-[650ms]"
+              className="hidden md:flex font-display text-sm hover:scale-110 bg-black ease-out duration-300 rounded-full px-4 py-2 cursor-pointer motion-preset-rebound-down motion-delay-[650ms]"
               href="/login"
             >
               {isEnglish ? "Sign In" : "Iniciar sesión"}
             </Link>
             <Link
-              className="hidden md:flex text-black font-display text-sm hover:scale-110 ease-out duration-300 rounded-full bg-[#00FEFB] px-4 pt-1 pb-2 cursor-pointer motion-preset-rebound-down motion-delay-[650ms]"
+              className="hidden md:flex text-black font-display text-sm hover:scale-110 ease-out duration-300 rounded-full bg-[#00FEFB] px-4 py-2 cursor-pointer motion-preset-rebound-down motion-delay-[650ms]"
               href="/register"
             >
               {isEnglish ? "Sign up" : "Registrarse"}
@@ -139,7 +139,7 @@ const Header = () => {
       </div>
 
       {isOpen && (
-        <div className="fixed inset-0 bg-gradient-to-r from-black via-gray-900 to-black bg-opacity-95 flex flex-col justify-center items-center z-50 transition-opacity duration-300">
+        <div className="fixed inset-0 bg-gradient-to-br from-[#0C1735] to-white bg-opacity-95 flex flex-col justify-center items-center z-50 transition-opacity duration-300">
           <nav className="flex flex-col items-center space-y-8">
             {!isLogged ? (
               <>
@@ -156,6 +156,13 @@ const Header = () => {
                   onClick={() => setIsOpen(false)}
                 >
                   {isEnglish ? "SignIn" : "Iniciar sesión"}
+                </Link>
+                <Link
+                  href="/simulator"
+                  className="text-white text-4xl font-bold hover:text-[#00FEFB] transition duration-500 transform hover:scale-110"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {isEnglish ? "Simulator" : "Simulador"}
                 </Link>
               </>
             ) : (
@@ -186,7 +193,7 @@ const Header = () => {
                 setIsOpen(false);
               }}
             >
-              {isEnglish ? "Help" : "Ayuda"}
+              {isEnglish ? "Faq" : "Faq"}
             </button>
 
             {isEnglish ? (

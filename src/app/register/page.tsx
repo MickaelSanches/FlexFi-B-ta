@@ -27,8 +27,8 @@ const Register = () => {
     useRegisterViewModel();
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-black p-8">
-      <div className="relative flex flex-col md:flex-row w-full max-w-5xl bg-gray-900 border border-gray-800 rounded-lg shadow-lg overflow-hidden mt-8 md:mt-0">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#0C1735] to-white p-8">
+      <div className="relative flex flex-col md:flex-row w-full max-w-5xl bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden mt-8 md:mt-0">
         <div className="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold tracking-wide shadow-md z-50">
           DevNet
         </div>
@@ -42,14 +42,14 @@ const Register = () => {
         </div>
 
         <div className="w-full md:w-1/2 p-6 md:p-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-200 mb-6 md:mb-12 font-display">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-black mb-6 md:mb-12 font-display">
             Register
           </h2>
 
           {error && <div className="text-red-500 mb-4">{error}</div>}
 
           {currentStep === 5 && (
-            <div className="text-center text-gray-200 mb-12">
+            <div className="text-center text-black mb-12">
               {" "}
               {/* Added margin-bottom */}
               <h3 className="text-2xl font-bold mb-4">
@@ -58,20 +58,20 @@ const Register = () => {
               <p className="mb-4">
                 Your account has been successfully created.
               </p>
-              <p className="mb-4 font-bold text-yellow-400">
+              <p className="mb-4 font-bold text-yellow-600">
                 Important: Here is your seed phrase and wallet address. Please
                 write them down and keep them in a secure place.
               </p>
-              <div className="bg-gray-800 text-white p-4 rounded-lg mb-4">
+              <div className="bg-gray-400 text-black p-4 rounded-lg mb-4">
                 <p className="font-mono text-lg">{seedPhrase}</p>
               </div>
-              <p className="mb-4 font-bold text-yellow-400">
+              <p className="mb-4 font-bold text-yellow-600">
                 Wallet Public Address:
               </p>
-              <div className="bg-gray-800 text-white p-4 rounded-lg mb-4 overflow-auto">
+              <div className="bg-gray-400 text-black p-4 rounded-lg mb-4 overflow-auto">
                 <p className="font-mono text-lg break-all">{publicKey}</p>
               </div>
-              <p className="mb-4 text-sm text-gray-400">
+              <p className="mb-4 text-sm text-black">
                 Your seed phrase is a unique set of words that acts as the key
                 to your account. Anyone with access to this phrase can access
                 your account, so treat it with care and do not share it with
@@ -101,7 +101,7 @@ const Register = () => {
             >
               <div className="mb-4">
                 <label
-                  className="block text-gray-200 font-bold mb-2"
+                  className="block text-black font-bold mb-2"
                   htmlFor="email"
                 >
                   Email
@@ -111,13 +111,13 @@ const Register = () => {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-800 text-gray-200 border rounded-lg"
+                  className="w-full px-4 py-3 bg-gray-200 text-black border border-gray-300 rounded-lg"
                   required
                 />
               </div>
 
               <div className="mb-4">
-                <label className="flex items-center text-gray-200">
+                <label className="flex items-center text-black">
                   <input
                     type="checkbox"
                     checked={isPro}
@@ -129,7 +129,7 @@ const Register = () => {
               </div>
 
               <div className="mb-4">
-                <label className="flex items-center text-gray-200">
+                <label className="flex items-center text-black">
                   <input
                     type="checkbox"
                     checked={acceptPrivacy}
@@ -167,7 +167,7 @@ const Register = () => {
             >
               <div className="mb-4">
                 <label
-                  className="block text-gray-200 font-bold mb-2"
+                  className="block text-black font-bold mb-2"
                   htmlFor="code"
                 >
                   Confirmation Code
@@ -177,7 +177,7 @@ const Register = () => {
                   id="code"
                   value={confirmationCode}
                   onChange={(e) => setConfirmationCode(e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-800 text-gray-200 border rounded-lg"
+                  className="w-full px-4 py-3 bg-gray-200 text-black border border-gray-300 rounded-lg"
                   required
                 />
               </div>
@@ -206,7 +206,7 @@ const Register = () => {
             >
               <div className="mb-4">
                 <label
-                  className="block text-gray-200 font-bold mb-2"
+                  className="block text-black font-bold mb-2"
                   htmlFor="password"
                 >
                   Password
@@ -216,13 +216,13 @@ const Register = () => {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-800 text-gray-200 border rounded-lg"
+                  className="w-full px-4 py-3 bg-gray-200 text-black border border-gray-300 rounded-lg"
                   required
                 />
               </div>
               <div className="mb-4">
                 <label
-                  className="block text-gray-200 font-bold mb-2"
+                  className="block text-black font-bold mb-2"
                   htmlFor="confirmPassword"
                 >
                   Confirm Password
@@ -232,7 +232,7 @@ const Register = () => {
                   id="confirmPassword"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-800 text-gray-200 border rounded-lg"
+                  className="w-full px-4 py-3 bg-gray-200 text-black border border-gray-300 rounded-lg"
                   required
                 />
               </div>
@@ -250,7 +250,7 @@ const Register = () => {
             >
               <div className="mb-4">
                 <label
-                  className="block text-gray-200 font-bold mb-2"
+                  className="block text-black font-bold mb-2"
                   htmlFor="siren"
                 >
                   SIREN
@@ -260,7 +260,7 @@ const Register = () => {
                   id="siren"
                   value={siren}
                   onChange={(e) => setSiren(e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-800 text-gray-200 border rounded-lg"
+                  className="w-full px-4 py-3 bg-gray-200 text-black border border-gray-300 rounded-lg"
                   required
                 />
               </div>

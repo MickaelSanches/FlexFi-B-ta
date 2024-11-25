@@ -15,7 +15,7 @@ const config: Config = {
         display: ["Days One", "sans-serif"],
       },
       animation: {
-        scroll: "scroll 10s linear infinite", // Animation pour le défilement
+        scroll: "scroll 20s linear infinite", // Animation pour le défilement
       },
       keyframes: {
         scroll: {

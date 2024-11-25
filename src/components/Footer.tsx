@@ -9,7 +9,7 @@ const Footer = () => {
   const { isEnglish } = useLanguageStore();
 
   return (
-    <footer className="bg-[#fbfbfb] text-black py-8 w-full font-sans text-base p-12 md:p-32">
+    <footer className="bg-[#fbfbfb] text-black py-8 w-full font-sans text-base p-12 ">
       <div className="bg-[#D8E6ED] flex flex-col items-center md:flex-row justify-between md:items-start space-y-8 md:space-y-0 w-full rounded-3xl p-6 md:p-12">
         {/* Logo Section */}
         <div className="flex flex-col items-center md:items-start space-y-4">
