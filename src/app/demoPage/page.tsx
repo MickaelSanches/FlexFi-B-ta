@@ -41,7 +41,9 @@ function ProductPage() {
     setIsModalOpen(false);
   };
 
-  const handleInstallmentChange = (event) => {
+  const handleInstallmentChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     setInstalment(Number(event.target.value));
   };
 

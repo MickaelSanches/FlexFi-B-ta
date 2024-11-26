@@ -19,6 +19,8 @@ export const useDemoViewModel = () => {
   const { createSale, payInstallment } = bnplRepository();
   const { instalment, amount } = useDemoStore();
 
+  console.log(amount);
+
   const handleSubmit = async (
     mail: string,
     password: string,
