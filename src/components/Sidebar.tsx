@@ -44,7 +44,7 @@ const Sidebar = () => {
 
       {/* Sidebar responsive en plein écran */}
       <div
-        className={`flex justify-center  fixed top-0 left-0 h-screen inset-0 bg-[#D8E6ED] text-black z-40 transform rounded-lg ${
+        className={`flex justify-center  fixed top-0 left-0 h-screen inset-0 bg-[#D8E6ED] text-black z-40 transform rounded-b-lg ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:relative md:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col md:justify-start`}
       >

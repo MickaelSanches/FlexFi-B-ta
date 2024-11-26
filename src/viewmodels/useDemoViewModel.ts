@@ -6,7 +6,6 @@ import { useDemoStore } from "@/store/useDemoStore";
 export const useDemoViewModel = () => {
   const { login } = sessionRepository();
   const {
-    email,
     setEmail,
     setPublicKey,
     setSeedPhrase,
@@ -49,9 +48,11 @@ export const useDemoViewModel = () => {
         const newSale = await createSale(
           "DVPkw98MCX9yCBQh88wbJ8jd3LjVabo68o7g4sFYaW3S",
           publicKey,
-          0.2,
+          0.5,
           instalment
         );
+
+        console.log(`__________publicKey : ${publicKey}`);
 
         if (newSale) {
           console.log("State before payment:", { email, publicKey });
