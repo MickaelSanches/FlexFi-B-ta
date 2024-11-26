@@ -63,8 +63,8 @@ const PurchasesItem: React.FC<PurchasesItemProps> = ({
   return (
     <div
       className={`${
-        allPaid ? "bg-green-600" : "bg-gray-900"
-      } text-white p-6 sm:p-8 rounded-lg shadow-lg transition-all duration-300 ease-in-out space-y-6`}
+        allPaid ? "bg-green-600 text-white" : "bg-[#B2D1E0]"
+      } text-black p-6 sm:p-8 rounded-lg shadow-lg transition-all duration-300 ease-in-out space-y-6`}
     >
       {/* Disposition verticale pour mobile, horizontale pour plus grand */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 md:space-y-0">
@@ -110,7 +110,7 @@ const PurchasesItem: React.FC<PurchasesItemProps> = ({
       </div>
 
       {/* Date de création */}
-      <div className="text-sm sm:text-base text-gray-400">
+      <div className="text-sm sm:text-base text-gray-800">
         Sale created on: {formattedCreatedDate}
       </div>
 
@@ -132,7 +132,7 @@ const PurchasesItem: React.FC<PurchasesItemProps> = ({
                 className={`flex items-center space-x-3 p-4 rounded-lg transition-all duration-300 ease-in-out transform ${
                   item.paid
                     ? "bg-green-500 hover:bg-green-400"
-                    : "bg-gray-800 hover:bg-gray-700"
+                    : "bg-[#D8E6ED] hover:scale-105"
                 }`}
               >
                 {item.paid ? (

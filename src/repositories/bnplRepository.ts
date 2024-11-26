@@ -2,7 +2,8 @@ import { useAuthStore } from "@/store/useAuthStore";
 import axios from "axios";
 
 export const bnplRepository = () => {
-  const URL_API = "https://flexfiback.onrender.com";
+  // const URL_API = "https://flexfiback.onrender.com";
+  const URL_API = "http://localhost:3000";
   const { publicKey } = useAuthStore();
 
   const createSale = async (

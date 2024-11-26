@@ -39,7 +39,7 @@ const Purchases: React.FC = () => {
 
   return (
     <DashboardLayout>
-      <h1 className="text-2xl sm:text-4xl font-bold text-gradient mb-8 text-center sm:text-left">
+      <h1 className="text-2xl text-black font-display sm:text-4xl font-bold text-gradient mb-8 text-center sm:text-left">
         My purchases
       </h1>
 
@@ -47,9 +47,9 @@ const Purchases: React.FC = () => {
 
       {/* Menu déroulant pour le tri */}
       <div className="mb-4 w-full sm:w-52">
-        <label className="block text-gray-200 mb-2">Sort by:</label>
+        <label className="block text-gray-800 mb-2">Sort by:</label>
         <select
-          className="mt-1 block w-full px-3 py-2 bg-gray-800 text-white rounded-lg"
+          className="mt-1 block w-full px-3 py-2 bg-white text-black border border-[#D8E6ED] rounded-lg"
           value={sortOrder}
           onChange={(e) =>
             setSortOrder(

@@ -3,7 +3,8 @@ import { useRouter } from "next/navigation";
 
 export const sessionRepository = () => {
   const router = useRouter();
-  const URL_API = "https://flexfiback.onrender.com/auth";
+  // const URL_API = "https://flexfiback.onrender.com/auth";
+  const URL_API = "http://localhost:3000/auth";
 
   interface LoginResponse {
     token?: string;
@@ -76,6 +77,10 @@ export const sessionRepository = () => {
           legalCategory: decodedToken.user.categorie_juridique,
           mainActivity: decodedToken.user.activite_principale,
           denomination: decodedToken.user.denomination,
+        });
+        console.log("SetAuthData called with:", {
+          email: decodedToken.user.email,
+          publicKey: decodedToken.user.public_key,
         });
 
         // Redirection après connexion réussie

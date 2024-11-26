@@ -5,7 +5,8 @@ export const solanaWalletRepository = () => {
 
   const { publicKey } = useAuthStore();
 
-  const URL_API = "https://flexfiback.onrender.com";
+  // const URL_API = "https://flexfiback.onrender.com";
+  const URL_API = "http://localhost:3000";
 
   interface ApiResponse {
     balance?: number | null;

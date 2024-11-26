@@ -36,52 +36,40 @@ const Profile = () => {
 
   return (
     <DashboardLayout>
-      <h1 className="text-3xl md:text-4xl mt-8 md:mt-8 font-bold text-gradient mb-4 md:mb-8">
-        Personal Information
+      <h1 className="text-3xl text-black md:text-4xl mt-8 md:mt-8 font-bold text-gradient mb-4 md:mb-8 font-display">
+        My Informations
       </h1>
 
-      <div className="bg-slate-900 p-4 md:p-8 rounded-lg shadow-lg">
+      <div className="bg-[#D8E6ED] text-black p-4 md:p-8 rounded-lg shadow-lg">
         <div className="mb-4 md:mb-6">
-          <p className="text-xs md:text-sm text-gray-300 uppercase">Email</p>
-          <p className="text-xl md:text-2xl font-bold text-white">
-            {email || "Not Available"}
-          </p>
+          <p className="text-xs md:text-sm font-display ">Email</p>
+          <p className="text-sm md:text-lg">{email || "Not Available"}</p>
         </div>
 
         {siren && (
           <>
             <div className="mb-4 md:mb-6">
-              <p className="text-xs md:text-sm text-gray-300 uppercase">
-                Company Name
-              </p>
-              <p className="text-xl md:text-2xl font-bold text-white">
+              <p className="text-xs md:text-sm font-display">Company Name</p>
+              <p className="text-sm md:text-lg">
                 {denomination || "Not Available"}
               </p>
             </div>
 
             <div className="mb-4 md:mb-6">
-              <p className="text-xs md:text-sm text-gray-300 uppercase">
-                Siren
-              </p>
-              <p className="text-xl md:text-2xl font-bold text-white">
-                {siren || "Not Available"}
-              </p>
+              <p className="text-xs md:text-sm font-display">Siren</p>
+              <p className="text-sm md:text-lg">{siren || "Not Available"}</p>
             </div>
 
             <div className="mb-4 md:mb-6">
-              <p className="text-xs md:text-sm text-gray-300 uppercase">
-                Legal Category
-              </p>
-              <p className="text-xl md:text-2xl font-bold text-white">
+              <p className="text-xs md:text-sm font-display">Legal Category</p>
+              <p className="text-sm md:text-lg">
                 {legalCategory || "Not Available"}
               </p>
             </div>
 
             <div className="mb-4 md:mb-6">
-              <p className="text-xs md:text-sm text-gray-300 uppercase">
-                Main Activity
-              </p>
-              <p className="text-xl md:text-2xl font-bold text-white">
+              <p className="text-xs md:text-sm font-display">Main Activity</p>
+              <p className="text-sm md:text-lg">
                 {mainActivity || "Not Available"}
               </p>
             </div>
@@ -89,15 +77,13 @@ const Profile = () => {
         )}
 
         <div className="mb-4 md:mb-6">
-          <p className="text-xs md:text-sm text-gray-300 uppercase">
-            Public Key
-          </p>
+          <p className="text-xs md:text-sm font-display">Public Key</p>
           <div className="flex flex-wrap items-center space-x-2">
-            <p className="text-sm md:text-lg font-mono text-[#00FEFB] break-all w-full sm:w-auto">
+            <p className="text-sm md:text-lg break-all w-full sm:w-auto">
               {publicKey || "Not Available"}
             </p>
             <button
-              className="bg-gray-700 text-gray-300 p-1 rounded-full focus:outline-none hover:bg-gray-600"
+              className="bg-gray-700  p-1 rounded-full focus:outline-none hover:bg-gray-600"
               title="Copy Public Key"
               onClick={() => navigator.clipboard.writeText(publicKey)}
             >
@@ -107,11 +93,9 @@ const Profile = () => {
         </div>
 
         <div className="mb-4 md:mb-6">
-          <p className="text-xs md:text-sm text-gray-300 uppercase">
-            Seed Phrase
-          </p>
+          <p className="text-xs md:text-sm font-display">Seed Phrase</p>
           {showSeedPhrase ? (
-            <p className="text-sm md:text-lg font-mono text-[#ff4d4f] break-all">
+            <p className="text-sm md:text-lg text-[#ff4d4f] break-all">
               {seedPhrase || "Not Available"}
             </p>
           ) : (
@@ -121,7 +105,7 @@ const Profile = () => {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="p-2 mt-2 bg-[#2b2b2b] border-none rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring focus:ring-[#00FEFB] w-full sm:w-auto"
+                  className="p-2 mt-2 bg-white border-none rounded-md text-black placeholder-gray-500 focus:outline-none focus:ring focus:ring-[#00FEFB] w-full sm:w-auto"
                   placeholder="Enter your password"
                   required
                 />

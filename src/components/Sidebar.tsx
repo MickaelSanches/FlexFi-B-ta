@@ -22,7 +22,7 @@ const Sidebar = () => {
     <>
       {/* Bouton pour ouvrir le menu en haut */}
       <button
-        className="fixed top-12 left-0 z-50 p-2 m-2 text-white bg-gray-900 bg-opacity-80 rounded-md md:hidden {classname} border"
+        className="fixed top-12 left-0 z-50 p-2 m-2 text-white bg-[#D8E6ED] bg-opacity-80 rounded-md md:hidden {classname} border"
         onClick={() => setIsOpen(!isOpen)}
       >
         {/* Icône burger */}
@@ -44,18 +44,18 @@ const Sidebar = () => {
 
       {/* Sidebar responsive en plein écran */}
       <div
-        className={`flex justify-center  fixed top-0 left-0 h-screen inset-0 bg-gray-900 text-white z-40 transform rounded-lg ${
+        className={`flex justify-center  fixed top-0 left-0 h-screen inset-0 bg-[#D8E6ED] text-black z-40 transform rounded-lg ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:relative md:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col md:justify-start`}
       >
         <div className="p-4 border-b border-gray-700 w-full text-center">
           <h2 className="text-2xl font-bold">User Dashboard</h2>
         </div>
-        <nav className="flex flex-col space-y-8 mt-8 text-center">
+        <nav className="flex flex-col space-y-8 mt-8 text-center font-display">
           <Link
             href="/profile"
             className={`p-2 text-lg ${
-              isActive("/profile") ? "bg-gray-700" : "hover:bg-gray-700"
+              isActive("/profile") ? "bg-[#B2D1E0]" : "hover:bg-[#B2D1E0]"
             }`}
             onClick={() => setIsOpen(false)} // Fermer le menu après le clic
           >
@@ -64,7 +64,7 @@ const Sidebar = () => {
           <Link
             href="/purchases"
             className={`p-2 text-lg ${
-              isActive("/purchases") ? "bg-gray-700" : "hover:bg-gray-700"
+              isActive("/purchases") ? "bg-[#B2D1E0]" : "hover:bg-[#B2D1E0]"
             }`}
             onClick={() => setIsOpen(false)} // Fermer le menu après le clic
           >
@@ -73,7 +73,7 @@ const Sidebar = () => {
           <Link
             href="/dashboard"
             className={`p-2 text-lg ${
-              isActive("/dashboard") ? "bg-gray-700" : "hover:bg-gray-700"
+              isActive("/dashboard") ? "bg-[#B2D1E0]" : "hover:bg-[#B2D1E0]"
             }`}
             onClick={() => setIsOpen(false)} // Fermer le menu après le clic
           >

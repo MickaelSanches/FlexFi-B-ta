@@ -55,9 +55,12 @@ const Header = () => {
       </div>
 
       <div>
-        <span className="ml-2 md:text-sm text-black font-display text-sm hover:scale-110 ease-out duration-300 rounded-full bg-[#00FEFB] px-8 pt-4 pb-4 cursor-pointer motion-preset-rebound-down motion-delay-[550ms]">
+        <Link
+          href="/demoPage"
+          className="ml-2 md:text-sm text-black font-display text-sm hover:scale-110 ease-out duration-300 rounded-full bg-[#00FEFB] px-8 pt-4 pb-4 cursor-pointer motion-preset-rebound-down motion-delay-[550ms]"
+        >
           {isEnglish ? "Test Demo" : "Demostración"}
-        </span>
+        </Link>
       </div>
 
       <div className="flex items-center space-x-4">
