@@ -1,16 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
-import { useWalletStore } from "@/store/useWalletStore";
 import { useDashboardViewModel } from "@/viewmodels/useDashboardViewModel";
 import { useTransactionStore } from "@/store/useTransactionStore";
 import { TransactionList } from "@/components/TransactionList";
 import { useAuthStore } from "@/store/useAuthStore";
-import { Transaction } from "@/@Types/transaction";
 
 const Dashboard = () => {
   const { onInit } = useDashboardViewModel();
-  const { ammount } = useWalletStore();
   const { transactions } = useTransactionStore();
   const { isLogged } = useAuthStore();
 
@@ -18,61 +15,6 @@ const Dashboard = () => {
     console.log("Initialisation du Dashboard, islogged = " + isLogged);
     onInit();
   }, []);
-
-  const mockTransactions: Transaction[] = [
-    {
-      blockTime: 1698472800, // Timestamp en secondes
-      meta: {
-        preBalances: [5000000000],
-        postBalances: [5000000000], // Aucun changement, montant = 0
-      },
-      transaction: {
-        message: {
-          accountKeys: ["SenderAddress123", "ReceiverAddress456"],
-        },
-        signatures: ["abcd1234efgh5678ijkl9012mnop3456qrst7890uvwx"],
-      },
-    },
-    {
-      blockTime: 1698472900,
-      meta: {
-        preBalances: [2222221000000000],
-        postBalances: [222000000000], // Argent envoyé, diminution du solde
-      },
-      transaction: {
-        message: {
-          accountKeys: ["SenderAddress123", "ReceiverAddress456"],
-        },
-        signatures: ["mnop3456qrst7890uvwxabcd1234efgh5678ijkl9012"],
-      },
-    },
-    {
-      blockTime: 1698473000,
-      meta: {
-        preBalances: [1500000000],
-        postBalances: [1400000000], // Argent envoyé, diminution du solde
-      },
-      transaction: {
-        message: {
-          accountKeys: ["SenderAddress123", "ReceiverAddress456"],
-        },
-        signatures: ["qrst7890uvwxabcd1234efgh5678ijkl9012mnop3456"],
-      },
-    },
-    {
-      blockTime: null, // Cas où la date est inconnue
-      meta: {
-        preBalances: [],
-        postBalances: [],
-      },
-      transaction: {
-        message: {
-          accountKeys: [],
-        },
-        signatures: [],
-      },
-    },
-  ];
 
   return (
     <section className="w-full space-y-12">

@@ -20,10 +20,9 @@ const BalanceButton = () => {
         Balance
       </span>
       <span className="mt-2 sm:mt-0 sm:ml-6 text-xl sm:text-2xl font-bold text-[#00FEFB] leading-tight flex items-end text-center sm:text-right">
-        {/* {ammount !== null && ammount !== undefined
+        {ammount !== null && ammount !== undefined
           ? `${ammount.toFixed(4)} SOL`
-          : "N/A"} */}{" "}
-        12345 $
+          : "N/A"}{" "}
       </span>
     </div>
   );
