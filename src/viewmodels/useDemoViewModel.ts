@@ -16,6 +16,8 @@ export const useDemoViewModel = () => {
     setDenomination,
   } = useAuthStore();
 
+  const { setPaiementStep } = useDemoStore();
+
   const { createSale, payInstallment } = bnplRepository();
   const { instalment, amount } = useDemoStore();
 
@@ -48,7 +50,7 @@ export const useDemoViewModel = () => {
         console.log("State after login:", { email, publicKey });
 
         const newSale = await createSale(
-          "DVPkw98MCX9yCBQh88wbJ8jd3LjVabo68o7g4sFYaW3S",
+          "3UyF1pE3vKZVSD7tq1HupC2nknRh1UB8o6WF6YFhLLKK",
           publicKey,
           0.5,
           instalment
@@ -60,8 +62,10 @@ export const useDemoViewModel = () => {
           console.log("State before payment:", { email, publicKey });
           await payInstallment(newSale.data.sale.id, email);
         }
+        setPaiementStep(1);
       }
     } catch (error) {
+      setPaiementStep(1);
       setIsLoading(false);
       console.error("Login failed:", error);
     }

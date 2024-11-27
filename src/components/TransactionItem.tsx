@@ -66,41 +66,44 @@ export const TransactionItem: React.FC<TransactionItemProps> = ({
   const isSent = fromAddress === userAddress;
 
   return (
-    <a href={transactionLink} target="_blank" rel="noopener noreferrer">
-      <li
-        className={` mb-4 bg-gray-700 bg-opacity-30 p-4 rounded-xl shadow-md hover:bg-gray-700 transition duration-300 ease-in-out ${
-          isSent ? "border-l-4 border-[#00FEFB]" : "border-l-4 border-green-500"
+    <tr className="text-gray-800 border-b">
+      {/* Flèche */}
+      <td className="p-4 text-center">
+        <span
+          className={`inline-block w-6 h-6 text-white rounded-full ${
+            isSent ? "bg-blue-500" : "bg-green-500"
+          }`}
+        >
+          {isSent ? "↑" : "↓"}
+        </span>
+      </td>
+
+      {/* Date */}
+      <td className="p-4 whitespace-nowrap text-sm">{transactionDate}</td>
+
+      {/* Key */}
+      <td
+        className="p-4 text-sm font-mono cursor-pointer"
+        onClick={() => setShowFullAddress(!showFullAddress)}
+      >
+        {showFullAddress ? fromAddress : shortAddress}
+      </td>
+
+      {/* Amount */}
+      <td
+        className={`p-4 text-right font-bold ${
+          isSent ? "text-red-500" : "text-green-500"
         }`}
       >
-        <div>
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-            {/* Section de la date et de l'adresse */}
-            <div className="mb-2 sm:mb-0 sm:mr-4 text-sm md:text-base">
-              <span className="font-bold text-gray-500">{transactionDate}</span>{" "}
-              | <span className="font-bold text-teal-300">Key :</span>{" "}
-              <span
-                onClick={() => setShowFullAddress(!showFullAddress)}
-                className="cursor-pointer hover:underline"
-              >
-                {showFullAddress ? fromAddress : shortAddress}
-              </span>
-            </div>
-
-            {/* Section du montant */}
-            <div className="text-right text-sm md:text-base">
-              <span className="font-bold text-teal-300">Amount :</span>{" "}
-              {amount !== null && amount !== undefined
-                ? `${amount.toFixed(4)} SOL`
-                : "N/A"}{" "}
-              {isSent ? (
-                <span className="text-red-400">(Sent)</span>
-              ) : (
-                <span className="text-green-400">(Received)</span>
-              )}
-            </div>
-          </div>
-        </div>
-      </li>
-    </a>
+        {amount !== null
+          ? `${isSent ? "-" : "+"}${amount.toFixed(4)} SOL`
+          : "N/A"}
+      </td>
+      <td className={`p-4 text-right font-bold underline`}>
+        <a target="_blank" rel="noopener noreferrer" href={transactionLink}>
+          more
+        </a>
+      </td>
+    </tr>
   );
 };

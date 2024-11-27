@@ -22,7 +22,7 @@ const Sidebar = () => {
     <>
       {/* Bouton pour ouvrir le menu en haut */}
       <button
-        className="fixed top-12 left-0 z-50 p-2 m-2 text-white bg-[#D8E6ED] bg-opacity-80 rounded-md md:hidden {classname} border"
+        className="fixed top-24 left-0 z-50 p-2 m-2 text-white bg-[#5D6876] bg-opacity-80 rounded-md md:hidden {classname} border"
         onClick={() => setIsOpen(!isOpen)}
       >
         {/* Icône burger */}
@@ -77,7 +77,7 @@ const Sidebar = () => {
             }`}
             onClick={() => setIsOpen(false)} // Fermer le menu après le clic
           >
-            Wallet
+            Transactions
           </Link>
           <button
             onClick={() => {

@@ -12,23 +12,37 @@ export const TransactionList: React.FC<TransactionListProps> = ({
 }) => {
   const { publicKey } = useAuthStore();
   return (
-    <div className="bg-gradient-to-tr from-gray-800 via-gray-900 to-black border border-gray-700 shadow-xl rounded-3xl p-8">
-      <h3 className="text-3xl font-extrabold text-white mb-6">
-        Transaction History
-      </h3>
-      <ul className="text-left text-gray-300 space-y-4">
-        {transactions.length > 0 ? (
-          transactions.map((tx, index) => (
-            <TransactionItem
-              key={index}
-              transaction={tx}
-              userAddress={publicKey}
-            />
-          ))
-        ) : (
-          <li>No transactions available.</li>
-        )}
-      </ul>
+    <div className="bg-[#B2D1E0] border shadow-2xl rounded-3xl p-8">
+      <div className="overflow-x-auto">
+        <table className="w-full table-auto text-left border-collapse">
+          <thead>
+            <tr className="border-black border-b-2 text-gray-700 uppercase text-sm font-display">
+              <th className="p-4 text-center w-16">Arrow</th>
+              <th className="p-4 text-left">Date</th>
+              <th className="p-4 text-left">Key</th>
+              <th className="p-4 text-right">Amount</th>
+              <th className="p-4 text-right">Info</th>
+            </tr>
+          </thead>
+          <tbody>
+            {transactions.length > 0 ? (
+              transactions.map((tx, index) => (
+                <TransactionItem
+                  key={index}
+                  transaction={tx}
+                  userAddress={publicKey}
+                />
+              ))
+            ) : (
+              <tr>
+                <td colSpan={4} className="p-4 text-center text-gray-500">
+                  No transactions available.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
