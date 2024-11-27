@@ -103,7 +103,7 @@ function ProductPage() {
     );
   };
 
-  const instl = [3, 6, 12];
+  const instls = [3, 6, 12];
 
   const Modal = () => (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 text-black">
@@ -122,9 +122,9 @@ function ProductPage() {
                 value={instalment}
                 onChange={handleInstallmentChange}
               >
-                {instl.map((_, i) => (
-                  <option key={i} value={i + 1}>
-                    {i + 1}x
+                {instls.map((index, instal) => (
+                  <option key={index} value={instal}>
+                    {instal} x
                   </option>
                 ))}
               </select>
