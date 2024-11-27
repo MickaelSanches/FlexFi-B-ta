@@ -122,7 +122,7 @@ function ProductPage() {
                 value={instalment}
                 onChange={handleInstallmentChange}
               >
-                {instls.map((index, instal) => (
+                {instls.map((instal, index) => (
                   <option key={index} value={instal}>
                     {instal} x
                   </option>
