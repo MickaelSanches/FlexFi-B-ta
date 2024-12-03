@@ -99,6 +99,17 @@ function ProductPage() {
             {isLoading ? "Payment in progress..." : "Pay"}
           </button>
         </form>
+        <div className="text-center mt-4">
+          <p className="text-gray-700">
+            Don&apos;t have an account?{" "}
+            <a
+              href="/register"
+              className="text-blue-500 font-bold hover:underline"
+            >
+              Sign up
+            </a>
+          </p>
+        </div>
       </>
     );
   };

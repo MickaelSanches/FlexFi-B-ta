@@ -10,7 +10,7 @@ interface DemoState {
 }
 
 export const useDemoStore = create<DemoState>((set) => ({
-  instalment: 1,
+  instalment: 3,
   amount: 0,
   paiementStep: 1,
   setInstalment: (instalment) => set({ instalment }),

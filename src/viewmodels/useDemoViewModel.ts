@@ -50,7 +50,7 @@ export const useDemoViewModel = () => {
         console.log("State after login:", { email, publicKey });
 
         const newSale = await createSale(
-          "3UyF1pE3vKZVSD7tq1HupC2nknRh1UB8o6WF6YFhLLKK",
+          "DVPkw98MCX9yCBQh88wbJ8jd3LjVabo68o7g4sFYaW3S",
           publicKey,
           0.5,
           instalment
