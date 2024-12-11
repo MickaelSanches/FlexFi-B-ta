@@ -86,10 +86,30 @@ const Footer = () => {
           <h5 className="font-semibold font-display">
             {isEnglish ? "Socials" : "Síguenos"}
           </h5>
-          <Link className="mx-auto" href={"https://x.com/FlexFi_"}>
+          <Link
+            className="mx-auto"
+            href="https://x.com/FlexFi_"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Image
               src="/logo/logo-x.webp"
               alt="Logo X"
+              width={40}
+              height={40}
+              className="w-10 rounded-full mx-auto h-auto"
+            />
+          </Link>
+
+          <Link
+            className="mx-auto"
+            href="https://www.linkedin.com/company/flexfiofficial/posts/?feedView=all"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="/logo/logo-in.webp"
+              alt="Logo LinkedIn"
               width={40}
               height={40}
               className="w-10 rounded-full mx-auto h-auto"
