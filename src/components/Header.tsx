@@ -35,8 +35,12 @@ const Header = () => {
     setIsLogged(false);
   };
 
-  const changeLanguage = () => {
-    setIsEnglish(!isEnglish);
+  const changeToSpanish = () => {
+    setIsEnglish(false);
+  };
+
+  const changeToEnglish = () => {
+    setIsEnglish(true);
   };
 
   return (
@@ -54,14 +58,14 @@ const Header = () => {
         </Link>
       </div>
 
-      <div>
+      {/* <div>
         <Link
           href="/demoPage"
           className="ml-2 md:text-sm text-black font-display text-sm hover:scale-110 ease-out duration-300 rounded-full bg-[#00FEFB] px-8 pt-4 pb-4 cursor-pointer motion-preset-rebound-down motion-delay-[550ms]"
         >
           {isEnglish ? "Test Demo" : "Demostración"}
         </Link>
-      </div>
+      </div> */}
 
       <div className="flex items-center space-x-4">
         {!isLogged ? (
@@ -102,21 +106,19 @@ const Header = () => {
           </div>
         )}
 
-        {isEnglish ? (
-          <img
-            className="hidden md:flex cursor-pointer h-6 w-6 ml-4 mr-2 ease-out duration-300 motion-preset-rebound-down motion-delay-[600ms]"
-            src="/images/flag/anglais-flag.png"
-            alt="english flag"
-            onClick={changeLanguage}
-          />
-        ) : (
-          <img
-            className="hidden md:flex cursor-pointer h-6 w-6 ml-4 mr-2 ease-out duration-300 motion-preset-rebound-down motion-delay-[600ms]"
-            src="/images/flag/spanish-flag.png"
-            alt="spanish flag"
-            onClick={changeLanguage}
-          />
-        )}
+        <img
+          className="hidden md:flex cursor-pointer h-6 w-6 ml-4 mr-2 ease-out duration-300 motion-preset-rebound-down motion-delay-[600ms]"
+          src="/images/flag/anglais-flag.png"
+          alt="english flag"
+          onClick={changeToEnglish}
+        />
+
+        <img
+          className="hidden md:flex cursor-pointer h-7 w-7 ml-4 mr-2 ease-out duration-300 motion-preset-rebound-down motion-delay-[600ms]"
+          src="/images/flag/salvador-flag.webp"
+          alt="spanish flag"
+          onClick={changeToSpanish}
+        />
       </div>
 
       <div className="md:hidden">
@@ -199,21 +201,19 @@ const Header = () => {
               {isEnglish ? "Faq" : "Faq"}
             </button>
 
-            {isEnglish ? (
-              <img
-                className="h-6 w-6 ml-4 mr-2"
-                src="/images/flag/anglais-flag.png"
-                alt="english flag"
-                onClick={changeLanguage}
-              />
-            ) : (
-              <img
-                className="h-6 w-6 ml-4 mr-2"
-                src="/images/flag/spanish-flag.png"
-                alt="spanish flag"
-                onClick={changeLanguage}
-              />
-            )}
+            <img
+              className="h-6 w-6 ml-4 mr-2"
+              src="/images/flag/anglais-flag.png"
+              alt="english flag"
+              onClick={changeToEnglish}
+            />
+
+            <img
+              className="h-7 w-7 ml-4 mr-2"
+              src="/images/flag/salvador-flag.webp"
+              alt="spanish flag"
+              onClick={changeToSpanish}
+            />
           </nav>
 
           {/* Close Menu Button */}
