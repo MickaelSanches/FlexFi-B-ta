@@ -93,8 +93,8 @@ const Team = () => {
                 world of cryptocurrencies, since 2020, a place where vision and
                 impact meet. Every step, every challenge, has taught me to think
                 big, dream boldly, and build with conviction. What drives me:
-                &quot;transforming the impossible into the possible, and forging
-                paths where others see only walls.&quot;`
+                "transforming the impossible into the possible, and forging
+                paths where others see only walls."`
                   : `Creativo, audaz y movido por una sed de innovación, mi trayectoria
                 es una verdadera oda a la libertad del emprendimiento. Después de
                 años dando forma a proyectos con mis propias manos, encontré en el
