@@ -19,6 +19,9 @@ const Presentation = () => {
             disabled
             className="relative flex items-center bg-[#00FEFB] text-black font-bold px-6 py-4 rounded-full hover:scale-110 ease-out duration-300"
           >
+            <span className="absolute -bottom-1 -right-1 transform bg-white text-black font-bold font-display text-xs px-1 py-0.5 rounded-full">
+              comming soon
+            </span>
             <p className="mr-4 font-display">
               {isEnglish ? "Download App" : "Descarga aplicación"}
             </p>
