@@ -46,7 +46,7 @@ const Team = () => {
         </div>
         <div className="space-y-12">
           <div
-            className="flex flex-col sm:flex-row items-center justify-between mb-20 space-y-6 sm:space-y-0 bg-cover"
+            className="flex flex-col sm:flex-row items-center justify-between mb-20 space-y-6 sm:space-y-0 bg-cover shadow-lg rounded-2xl pb-5"
             style={{
               backgroundImage:
                 "url('images/Background_buy_now_Payer_later_Flexfi.webp')",
@@ -75,7 +75,7 @@ const Team = () => {
             </div>
           </div>
           <div
-            className="flex flex-col-reverse sm:flex-row items-center justify-between bg-cover"
+            className="flex flex-col-reverse sm:flex-row items-center justify-between bg-cover shadow-lg rounded-2xl pb-5"
             style={{
               backgroundImage:
                 "url('images/Background_buy_now_Payer_later_Flexfi.webp')",
