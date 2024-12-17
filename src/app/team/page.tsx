@@ -70,7 +70,13 @@ const Team = () => {
                 retail settings. At FlexFi, he draws on both his commercial and
                 technical expertise to deliver an innovative, accessible, and
                 advantageous solution for merchants and their customers.`
-                  : ``}
+                  : `Mickael, cofundador de FlexFi, cuenta con más de 10 años de
+                experiencia en gestión y ventas, especialmente en el sector del
+                mobiliario. Con un título en desarrollo web y una
+                especialización en Web3, ha observado el impacto del BNPL en
+                entornos minoristas. En FlexFi, combina su experiencia comercial
+                y técnica para ofrecer una solución innovadora, accesible y
+                beneficiosa para los comerciantes y sus clientes.`}
               </p>
             </div>
           </div>

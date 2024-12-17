@@ -24,7 +24,7 @@ export default function Home() {
             <div className="w-full md:w-1/2 mb-8 md:mb-0 flex">
               <Presentation />
               <img
-                className="absolute bottom-0 right-0 w-8/12 md:w-6/12"
+                className="absolute bottom-0 right-0 w-7/12 md:w-5/12"
                 src="/images/Home_BNPL_buy_now_Payer_later_Flexfi.webp"
                 alt="Home_BNPL_buy_now_Payer_later_Flexfi"
               />
