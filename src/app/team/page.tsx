@@ -46,7 +46,7 @@ const Team = () => {
         </div>
         <div className="space-y-12">
           <div
-            className="flex flex-col sm:flex-row items-center justify-between mb-20 space-y-6 sm:space-y-0 bg-cover shadow-lg rounded-2xl pb-5"
+            className="flex flex-col sm:flex-row items-center justify-between mb-20 space-y-6 sm:space-y-0 bg-cover shadow-lg rounded-2xl"
             style={{
               backgroundImage:
                 "url('images/Background_buy_now_Payer_later_Flexfi.webp')",
@@ -61,7 +61,7 @@ const Team = () => {
               <h3 className="text-3xl font-display">
                 {isEnglish ? "Mickael Co-founder" : "Mickael Cofundador"}
               </h3>
-              <p className="text-base sm:text-lg md:text-xl px-6 mt-5 font-sans w-2/3">
+              <p className="text-base sm:text-lg md:text-xl px-6 mt-5 font-sans w-2/3 pb-5">
                 {isEnglish
                   ? `Mickael, co-founder of FlexFi, has more than 10 years of
                 experience in management and sales, particularly in the
@@ -75,7 +75,7 @@ const Team = () => {
             </div>
           </div>
           <div
-            className="flex flex-col-reverse sm:flex-row items-center justify-between bg-cover shadow-lg rounded-2xl pb-5"
+            className="flex flex-col-reverse sm:flex-row items-center justify-between bg-cover shadow-lg rounded-2xl"
             style={{
               backgroundImage:
                 "url('images/Background_buy_now_Payer_later_Flexfi.webp')",
@@ -85,7 +85,7 @@ const Team = () => {
               <h3 className="text-3xl font-display">
                 {isEnglish ? "Thomas Co-founder" : "Thomas Cofundador"}
               </h3>
-              <p className="text-base sm:text-lg md:text-xl px-6 mt-5 font-sans w-2/3">
+              <p className="text-base sm:text-lg md:text-xl px-6 mt-5 font-sans w-2/3 pb-5">
                 {isEnglish
                   ? `Creative, bold, and driven by a thirst for innovation, my
                 journey is a true ode to the freedom of entrepreneurship. After
