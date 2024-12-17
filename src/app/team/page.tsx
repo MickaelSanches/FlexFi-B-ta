@@ -112,7 +112,7 @@ const Team = () => {
               </p>
             </div>
             <img
-              className="sm:w-40 sm:h-40 md:size-2/6 mx-auto -scale-x-100 rounded-2xl object-cover shadow-2xl"
+              className="sm:w-40 sm:h-40 md:size-2/6 mx-auto rounded-2xl object-cover shadow-2xl"
               src="/images/thomas-photo.webp"
               alt="Thomas"
             />
